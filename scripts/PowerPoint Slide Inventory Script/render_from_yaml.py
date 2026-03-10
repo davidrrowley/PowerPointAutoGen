@@ -52,6 +52,32 @@ SUPPORTED_MODALITIES = {
 }
 
 
+ACTUAL_LAYOUT_NAMES = {
+    "large_statement": "big text",
+    "headline_summary": "title, text",
+    "headline_detail": "title, text",
+    "four_points": "title, text (four columns)",
+    "multi_block_analysis": "title, text",
+    "two_column_image": "title, text, half-image",
+    "image_story": "title, text, half-image",
+    "fact_statement": "fact, number",
+    "fact_with_image": "fact, number, half-image (bleeds)",
+    "case_study": "case study 1: title, text (two columns), half-image",
+    "strategy_pillars": "title, text",
+    "value_tree": "title, text",
+    "prioritisation_matrix": "table",
+    "portfolio_matrix": "table",
+    "operating_model_framework": "title, text",
+    "pyramid": "title, text",
+    "capability_map": "title, text",
+    "insight_boxes": "insight, text, boxes",
+    "title_text": "title, text",
+    "title_text_two_columns": "title, text (two columns)",
+    "title_text_half_image": "title, text, half-image",
+    "fact_number_half_image": "fact, number, half-image (bleeds)",
+}
+
+
 def save_presentation_safely(prs: Presentation, output_path: str | Path) -> None:
     output_path = Path(output_path).resolve()
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -76,13 +102,19 @@ def save_presentation_safely(prs: Presentation, output_path: str | Path) -> None
 def _write_title_text_slide(slide, fields: dict, body_idx: int = 12) -> None:
     set_title(slide, fields["title"])
     body = fields.get("body", [])
+
     if isinstance(body, list):
         set_body_bullets(slide, body, idx=body_idx)
     else:
         set_body_paragraph(slide, str(body), idx=body_idx)
 
 
-def _write_two_column_slide(slide, fields: dict, left_idx: int = 13, right_idx: int = 12) -> None:
+def _write_two_column_slide(
+    slide,
+    fields: dict,
+    left_idx: int = 13,
+    right_idx: int = 12,
+) -> None:
     set_title(slide, fields["title"])
 
     left = fields.get("body_left", [])
@@ -99,7 +131,13 @@ def _write_two_column_slide(slide, fields: dict, left_idx: int = 13, right_idx: 
         set_body_paragraph(slide, str(right), idx=right_idx)
 
 
-def _write_half_image_slide(slide, fields: dict, yaml_base: Path, body_idx: int, image_idx: int) -> None:
+def _write_half_image_slide(
+    slide,
+    fields: dict,
+    yaml_base: Path,
+    body_idx: int,
+    image_idx: int,
+) -> None:
     set_title(slide, fields["title"])
 
     body = fields.get("body", [])
@@ -113,6 +151,7 @@ def _write_half_image_slide(slide, fields: dict, yaml_base: Path, body_idx: int,
         image_path = Path(image)
         if not image_path.is_absolute():
             image_path = yaml_base / image_path
+
         if image_path.exists():
             set_picture(slide, image_path, idx=image_idx, padding_ratio=0.01)
 
@@ -137,6 +176,7 @@ def _write_insight_boxes_slide(slide, fields: dict) -> None:
 
 def _write_next_steps_boxes_slide(slide, fields: dict) -> None:
     set_title(slide, fields["title"])
+
     intro = ["The immediate priority is to move from proof to operational hardening"]
     set_body_bullets(slide, intro, idx=13)
 
@@ -173,6 +213,7 @@ def _write_evidence_slide(slide, fields: dict, yaml_base: Path) -> None:
         image_path = Path(image)
         if not image_path.is_absolute():
             image_path = yaml_base / image_path
+
         if image_path.exists():
             set_picture(slide, image_path, idx=13, padding_ratio=0.01)
 
@@ -192,67 +233,45 @@ def add_slide_from_spec(
             f"Supported modalities: {sorted(SUPPORTED_MODALITIES)}"
         )
 
-    layout_name = resolve_layout(modality, fields, registry)
-    layout = find_layout_by_name(prs, layout_name.replace("_", ", ") if False else layout_name)
+    layout_id = resolve_layout(modality, fields, registry)
 
-    # Explicit mapping from registry layout ids to actual PowerPoint layout names
-    actual_layout_names = {
-        "large_statement": "big text",
-        "headline_summary": "title, text",
-        "headline_detail": "title, text",
-        "four_points": "title, text (four columns)",
-        "multi_block_analysis": "title, text",
-        "two_column_image": "title, text, half-image",
-        "image_story": "title, text, half-image",
-        "fact_statement": "fact, number",
-        "fact_with_image": "fact, number, half-image (bleeds)",
-        "case_study": "case study 1: title, text (two columns), half-image",
-        "strategy_pillars": "title, text",
-        "value_tree": "value tree",
-        "prioritisation_matrix": "opportunity prioritization matrix",
-        "portfolio_matrix": "portfolio matrix",
-        "operating_model_framework": "performance health check framework",
-        "pyramid": "stacked 3-layer pyramid",
-        "capability_map": "puzzle piece detail (stacked)",
-        "insight_boxes": "insight, text, boxes",
-        "title_text": "title, text",
-        "title_text_two_columns": "title, text (two columns)",
-        "title_text_half_image": "title, text, half-image",
-        "fact_number_half_image": "fact, number, half-image (bleeds)",
-    }
+    if layout_id not in ACTUAL_LAYOUT_NAMES:
+        raise ValueError(
+            f"Layout id '{layout_id}' is not mapped to a PowerPoint layout name. "
+            f"Known mappings: {sorted(ACTUAL_LAYOUT_NAMES.keys())}"
+        )
 
-    actual_layout_name = actual_layout_names[layout_name]
+    actual_layout_name = ACTUAL_LAYOUT_NAMES[layout_id]
     layout = find_layout_by_name(prs, actual_layout_name)
     slide = prs.slides.add_slide(layout)
 
     print(f"\nAdded slide using modality: {modality}")
-    print(f"Resolved layout id: {layout_name}")
+    print(f"Resolved layout id: {layout_id}")
     print(f"Resolved PowerPoint layout: {actual_layout_name}")
     print(f"Available placeholders: {debug_placeholders(slide)}")
 
-    if layout_name in {"title_text", "headline_summary", "headline_detail", "multi_block_analysis"}:
+    if layout_id in {"title_text", "headline_summary", "headline_detail", "multi_block_analysis"}:
         _write_title_text_slide(slide, fields, body_idx=12)
 
-    elif layout_name == "title_text_two_columns":
+    elif layout_id == "title_text_two_columns":
         _write_two_column_slide(slide, fields, left_idx=13, right_idx=12)
 
-    elif layout_name in {"title_text_half_image", "image_story", "two_column_image"}:
+    elif layout_id in {"title_text_half_image", "image_story", "two_column_image"}:
         _write_half_image_slide(slide, fields, yaml_base, body_idx=13, image_idx=14)
 
-    elif layout_name == "insight_boxes":
+    elif layout_id == "insight_boxes":
         if modality == "next_steps":
             _write_next_steps_boxes_slide(slide, fields)
         else:
             _write_insight_boxes_slide(slide, fields)
 
-    elif layout_name in {"fact_number_half_image", "fact_with_image"}:
+    elif layout_id in {"fact_number_half_image", "fact_with_image"}:
         _write_evidence_slide(slide, fields, yaml_base)
 
-    elif layout_name == "large_statement":
+    elif layout_id == "large_statement":
         set_title(slide, fields["title"])
 
     else:
-        # safe fallback
         if "title" in fields:
             set_title(slide, fields["title"])
 
