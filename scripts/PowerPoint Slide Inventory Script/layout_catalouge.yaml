@@ -1,0 +1,174 @@
+theme: ibm
+template_file: IBM_Consulting_Presentation_Template_2022_V02_Arial.potx
+
+patterns:
+
+  statement:
+    description: "Single dominant message or opening assertion"
+    candidate_layouts:
+      - name: "big text"
+        safe_for_automation: true
+        notes: "Best opening statement layout"
+        placeholders:
+          title: { type: "title", idx: 0 }
+
+      - name: "cover"
+        safe_for_automation: partial
+        notes: "More cover-oriented than narrative statement"
+        placeholders:
+          title: { type: "title", idx: 0 }
+
+  text_single:
+    description: "Single explanatory text region with title"
+    candidate_layouts:
+      - name: "title, text"
+        safe_for_automation: true
+        notes: "Core analytical layout"
+        placeholders:
+          title: { type: "title", idx: 0 }
+          body: { type: "body", idx: 12 }
+
+      - name: "fact, number"
+        safe_for_automation: partial
+        notes: "Useful where the text is short and metric-led"
+        placeholders:
+          title: { type: "title", idx: 0 }
+          body: { type: "body", idx: 12 }
+
+  text_two_column:
+    description: "Two side-by-side text regions"
+    candidate_layouts:
+      - name: "title, text (two columns)"
+        safe_for_automation: true
+        notes: "Best current paired reasoning layout"
+        placeholders:
+          title: { type: "title", idx: 0 }
+          body_left: { type: "body", idx: 13 }
+          body_right: { type: "body", idx: 12 }
+
+      - name: "title, text (two columns, different text sizes)"
+        safe_for_automation: partial
+        notes: "Useful where one side should dominate"
+        placeholders:
+          title: { type: "title", idx: 0 }
+          body_left: { type: "obj", idx: 13 }
+          body_right: { type: "body", idx: 12 }
+
+  text_three_or_card_comparison:
+    description: "Three-part comparison or boxed option layout"
+    candidate_layouts:
+      - name: "insight, text, boxes"
+        safe_for_automation: partial
+        notes: "Promising for option cards and grouped takeaways"
+        placeholders:
+          title: { type: "title", idx: 0 }
+
+      - name: "boxes"
+        safe_for_automation: partial
+        notes: "Potentially useful for next steps or options"
+        placeholders:
+          title: { type: "title", idx: 0 }
+
+  text_four_column:
+    description: "Four-part compact summary layout"
+    candidate_layouts:
+      - name: "title, text (four columns)"
+        safe_for_automation: partial
+        notes: "Useful for short grouped summaries"
+        placeholders:
+          title: { type: "title", idx: 0 }
+
+  image_right_text_left:
+    description: "Text explanation paired with image or diagram"
+    candidate_layouts:
+      - name: "title, text, half-image"
+        safe_for_automation: true
+        notes: "Current best architecture/process layout"
+        placeholders:
+          title: { type: "title", idx: 0 }
+          body: { type: "body", idx: 13 }
+          image: { type: "pic", idx: 14 }
+
+      - name: "fact, number, half-image (bleeds)"
+        safe_for_automation: true
+        notes: "Strong evidence layout with visual support"
+        placeholders:
+          title: { type: "title", idx: 0 }
+          body: { type: "body", idx: 12 }
+          image: { type: "pic", idx: 13 }
+
+  image_full:
+    description: "Large image-led or diagram-led slide"
+    candidate_layouts:
+      - name: "title, image"
+        safe_for_automation: true
+        notes: "Good for clean visual explanation"
+        placeholders:
+          title: { type: "title", idx: 0 }
+          image: { type: "pic", idx: 12 }
+
+  facts_metrics:
+    description: "Evidence, proof points and key numbers"
+    candidate_layouts:
+      - name: "fact, number"
+        safe_for_automation: partial
+        notes: "Best for one or two proof points"
+        placeholders:
+          title: { type: "title", idx: 0 }
+          body: { type: "body", idx: 12 }
+
+      - name: "fact, number, half-image (bleeds)"
+        safe_for_automation: true
+        notes: "Best evidence layout where a supporting image exists"
+        placeholders:
+          title: { type: "title", idx: 0 }
+          body: { type: "body", idx: 12 }
+          image: { type: "pic", idx: 13 }
+
+  table_structured:
+    description: "Structured table layout"
+    candidate_layouts:
+      - name: "table"
+        safe_for_automation: partial
+        notes: "Useful for tabular evidence"
+        placeholders:
+          title: { type: "title", idx: 0 }
+
+  blank_controlled:
+    description: "Fallback layout retaining footer and branding"
+    candidate_layouts:
+      - name: "blank (with footer)"
+        safe_for_automation: partial
+        notes: "Last resort only"
+        placeholders: {}
+
+modality_preferences:
+  context_statement:
+    preferred_patterns: ["statement"]
+
+  problem_framing:
+    preferred_patterns: ["text_single"]
+
+  hypothesis_success_criteria:
+    preferred_patterns: ["text_two_column"]
+
+  options_considered:
+    preferred_patterns: ["text_three_or_card_comparison", "text_four_column", "text_two_column"]
+
+  chosen_approach:
+    preferred_patterns: ["text_single"]
+
+  architecture_view:
+    preferred_patterns: ["image_right_text_left", "image_full"]
+
+  evidence_results:
+    preferred_patterns: ["facts_metrics", "table_structured", "text_single"]
+
+  learnings_constraints:
+    preferred_patterns: ["text_single", "text_two_column"]
+
+  implications:
+    preferred_patterns: ["text_single"]
+
+  next_steps:
+    preferred_patterns: ["text_three_or_card_comparison", "text_two_column"]

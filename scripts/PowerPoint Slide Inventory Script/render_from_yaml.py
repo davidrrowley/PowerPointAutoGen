@@ -5,6 +5,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from layout_catalogue import load_layout_catalogue
+from pattern_resolver import resolve_layout_for_modality
 import argparse
 import shutil
 from tempfile import NamedTemporaryFile
@@ -17,7 +19,7 @@ except ImportError as exc:
 from pptx import Presentation
 
 from layout_resolver import find_layout_by_name
-from modality_mapping import resolve_layout_name
+
 from placeholder_writer import (
     debug_placeholders,
     set_body_bullets,
@@ -108,23 +110,25 @@ def _write_half_image_slide(slide, fields: dict, yaml_base: Path) -> None:
             print(f"WARNING: image not found, skipping picture insertion: {image_path}")
 
 
-def add_slide_from_spec(prs: Presentation, slide_spec: dict, yaml_base: Path, theme: str) -> None:
+def add_slide_from_spec(
+    prs: Presentation,
+    slide_spec: dict,
+    yaml_base: Path,
+    catalogue: dict,
+) -> None:
     modality = slide_spec["modality"]
     fields = slide_spec.get("fields", {})
 
-    if modality not in SUPPORTED_MODALITIES:
-        raise ValueError(
-            f"Modality '{modality}' is not supported. "
-            f"Supported modalities: {sorted(SUPPORTED_MODALITIES)}"
-        )
+    result = resolve_layout_for_modality(modality, catalogue, prefer_safe_only=True)
+    pattern_name = result["pattern"]
+    layout_name = result["layout"]["name"]
 
-    layout_name = resolve_layout_name(modality, theme=theme)
     layout = find_layout_by_name(prs, layout_name)
     slide = prs.slides.add_slide(layout)
 
     print(f"\nAdded slide using modality: {modality}")
+    print(f"Resolved pattern: {pattern_name}")
     print(f"Resolved layout: {layout_name}")
-    print(f"Theme: {theme}")
     print(f"Available placeholders: {debug_placeholders(slide)}")
 
     if modality == "context_statement":
@@ -133,6 +137,7 @@ def add_slide_from_spec(prs: Presentation, slide_spec: dict, yaml_base: Path, th
     elif modality in {
         "problem_framing",
         "chosen_approach",
+        "evidence_results",
         "learnings_constraints",
         "implications",
     }:
@@ -140,6 +145,7 @@ def add_slide_from_spec(prs: Presentation, slide_spec: dict, yaml_base: Path, th
 
     elif modality in {
         "hypothesis_success_criteria",
+        "options_considered",
         "next_steps",
     }:
         _write_two_column_slide(slide, fields)
@@ -149,9 +155,15 @@ def add_slide_from_spec(prs: Presentation, slide_spec: dict, yaml_base: Path, th
 
     else:
         raise ValueError(f"No rendering rule implemented for modality '{modality}'")
+    
 
 
-def render_deck(template_path: str, yaml_path: str, output_path: str, theme: str) -> None:
+def render_deck(
+    template_path: str,
+    yaml_path: str,
+    output_path: str,
+    catalogue_path: str,
+) -> None:
     prs, working_pptx = load_presentation_from_template(template_path)
     print(f"Opened working presentation: {working_pptx}")
 
@@ -163,11 +175,11 @@ def render_deck(template_path: str, yaml_path: str, output_path: str, theme: str
     validate_deck_structure(deck_spec)
     validate_text_constraints(deck_spec)
 
-    slides = deck_spec.get("slides", [])
+    catalogue = load_layout_catalogue(catalogue_path)
     yaml_base = Path(yaml_path).resolve().parent
 
-    for slide_spec in slides:
-        add_slide_from_spec(prs, slide_spec, yaml_base, theme)
+    for slide_spec in deck_spec["slides"]:
+        add_slide_from_spec(prs, slide_spec, yaml_base, catalogue)
 
     save_presentation_safely(prs, output_path)
     print(f"\nGenerated deck: {output_path}")
@@ -177,11 +189,11 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--template", required=True, help="Path to .potx template")
     parser.add_argument("--input", required=True, help="Path to YAML deck spec")
+    parser.add_argument("--catalogue", default="layout_catalogue.yaml", help="Path to layout catalogue YAML")
     parser.add_argument("--output", default="pocdeck_test_output.pptx", help="Output .pptx path")
-    parser.add_argument("--theme", default="ibm", help="Theme profile to use: ibm or microsoft")
     args = parser.parse_args()
 
-    render_deck(args.template, args.input, args.output, args.theme)
+    render_deck(args.template, args.input, args.output, args.catalogue)
 
 
 if __name__ == "__main__":

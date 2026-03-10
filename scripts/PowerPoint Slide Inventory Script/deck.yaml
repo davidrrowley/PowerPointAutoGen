@@ -22,6 +22,18 @@ slides:
         - "Can PowerPoint templates be inspected reliably?"
         - "Can layouts be populated deterministically from Python?"
 
+  - modality: options_considered
+    fields:
+      title: "Several paths were available, but only one balanced structure and control"
+      body_left:
+        - "Free AI slide generation"
+        - "High flexibility"
+        - "Weak layout discipline"
+      body_right:
+        - "Template-driven rendering"
+        - "Lower freedom"
+        - "Much stronger consistency"
+
   - modality: chosen_approach
     fields:
       title: "The chosen approach separates reasoning, rendering and template control"

@@ -1,43 +1,13 @@
 from __future__ import annotations
 
-
-THEME_PROFILES = {
-    "ibm": {
-        "context_statement": "big text",
-        "problem_framing": "title, text",
-        "hypothesis_success_criteria": "title, text (two columns)",
-        "chosen_approach": "title, text",
-        "architecture_view": "title, text, half-image",
-        "learnings_constraints": "title, text",
-        "implications": "title, text",
-        "next_steps": "title, text (two columns)",
-    },
-    "microsoft": {
-        # Temporary placeholders until you create or inspect the Microsoft template.
-        "context_statement": "big text",
-        "problem_framing": "title, text",
-        "hypothesis_success_criteria": "title, text (two columns)",
-        "chosen_approach": "title, text",
-        "architecture_view": "title, text, half-image",
-        "learnings_constraints": "title, text",
-        "implications": "title, text",
-        "next_steps": "title, text (two columns)",
-    },
-}
+from layout_catalogue import load_layout_catalogue
+from pattern_resolver import resolve_layout_for_modality
 
 
-def resolve_layout_name(modality: str, theme: str = "ibm") -> str:
-    if theme not in THEME_PROFILES:
-        raise ValueError(
-            f"Unknown theme '{theme}'. Supported themes: {sorted(THEME_PROFILES.keys())}"
-        )
-
-    profile = THEME_PROFILES[theme]
-
-    if modality not in profile:
-        raise ValueError(
-            f"Modality '{modality}' not found in theme '{theme}'. "
-            f"Supported modalities: {sorted(profile.keys())}"
-        )
-
-    return profile[modality]
+def resolve_layout_name_from_catalogue(
+    modality: str,
+    catalogue_path: str = "layout_catalogue.yaml",
+) -> tuple[str, str]:
+    catalogue = load_layout_catalogue(catalogue_path)
+    result = resolve_layout_for_modality(modality, catalogue)
+    return result["pattern"], result["layout"]["name"]
