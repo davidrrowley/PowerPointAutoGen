@@ -288,15 +288,14 @@ def add_slide_from_spec(
 
     elif layout_id in {
         "title_text_half_image",
-        "fact_number_half_image",
         "title_image",
         "title_gray_box_over_images",
         "text_gray_box_over_images",
     }:
-        if layout_id == "fact_number_half_image":
-            _write_half_image_slide(slide, fields, yaml_base, body_idx=12, image_idx=13)
-        else:
-            _write_half_image_slide(slide, fields, yaml_base, body_idx=13, image_idx=14)
+        _write_half_image_slide(slide, fields, yaml_base, body_idx=13, image_idx=14)
+
+    elif layout_id == "fact_number_half_image":
+        _write_half_image_slide(slide, fields, yaml_base, body_idx=12, image_idx=13)
 
     elif layout_id == "insight_text_boxes":
         if modality == "next_steps":
@@ -305,7 +304,14 @@ def add_slide_from_spec(
             _write_insight_boxes_slide(slide, fields)
 
     elif layout_id == "fact_number":
-        _write_title_text_slide(slide, fields, body_idx=12)
+        if "body" in fields:
+            _write_title_text_slide(slide, fields, body_idx=12)
+        else:
+            bullets = []
+            if "lead" in fields and fields["lead"]:
+                bullets.append(str(fields["lead"]))
+            bullets.extend(fields.get("proof_points", []))
+            _write_title_text_slide(slide, {"title": fields["title"], "body": bullets}, body_idx=12)
 
     elif layout_id in {"case_study_1", "case_study_2"}:
         _write_case_study_slide(slide, fields, yaml_base)
