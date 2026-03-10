@@ -25,7 +25,7 @@ from placeholder_writer import (
     debug_placeholders,
     set_body_bullets,
     set_body_paragraph,
-    set_first_body,
+    set_first_text,
     set_object_text,
     set_picture,
     set_title,
@@ -112,7 +112,7 @@ def _write_half_image_slide(slide, fields: dict, yaml_base: Path) -> None:
             image_path = yaml_base / image_path
 
         if image_path.exists():
-            set_picture(slide, image_path, idx=14, padding_ratio=0.04)
+            set_picture(slide, image_path, idx=14, padding_ratio=0.02)
         else:
             print(f"WARNING: image not found, skipping picture insertion: {image_path}")
 
@@ -167,8 +167,7 @@ def _write_next_steps_boxes_slide(slide, fields: dict) -> None:
 
 def _write_evidence_fact_image_slide(slide, fields: dict, yaml_base: Path) -> None:
     """
-    Supports IBM layout: 'fact, number, half-image (bleeds)'
-    Uses dynamic BODY placeholder resolution to avoid hard-coded index issues.
+    Supports richer evidence layouts without relying on a fixed BODY idx.
     """
     set_title(slide, fields["title"])
 
@@ -181,10 +180,10 @@ def _write_evidence_fact_image_slide(slide, fields: dict, yaml_base: Path) -> No
             combined.append(lead)
         combined.extend(proof_points)
 
-        set_first_body(slide, combined)
+        set_first_text(slide, combined)
     else:
         body = fields.get("body", [])
-        set_first_body(slide, body)
+        set_first_text(slide, body)
 
     image = fields.get("image")
     if image:
@@ -193,7 +192,7 @@ def _write_evidence_fact_image_slide(slide, fields: dict, yaml_base: Path) -> No
             image_path = yaml_base / image_path
 
         if image_path.exists():
-            set_picture(slide, image_path, idx=13, padding_ratio=0.04)
+            set_picture(slide, image_path, padding_ratio=0.02)
         else:
             print(f"WARNING: evidence image not found, skipping picture insertion: {image_path}")
 
@@ -237,10 +236,7 @@ def add_slide_from_spec(
         _write_title_text_slide(slide, fields)
 
     elif modality == "evidence_results":
-        if layout_name == "fact, number, half-image (bleeds)":
-            _write_evidence_fact_image_slide(slide, fields, yaml_base)
-        else:
-            _write_title_text_slide(slide, fields)
+        _write_evidence_fact_image_slide(slide, fields, yaml_base)
 
     elif modality == "options_considered":
         if layout_name == "insight, text, boxes":

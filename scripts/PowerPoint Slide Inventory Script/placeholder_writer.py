@@ -21,6 +21,7 @@ def debug_placeholders(slide) -> list[dict]:
                 "type": str(fmt.type),
                 "name": getattr(ph, "name", None),
                 "shape_type": str(ph.shape_type),
+                "has_text_frame": hasattr(ph, "text_frame"),
             }
         )
     return result
@@ -40,6 +41,50 @@ def get_placeholder(slide, ph_type=None, idx: int | None = None):
     raise ValueError(
         f"Placeholder not found. Requested type={ph_type}, idx={idx}. "
         f"Available placeholders={debug_placeholders(slide)}"
+    )
+
+
+def get_first_text_placeholder(slide, exclude_title: bool = True):
+    """
+    Returns the first text-capable placeholder on the slide.
+    Prefer BODY placeholders, then OBJECT placeholders with text frames.
+    """
+    candidates = []
+
+    for ph in _all_placeholders(slide):
+        fmt = ph.placeholder_format
+        ph_type = fmt.type
+
+        if exclude_title and ph_type == PP_PLACEHOLDER.TITLE:
+            continue
+
+        if hasattr(ph, "text_frame"):
+            candidates.append(ph)
+
+    # Prefer BODY placeholders first
+    for ph in candidates:
+        if ph.placeholder_format.type == PP_PLACEHOLDER.BODY:
+            return ph
+
+    # Then OBJECT placeholders or anything else text-capable
+    if candidates:
+        return candidates[0]
+
+    raise ValueError(
+        f"No text-capable placeholder found. Available placeholders={debug_placeholders(slide)}"
+    )
+
+
+def get_first_picture_placeholder(slide):
+    """
+    Returns the first PICTURE placeholder on the slide.
+    """
+    for ph in _all_placeholders(slide):
+        if ph.placeholder_format.type == PP_PLACEHOLDER.PICTURE:
+            return ph
+
+    raise ValueError(
+        f"No picture placeholder found. Available placeholders={debug_placeholders(slide)}"
     )
 
 
@@ -82,28 +127,23 @@ def set_body_paragraph(slide, text: str, idx: int | None = None) -> None:
     tf.paragraphs[0].text = text
 
 
-def set_first_body(slide, text_or_bullets) -> None:
+def set_first_text(slide, text_or_bullets) -> None:
     """
-    Finds the first BODY placeholder on the slide dynamically and writes
-    either a paragraph or a bullet list into it.
+    Finds the first text-capable placeholder dynamically and writes either a
+    paragraph or a bullet list into it.
     """
-    for ph in slide.placeholders:
-        if ph.placeholder_format.type == PP_PLACEHOLDER.BODY:
-            tf = ph.text_frame
-            tf.clear()
+    ph = get_first_text_placeholder(slide, exclude_title=True)
+    tf = ph.text_frame
+    tf.clear()
 
-            if isinstance(text_or_bullets, list):
-                for i, bullet in enumerate(text_or_bullets):
-                    p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
-                    p.text = bullet
-                    p.level = 0
-                    _force_bullet(p)
-            else:
-                tf.paragraphs[0].text = str(text_or_bullets)
-
-            return
-
-    raise ValueError("No BODY placeholder found on this layout.")
+    if isinstance(text_or_bullets, list):
+        for i, bullet in enumerate(text_or_bullets):
+            p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+            p.text = bullet
+            p.level = 0
+            _force_bullet(p)
+    else:
+        tf.paragraphs[0].text = str(text_or_bullets)
 
 
 def set_object_text(slide, text: str, idx: int) -> None:
@@ -117,13 +157,17 @@ def set_picture(
     slide,
     image_path: str | Path,
     idx: int | None = None,
-    padding_ratio: float = 0.04,
+    padding_ratio: float = 0.02,
 ) -> None:
     image_path = Path(image_path)
     if not image_path.exists():
         raise FileNotFoundError(f"Image file not found: {image_path}")
 
-    ph = get_placeholder(slide, PP_PLACEHOLDER.PICTURE, idx=idx)
+    ph = (
+        get_placeholder(slide, PP_PLACEHOLDER.PICTURE, idx=idx)
+        if idx is not None
+        else get_first_picture_placeholder(slide)
+    )
 
     left = ph.left
     top = ph.top
