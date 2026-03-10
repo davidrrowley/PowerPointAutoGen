@@ -78,18 +78,37 @@ from pptx.enum.shapes import MSO_AUTO_SHAPE_TYPE
 from pptx.dml.color import RGBColor
 
 
-def set_picture(slide, image_path: str | Path, idx: int | None = None) -> None:
+from pathlib import Path
+from PIL import Image
+
+from pptx.enum.shapes import PP_PLACEHOLDER, MSO_AUTO_SHAPE_TYPE
+from pptx.dml.color import RGBColor
+
+
+def set_picture(slide, image_path: str | Path, idx: int | None = None, padding_ratio: float = 0.08) -> None:
+    """
+    Insert an image into a picture placeholder area using 'contain' behaviour,
+    with optional padding inside the placeholder bounds.
+    """
     image_path = Path(image_path)
+    if not image_path.exists():
+        raise FileNotFoundError(f"Image file not found: {image_path}")
 
     ph = get_placeholder(slide, PP_PLACEHOLDER.PICTURE, idx=idx)
 
-    # Placeholder bounds
     left = ph.left
     top = ph.top
     box_w = ph.width
     box_h = ph.height
 
-    # ---------- WHITE BACKGROUND CANVAS ----------
+    pad_w = int(box_w * padding_ratio)
+    pad_h = int(box_h * padding_ratio)
+
+    inner_left = left + pad_w
+    inner_top = top + pad_h
+    inner_w = box_w - (2 * pad_w)
+    inner_h = box_h - (2 * pad_h)
+
     bg = slide.shapes.add_shape(
         MSO_AUTO_SHAPE_TYPE.RECTANGLE,
         left,
@@ -97,30 +116,25 @@ def set_picture(slide, image_path: str | Path, idx: int | None = None) -> None:
         box_w,
         box_h,
     )
-
     bg.fill.solid()
     bg.fill.fore_color.rgb = RGBColor(255, 255, 255)
     bg.line.fill.background()
-    # ---------------------------------------------
 
-    # Read image dimensions
     with Image.open(image_path) as img:
         img_w_px, img_h_px = img.size
 
     img_ratio = img_w_px / img_h_px
-    box_ratio = box_w / box_h
+    box_ratio = inner_w / inner_h
 
-    # Scale image to fit placeholder
     if img_ratio > box_ratio:
-        new_w = box_w
-        new_h = int(box_w / img_ratio)
+        new_w = inner_w
+        new_h = int(inner_w / img_ratio)
     else:
-        new_h = box_h
-        new_w = int(box_h * img_ratio)
+        new_h = inner_h
+        new_w = int(inner_h * img_ratio)
 
-    # Centre image
-    new_left = left + int((box_w - new_w) / 2)
-    new_top = top + int((box_h - new_h) / 2)
+    new_left = inner_left + int((inner_w - new_w) / 2)
+    new_top = inner_top + int((inner_h - new_h) / 2)
 
     slide.shapes.add_picture(
         str(image_path),
@@ -130,6 +144,6 @@ def set_picture(slide, image_path: str | Path, idx: int | None = None) -> None:
         height=new_h,
     )
 
-    # Remove original placeholder
     sp = ph._element
     sp.getparent().remove(sp)
+    
