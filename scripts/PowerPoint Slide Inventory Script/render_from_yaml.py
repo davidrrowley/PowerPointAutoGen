@@ -5,8 +5,6 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from layout_catalouge import load_layout_catalogue
-from pattern_resolver import resolve_layout_for_modality
 import argparse
 import shutil
 from tempfile import NamedTemporaryFile
@@ -14,16 +12,20 @@ from tempfile import NamedTemporaryFile
 try:
     import yaml
 except ImportError as exc:
-    raise RuntimeError("PyYAML is required. Install with: python -m pip install pyyaml") from exc
+    raise RuntimeError(
+        "PyYAML is required. Install with: python -m pip install pyyaml"
+    ) from exc
 
 from pptx import Presentation
 
+from layout_catalouge import load_layout_catalogue
 from layout_resolver import find_layout_by_name
-
+from pattern_resolver import resolve_layout_for_modality
 from placeholder_writer import (
     debug_placeholders,
     set_body_bullets,
     set_body_paragraph,
+    set_object_text,
     set_picture,
     set_title,
 )
@@ -36,8 +38,10 @@ SUPPORTED_MODALITIES = {
     "context_statement",
     "problem_framing",
     "hypothesis_success_criteria",
+    "options_considered",
     "chosen_approach",
     "architecture_view",
+    "evidence_results",
     "learnings_constraints",
     "implications",
     "next_steps",
@@ -53,6 +57,8 @@ def save_presentation_safely(prs: Presentation, output_path: str | Path) -> None
 
     try:
         prs.save(temp_path)
+        if output_path.exists():
+            output_path.unlink()
         shutil.move(str(temp_path), str(output_path))
     except PermissionError as exc:
         if temp_path.exists():
@@ -109,34 +115,32 @@ def _write_half_image_slide(slide, fields: dict, yaml_base: Path) -> None:
         else:
             print(f"WARNING: image not found, skipping picture insertion: {image_path}")
 
+
 def _write_insight_boxes_slide(slide, fields: dict) -> None:
+    """
+    Supports IBM layout: 'insight, text, boxes'
+    Confirmed placeholders:
+      - title idx 0
+      - body idx 13
+      - object idx 17, 18, 19
+    """
     set_title(slide, fields["title"])
 
-    left = fields.get("body_left", [])
-    right = fields.get("body_right", [])
+    intro = fields.get("intro", [])
+    if isinstance(intro, list):
+        set_body_bullets(slide, intro, idx=13)
+    else:
+        set_body_paragraph(slide, str(intro), idx=13)
 
-    # main explanatory body
-    intro_lines = []
-    if isinstance(left, list) and left:
-        intro_lines.append(left[0])
-    if isinstance(right, list) and right:
-        intro_lines.append(right[0])
+    boxes = fields.get("boxes", [])
+    if len(boxes) > 0:
+        set_object_text(slide, boxes[0], idx=17)
+    if len(boxes) > 1:
+        set_object_text(slide, boxes[1], idx=18)
+    if len(boxes) > 2:
+        set_object_text(slide, boxes[2], idx=19)
 
-    set_body_bullets(slide, intro_lines, idx=13)
 
-    # box content
-    box_1 = left[1] if isinstance(left, list) and len(left) > 1 else ""
-    box_2 = right[1] if isinstance(right, list) and len(right) > 1 else ""
-    box_3 = right[2] if isinstance(right, list) and len(right) > 2 else ""
-
-    if box_1:
-        set_object_paragraph(slide, box_1, idx=17)
-    if box_2:
-        set_object_paragraph(slide, box_2, idx=18)
-    if box_3:
-        set_object_paragraph(slide, box_3, idx=19)
-
-        
 def add_slide_from_spec(
     prs: Presentation,
     slide_spec: dict,
@@ -145,6 +149,12 @@ def add_slide_from_spec(
 ) -> None:
     modality = slide_spec["modality"]
     fields = slide_spec.get("fields", {})
+
+    if modality not in SUPPORTED_MODALITIES:
+        raise ValueError(
+            f"Modality '{modality}' is not supported. "
+            f"Supported modalities: {sorted(SUPPORTED_MODALITIES)}"
+        )
 
     result = resolve_layout_for_modality(modality, catalogue, prefer_safe_only=True)
     pattern_name = result["pattern"]
@@ -170,9 +180,14 @@ def add_slide_from_spec(
     }:
         _write_title_text_slide(slide, fields)
 
+    elif modality == "options_considered":
+        if layout_name == "insight, text, boxes":
+            _write_insight_boxes_slide(slide, fields)
+        else:
+            _write_two_column_slide(slide, fields)
+
     elif modality in {
         "hypothesis_success_criteria",
-        "options_considered",
         "next_steps",
     }:
         _write_two_column_slide(slide, fields)
@@ -182,7 +197,6 @@ def add_slide_from_spec(
 
     else:
         raise ValueError(f"No rendering rule implemented for modality '{modality}'")
-    
 
 
 def render_deck(
@@ -216,7 +230,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--template", required=True, help="Path to .potx template")
     parser.add_argument("--input", required=True, help="Path to YAML deck spec")
-    parser.add_argument("--catalogue", default="layout_catalogue.yaml", help="Path to layout catalogue YAML")
+    parser.add_argument("--catalogue", default="layout_catalouge.yaml", help="Path to layout catalogue YAML")
     parser.add_argument("--output", default="pocdeck_test_output.pptx", help="Output .pptx path")
     args = parser.parse_args()
 

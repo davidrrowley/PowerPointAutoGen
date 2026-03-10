@@ -1,11 +1,11 @@
 slides:
   - modality: context_statement
     fields:
-      title: "Spreadsheet logic can be replatformed into Fabric without losing operational clarity"
+      title: "Spreadsheet logic can move into Fabric without losing control"
 
   - modality: problem_framing
     fields:
-      title: "A manual spreadsheet-driven process was becoming difficult to scale and govern"
+      title: "A manual spreadsheet process was becoming difficult to scale"
       body:
         - "Business logic was embedded in spreadsheets rather than a managed execution layer"
         - "The process depended on manual handling before files could move into the data platform"
@@ -14,29 +14,28 @@ slides:
 
   - modality: hypothesis_success_criteria
     fields:
-      title: "The PoC needed to prove both functional equivalence and platform suitability"
+      title: "The PoC had to prove both logic fidelity and platform fit"
       body_left:
         - "Can the spreadsheet logic be translated into Python notebooks accurately?"
         - "Can the resulting process operate cleanly inside a Fabric and lakehouse pattern?"
       body_right:
         - "Can ingestion and downstream reasoning be made more repeatable?"
-        - "Can the approach improve observability without introducing unnecessary complexity?"
+        - "Can the approach improve observability without adding unnecessary complexity?"
 
   - modality: options_considered
     fields:
-      title: "Several implementation paths existed, but they did not offer the same balance of control"
-      body_left:
-        - "Retain the spreadsheet as the core execution mechanism"
-        - "Low change effort"
-        - "But governance and automation remain constrained"
-      body_right:
-        - "Move the logic into Fabric notebooks backed by the lakehouse"
-        - "More engineering effort up front"
-        - "But stronger repeatability, visibility and integration potential"
+      title: "Several paths existed, but only one balanced control and repeatability"
+      intro:
+        - "The real decision was not whether change was possible"
+        - "It was which execution pattern created the strongest operational footing"
+      boxes:
+        - "Keep the spreadsheet as the execution layer"
+        - "Automate around the spreadsheet but retain its core logic"
+        - "Move the logic into Fabric notebooks and govern the flow properly"
 
   - modality: chosen_approach
     fields:
-      title: "The chosen approach moved logic into Python notebooks while keeping ingestion disciplined"
+      title: "The chosen approach moved logic into Python notebooks"
       body:
         - "The spreadsheet process was treated as logic to be translated rather than simply automated around"
         - "Fabric notebooks became the execution layer for that logic"
@@ -44,7 +43,7 @@ slides:
 
   - modality: architecture_view
     fields:
-      title: "Architecture: spreadsheet ingestion and notebook-driven execution in Fabric"
+      title: "Architecture: spreadsheet ingestion and notebook execution in Fabric"
       body:
         - "Files are prepared and moved into a governed ingestion path"
         - "Python notebooks execute the translated business logic inside Fabric"
@@ -62,24 +61,24 @@ slides:
 
   - modality: learnings_constraints
     fields:
-      title: "The main lessons were about process discipline and hidden dependency, not notebook feasibility"
+      title: "The main lessons were about process discipline and dependency"
       body:
         - "The hard part was not notebook execution but surfacing the implicit assumptions held in the spreadsheet"
         - "Human intervention remained useful at the ingestion boundary where source quality varied"
         - "Folder and metadata handling mattered more than expected in making the flow reliable"
-        - "A controlled trigger point was preferable to trying to automate around partially prepared inputs"
+        - "A controlled trigger point was preferable to forcing full end-to-end automation"
 
   - modality: implications
     fields:
-      title: "The outcome supports a broader move from spreadsheet operations to platform-managed execution"
+      title: "The result supports a move to platform-managed execution"
       body:
         - "The logic no longer needs to remain trapped inside a manually operated spreadsheet"
         - "Fabric can act as both an execution environment and a bridge into more governed data handling"
-        - "Future automation should focus on reliable ingestion conditions rather than forcing full end-to-end autonomy"
+        - "Future automation should focus on reliable ingestion conditions rather than forcing full autonomy"
 
   - modality: next_steps
     fields:
-      title: "The next step is to operationalise the pattern rather than prove the basic mechanics again"
+      title: "The next step is to operationalise the pattern properly"
       body_left:
         - "Refine the ingestion trigger and metadata controls"
         - "Harden the notebook pattern for repeatable execution"

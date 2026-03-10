@@ -1,13 +1,11 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Iterable
 
-from pptx.enum.shapes import PP_PLACEHOLDER
-from pptx.enum.shapes import PP_PLACEHOLDER
+from PIL import Image
+from pptx.dml.color import RGBColor
+from pptx.enum.shapes import MSO_AUTO_SHAPE_TYPE, PP_PLACEHOLDER
 
-# already imported, but this is the type you will use:
-# PP_PLACEHOLDER.OBJECT
 
 def _all_placeholders(slide):
     return list(slide.placeholders)
@@ -29,9 +27,6 @@ def debug_placeholders(slide) -> list[dict]:
 
 
 def get_placeholder(slide, ph_type=None, idx: int | None = None):
-    """
-    Find a placeholder by placeholder type and optionally idx.
-    """
     for ph in _all_placeholders(slide):
         fmt = ph.placeholder_format
 
@@ -53,7 +48,28 @@ def set_title(slide, text: str) -> None:
     ph.text = text
 
 
-def set_body_bullets(slide, bullets: Iterable[str], idx: int | None = None) -> None:
+def _force_bullet(paragraph) -> None:
+    """
+    Force a visible bullet character onto the paragraph.
+    This is intentionally low-level because some IBM layouts are not
+    consistently surfacing bullets when only text/level are set.
+    """
+    pPr = paragraph._p.get_or_add_pPr()
+
+    # Remove any existing bullet settings first to avoid duplicates.
+    for child in list(pPr):
+        tag = child.tag.rsplit("}", 1)[-1]
+        if tag in {"buNone", "buChar", "buAutoNum", "buBlip"}:
+            pPr.remove(child)
+
+    bu = paragraph._element.makeelement(
+        "{http://schemas.openxmlformats.org/drawingml/2006/main}buChar"
+    )
+    bu.set("char", "•")
+    pPr.insert(0, bu)
+
+
+def set_body_bullets(slide, bullets, idx: int | None = None) -> None:
     ph = get_placeholder(slide, PP_PLACEHOLDER.BODY, idx=idx)
     tf = ph.text_frame
     tf.clear()
@@ -62,6 +78,7 @@ def set_body_bullets(slide, bullets: Iterable[str], idx: int | None = None) -> N
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.text = bullet
         p.level = 0
+        _force_bullet(p)
 
 
 def set_body_paragraph(slide, text: str, idx: int | None = None) -> None:
@@ -70,38 +87,23 @@ def set_body_paragraph(slide, text: str, idx: int | None = None) -> None:
     tf.clear()
     tf.paragraphs[0].text = text
 
-def set_object_paragraph(slide, text: str, idx: int) -> None:
+
+def set_object_text(slide, text: str, idx: int) -> None:
     ph = get_placeholder(slide, PP_PLACEHOLDER.OBJECT, idx=idx)
-
-    if not hasattr(ph, "text_frame"):
-        raise ValueError(f"Object placeholder idx={idx} does not expose a text frame.")
-
     tf = ph.text_frame
     tf.clear()
     tf.paragraphs[0].text = text
-    
-from pathlib import Path
-from PIL import Image
 
 
-from pathlib import Path
-from PIL import Image
-from pptx.enum.shapes import PP_PLACEHOLDER
-from pptx.enum.shapes import MSO_AUTO_SHAPE_TYPE
-from pptx.dml.color import RGBColor
-
-
-from pathlib import Path
-from PIL import Image
-
-from pptx.enum.shapes import PP_PLACEHOLDER, MSO_AUTO_SHAPE_TYPE
-from pptx.dml.color import RGBColor
-
-
-def set_picture(slide, image_path: str | Path, idx: int | None = None, padding_ratio: float = 0.08) -> None:
+def set_picture(
+    slide,
+    image_path: str | Path,
+    idx: int | None = None,
+    padding_ratio: float = 0.08,
+) -> None:
     """
-    Insert an image into a picture placeholder area using 'contain' behaviour,
-    with optional padding inside the placeholder bounds.
+    Insert an image into a picture placeholder using contain behaviour
+    rather than fill/crop behaviour.
     """
     image_path = Path(image_path)
     if not image_path.exists():

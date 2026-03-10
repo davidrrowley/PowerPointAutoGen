@@ -7,7 +7,7 @@ REQUIRED_FIELDS_BY_MODALITY = {
     "context_statement": {"title"},
     "problem_framing": {"title", "body"},
     "hypothesis_success_criteria": {"title", "body_left", "body_right"},
-    "options_considered": {"title", "body_left", "body_right"},
+    "options_considered": {"title"},
     "chosen_approach": {"title", "body"},
     "architecture_view": {"title", "body"},
     "evidence_results": {"title", "body"},
@@ -48,3 +48,12 @@ def validate_deck_structure(deck_spec: dict[str, Any]) -> None:
             raise ValueError(
                 f"Slide {i}: modality '{modality}' is missing required fields: {sorted(missing)}"
             )
+        if modality == "options_considered":
+            has_two_col = {"body_left", "body_right"}.issubset(fields.keys())
+            has_boxes = {"intro", "boxes"}.issubset(fields.keys())
+
+            if not has_two_col and not has_boxes:
+                raise ValueError(
+                    f"Slide {i}: options_considered must provide either "
+                    f"'body_left' and 'body_right' or 'intro' and 'boxes'."
+                )
