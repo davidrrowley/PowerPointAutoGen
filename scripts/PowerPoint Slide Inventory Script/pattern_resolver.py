@@ -26,6 +26,8 @@ def resolve_layout_for_modality(
     if not preferred_patterns:
         raise ValueError(f"Modality '{modality}' has no preferred patterns configured.")
 
+    first_partial_candidate = None
+
     for pattern_name in preferred_patterns:
         pattern = patterns.get(pattern_name)
         if not pattern:
@@ -35,22 +37,32 @@ def resolve_layout_for_modality(
         if not candidates:
             continue
 
-        if prefer_safe_only:
-            safe_candidates = [
-                c for c in candidates
-                if _normalise_safe_value(c.get("safe_for_automation")) == "true"
-            ]
-            if safe_candidates:
-                return {
-                    "pattern": pattern_name,
-                    "layout": safe_candidates[0],
-                }
+        safe_candidates = [
+            c for c in candidates
+            if _normalise_safe_value(c.get("safe_for_automation")) == "true"
+        ]
 
-        return {
-            "pattern": pattern_name,
-            "layout": candidates[0],
-        }
+        if safe_candidates:
+            return {
+                "pattern": pattern_name,
+                "layout": safe_candidates[0],
+            }
+
+        if not prefer_safe_only and candidates:
+            return {
+                "pattern": pattern_name,
+                "layout": candidates[0],
+            }
+
+        if first_partial_candidate is None and candidates:
+            first_partial_candidate = {
+                "pattern": pattern_name,
+                "layout": candidates[0],
+            }
+
+    if first_partial_candidate is not None and not prefer_safe_only:
+        return first_partial_candidate
 
     raise ValueError(
-        f"No candidate layout could be resolved for modality '{modality}'."
+        f"No automation-safe layout could be resolved for modality '{modality}'."
     )

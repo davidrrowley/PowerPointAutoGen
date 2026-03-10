@@ -109,7 +109,34 @@ def _write_half_image_slide(slide, fields: dict, yaml_base: Path) -> None:
         else:
             print(f"WARNING: image not found, skipping picture insertion: {image_path}")
 
+def _write_insight_boxes_slide(slide, fields: dict) -> None:
+    set_title(slide, fields["title"])
 
+    left = fields.get("body_left", [])
+    right = fields.get("body_right", [])
+
+    # main explanatory body
+    intro_lines = []
+    if isinstance(left, list) and left:
+        intro_lines.append(left[0])
+    if isinstance(right, list) and right:
+        intro_lines.append(right[0])
+
+    set_body_bullets(slide, intro_lines, idx=13)
+
+    # box content
+    box_1 = left[1] if isinstance(left, list) and len(left) > 1 else ""
+    box_2 = right[1] if isinstance(right, list) and len(right) > 1 else ""
+    box_3 = right[2] if isinstance(right, list) and len(right) > 2 else ""
+
+    if box_1:
+        set_object_paragraph(slide, box_1, idx=17)
+    if box_2:
+        set_object_paragraph(slide, box_2, idx=18)
+    if box_3:
+        set_object_paragraph(slide, box_3, idx=19)
+
+        
 def add_slide_from_spec(
     prs: Presentation,
     slide_spec: dict,

@@ -4,7 +4,10 @@ from pathlib import Path
 from typing import Iterable
 
 from pptx.enum.shapes import PP_PLACEHOLDER
+from pptx.enum.shapes import PP_PLACEHOLDER
 
+# already imported, but this is the type you will use:
+# PP_PLACEHOLDER.OBJECT
 
 def _all_placeholders(slide):
     return list(slide.placeholders)
@@ -67,6 +70,16 @@ def set_body_paragraph(slide, text: str, idx: int | None = None) -> None:
     tf.clear()
     tf.paragraphs[0].text = text
 
+def set_object_paragraph(slide, text: str, idx: int) -> None:
+    ph = get_placeholder(slide, PP_PLACEHOLDER.OBJECT, idx=idx)
+
+    if not hasattr(ph, "text_frame"):
+        raise ValueError(f"Object placeholder idx={idx} does not expose a text frame.")
+
+    tf = ph.text_frame
+    tf.clear()
+    tf.paragraphs[0].text = text
+    
 from pathlib import Path
 from PIL import Image
 
@@ -146,4 +159,3 @@ def set_picture(slide, image_path: str | Path, idx: int | None = None, padding_r
 
     sp = ph._element
     sp.getparent().remove(sp)
-    
