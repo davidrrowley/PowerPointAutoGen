@@ -1,4 +1,23 @@
 slides:
+  - modality: title_slide
+    fields:
+      title: "Fabric proof of concept"
+      subtitle: "Translating spreadsheet logic into a governed execution pattern"
+
+  - modality: index_slide
+    fields:
+      title: "Contents"
+      sections:
+        - "Problem framing"
+        - "Hypothesis and success criteria"
+        - "Options considered"
+        - "Chosen approach"
+        - "Architecture"
+        - "Evidence"
+        - "Learnings"
+        - "Implications"
+        - "Next steps"
+
   - modality: context_statement
     fields:
       title: "Spreadsheet logic can move into Fabric without losing control"
@@ -86,3 +105,8 @@ slides:
       body_right:
         - "Extend lakehouse outputs"
         - "Connect into reporting"
+
+  - modality: closing_slide
+    fields:
+      title: "Thank you"
+      contact: "David Rowley | IBM Consulting"

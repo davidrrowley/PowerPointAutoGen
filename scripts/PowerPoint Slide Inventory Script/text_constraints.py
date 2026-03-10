@@ -68,14 +68,29 @@ def validate_text_constraints(deck_spec: dict[str, Any]) -> None:
         fields = slide["fields"]
         modality = slide["modality"]
 
-        _validate_title(fields["title"], i)
+        if "title" in fields:
+            _validate_title(fields["title"], i)
 
-        if modality in {
+        if modality == "title_slide":
+            if "subtitle" in fields:
+                _validate_paragraph(str(fields["subtitle"]), i, "subtitle")
+
+        elif modality == "index_slide":
+            _validate_bullets(fields["sections"], i, "sections")
+
+        elif modality == "closing_slide":
+            if "contact" in fields:
+                _validate_paragraph(str(fields["contact"]), i, "contact")
+
+        elif modality in {
             "problem_framing",
             "chosen_approach",
             "architecture_view",
             "learnings_constraints",
             "implications",
+            "strategy",
+            "prioritisation",
+            "operating_model",
         }:
             body = fields["body"]
             if isinstance(body, list):
@@ -91,11 +106,8 @@ def validate_text_constraints(deck_spec: dict[str, Any]) -> None:
                 else:
                     _validate_paragraph(str(body), i, "body")
             else:
-                lead = fields["lead"]
-                proof_points = fields["proof_points"]
-
-                _validate_paragraph(str(lead), i, "lead")
-                _validate_bullets(proof_points, i, "proof_points")
+                _validate_paragraph(str(fields["lead"]), i, "lead")
+                _validate_bullets(fields["proof_points"], i, "proof_points")
 
         elif modality == "options_considered":
             if "body_left" in fields and "body_right" in fields:
@@ -123,15 +135,13 @@ def validate_text_constraints(deck_spec: dict[str, Any]) -> None:
 
                 _validate_bullets(boxes, i, "boxes")
 
-            else:
-                raise ValueError(
-                    f"Slide {i}: options_considered must provide either "
-                    f"'body_left' and 'body_right' or 'intro' and 'boxes'."
-                )
+            elif "points" in fields:
+                _validate_bullets(fields["points"], i, "points")
 
         elif modality in {
             "hypothesis_success_criteria",
             "next_steps",
+            "case_study",
         }:
             left = fields["body_left"]
             right = fields["body_right"]
@@ -145,6 +155,3 @@ def validate_text_constraints(deck_spec: dict[str, Any]) -> None:
                 _validate_bullets(right, i, "body_right")
             else:
                 _validate_paragraph(str(right), i, "body_right")
-
-        elif modality == "context_statement":
-            pass
