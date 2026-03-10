@@ -117,6 +117,13 @@ def _write_half_image_slide(slide, fields: dict, yaml_base: Path) -> None:
 
 
 def _write_insight_boxes_slide(slide, fields: dict) -> None:
+    """
+    Supports IBM layout: 'insight, text, boxes'
+    Confirmed placeholders:
+      - title idx 0
+      - body idx 13
+      - object idx 17, 18, 19
+    """
     set_title(slide, fields["title"])
 
     intro = fields.get("intro", [])
@@ -132,6 +139,40 @@ def _write_insight_boxes_slide(slide, fields: dict) -> None:
         set_object_text(slide, boxes[1], idx=18)
     if len(boxes) > 2:
         set_object_text(slide, boxes[2], idx=19)
+
+
+def _write_next_steps_boxes_slide(slide, fields: dict) -> None:
+    """
+    Reuses the IBM 'insight, text, boxes' layout for next steps.
+    Maps body_left/body_right into one short intro and up to three action cards.
+    """
+    set_title(slide, fields["title"])
+
+    left = fields.get("body_left", [])
+    right = fields.get("body_right", [])
+
+    intro = ["The immediate priority is to move from proof to operational hardening"]
+    set_body_bullets(slide, intro, idx=13)
+
+    action_cards = []
+    if isinstance(left, list):
+        action_cards.extend(left)
+    else:
+        action_cards.append(str(left))
+
+    if isinstance(right, list):
+        action_cards.extend(right)
+    else:
+        action_cards.append(str(right))
+
+    action_cards = [a for a in action_cards if a][:3]
+
+    if len(action_cards) > 0:
+        set_object_text(slide, action_cards[0], idx=17)
+    if len(action_cards) > 1:
+        set_object_text(slide, action_cards[1], idx=18)
+    if len(action_cards) > 2:
+        set_object_text(slide, action_cards[2], idx=19)
 
 
 def add_slide_from_spec(
@@ -179,10 +220,13 @@ def add_slide_from_spec(
         else:
             _write_two_column_slide(slide, fields)
 
-    elif modality in {
-        "hypothesis_success_criteria",
-        "next_steps",
-    }:
+    elif modality == "next_steps":
+        if layout_name == "insight, text, boxes":
+            _write_next_steps_boxes_slide(slide, fields)
+        else:
+            _write_two_column_slide(slide, fields)
+
+    elif modality == "hypothesis_success_criteria":
         _write_two_column_slide(slide, fields)
 
     elif modality == "architecture_view":
