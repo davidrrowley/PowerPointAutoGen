@@ -1,0 +1,352 @@
+visual_families:
+
+  covers:
+    description: "Opening and closing brand-led slides"
+    preferred_theme: "grey"
+    layouts:
+      - id: cover_neutral
+        ppt_layout: "cover"
+        automation_status: "safe"
+        use_for:
+          - "title_slide"
+          - "opening_slide"
+        style_bias:
+          - "neutral"
+          - "grey_preferred"
+          - "minimal_text"
+
+      - id: cover_image_1
+        ppt_layout: "cover, image 1"
+        automation_status: "safe"
+        use_for:
+          - "title_slide"
+        style_bias:
+          - "image_led"
+          - "curated_ibm_imagery"
+
+      - id: cover_image_2
+        ppt_layout: "cover, image 2"
+        automation_status: "safe"
+        use_for:
+          - "title_slide"
+        style_bias:
+          - "image_led"
+          - "curated_ibm_imagery"
+
+      - id: cover_image_7
+        ppt_layout: "cover, image 7"
+        automation_status: "safe"
+        use_for:
+          - "title_slide"
+        style_bias:
+          - "image_led"
+          - "curated_ibm_imagery"
+
+      - id: cover_image_8
+        ppt_layout: "cover, image 8"
+        automation_status: "safe"
+        use_for:
+          - "title_slide"
+        style_bias:
+          - "image_led"
+          - "curated_ibm_imagery"
+
+      - id: thank_you
+        ppt_layout: "thank you"
+        automation_status: "safe"
+        use_for:
+          - "closing_slide"
+          - "thank_you"
+
+  contents_and_dividers:
+    description: "Navigation, contents, section starts and transitions"
+    preferred_theme: "grey"
+    layouts:
+      - id: contents_standard
+        ppt_layout: "title, text"
+        automation_status: "safe"
+        use_for:
+          - "index_slide"
+          - "contents"
+        style_bias:
+          - "simple"
+          - "white_or_grey"
+
+      - id: divider_standard
+        ppt_layout: "divider"
+        automation_status: "safe"
+        use_for:
+          - "section_divider"
+          - "part_divider"
+
+      - id: divider_with_contents
+        ppt_layout: "divider (with page contents)"
+        automation_status: "partial"
+        use_for:
+          - "section_divider_with_contents"
+
+      - id: blank_with_footer
+        ppt_layout: "blank (with footer)"
+        automation_status: "safe"
+        use_for:
+          - "custom_divider"
+          - "custom_transition"
+
+      - id: blank_no_footer
+        ppt_layout: "blank (no footer)"
+        automation_status: "safe"
+        use_for:
+          - "full_bleed_transition"
+          - "custom_cover"
+
+  text_or_imagery:
+    description: "Statement, evidence, architecture, image-led narrative"
+    preferred_theme: "grey"
+    layouts:
+      - id: big_text
+        ppt_layout: "big text"
+        automation_status: "safe"
+        use_for:
+          - "context_statement"
+          - "single_message"
+          - "large_statement"
+        style_bias:
+          - "high_emphasis"
+          - "minimal_text"
+
+      - id: fact_number
+        ppt_layout: "fact, number"
+        automation_status: "safe"
+        use_for:
+          - "fact_statement"
+          - "key_metric"
+          - "headline_stat"
+
+      - id: fact_number_half_image
+        ppt_layout: "fact, number, half-image (bleeds)"
+        automation_status: "partial"
+        use_for:
+          - "evidence_results"
+          - "metric_with_image"
+          - "proof_point"
+        style_bias:
+          - "visual_proof"
+          - "use_with_clean_image"
+
+      - id: title_text_half_image
+        ppt_layout: "title, text, half-image"
+        automation_status: "safe"
+        use_for:
+          - "architecture_view"
+          - "evidence_results"
+          - "narrative_with_visual"
+          - "image_story"
+        style_bias:
+          - "workhorse_visual_layout"
+          - "grey_preferred"
+
+      - id: title_image
+        ppt_layout: "title, image"
+        automation_status: "partial"
+        use_for:
+          - "image_led_narrative"
+          - "visual_highlight"
+
+      - id: title_half_blank
+        ppt_layout: "title, half-blank area"
+        automation_status: "partial"
+        use_for:
+          - "statement_with_whitespace"
+          - "visual_callout"
+
+      - id: title_blank
+        ppt_layout: "title, blank"
+        automation_status: "partial"
+        use_for:
+          - "custom_visual"
+          - "manual_visual_composition"
+
+      - id: title_gray_box_over_images
+        ppt_layout: "title (gray box) over image(s)"
+        automation_status: "partial"
+        use_for:
+          - "image_quote"
+          - "visual_story"
+
+      - id: text_gray_box_over_images
+        ppt_layout: "text (gray box) over image(s)"
+        automation_status: "partial"
+        use_for:
+          - "image_narrative"
+          - "captioned_visual"
+
+  ruled_text_blocks:
+    description: "Analytical explanation, comparisons, structured prose and card-like text"
+    preferred_theme: "grey"
+    layouts:
+      - id: title_text
+        ppt_layout: "title, text"
+        automation_status: "safe"
+        use_for:
+          - "problem_framing"
+          - "chosen_approach"
+          - "learnings_constraints"
+          - "implications"
+          - "summary"
+
+      - id: title_text_two_columns
+        ppt_layout: "title, text (two columns)"
+        automation_status: "safe"
+        use_for:
+          - "hypothesis_success_criteria"
+          - "comparison"
+          - "pros_cons"
+          - "paired_analysis"
+
+      - id: title_text_two_columns_diff
+        ppt_layout: "title, text (two columns, different text sizes)"
+        automation_status: "partial"
+        use_for:
+          - "comparison_emphasis"
+          - "main_point_plus_detail"
+
+      - id: title_text_four_columns
+        ppt_layout: "title, text (four columns)"
+        automation_status: "partial"
+        use_for:
+          - "four_points"
+          - "pillars"
+          - "workstreams"
+          - "dimensions"
+
+      - id: title_text_two_narrow_columns
+        ppt_layout: "title, text (two narrow columns)"
+        automation_status: "partial"
+        use_for:
+          - "dense_comparison"
+          - "compact_two_column"
+
+      - id: title_text_split_background
+        ppt_layout: "title, text (split background)"
+        automation_status: "partial"
+        use_for:
+          - "contrast_comparison"
+          - "before_after"
+
+      - id: insight_text_boxes
+        ppt_layout: "insight, text, boxes"
+        automation_status: "safe"
+        use_for:
+          - "options_considered"
+          - "next_steps"
+          - "decision_cards"
+          - "action_cards"
+        style_bias:
+          - "preferred_card_layout"
+
+      - id: boxes_3_med_2_small
+        ppt_layout: "boxes (3 med, 2 small)"
+        automation_status: "partial"
+        use_for:
+          - "multi_card_summary"
+          - "capability_breakdown"
+
+      - id: boxes_1_large_4_small
+        ppt_layout: "boxes (1 large, 4 small)"
+        automation_status: "partial"
+        use_for:
+          - "dominant_message_plus_supporting_cards"
+
+      - id: boxes_4_tall
+        ppt_layout: "boxes (4 tall)"
+        automation_status: "partial"
+        use_for:
+          - "vertical_card_summary"
+          - "four_stage_flow"
+
+      - id: title_text_quarter_content_three_quarters
+        ppt_layout: "title, text (1/4), content (3/4)"
+        automation_status: "partial"
+        use_for:
+          - "commentary_plus_visual"
+          - "analysis_plus_diagram"
+
+      - id: title_text_quarter_blank_three_quarters
+        ppt_layout: "title, text (1/4), blank (3/4)"
+        automation_status: "partial"
+        use_for:
+          - "commentary_plus_manual_visual"
+
+  case_studies:
+    description: "Client narrative, business problem, solution, outcome and quote"
+    preferred_theme: "grey"
+    layouts:
+      - id: case_study_1
+        ppt_layout: "case study 1: title, text (two columns), half-image"
+        automation_status: "safe"
+        use_for:
+          - "case_study"
+          - "client_story"
+          - "problem_solution_impact"
+
+      - id: case_study_2
+        ppt_layout: "case study 2: title, text (2/4), quote (2/4)"
+        automation_status: "partial"
+        use_for:
+          - "case_study_with_quote"
+          - "testimonial_slide"
+
+  charts_or_tables:
+    description: "Data display, tables, charts and structured matrices"
+    preferred_theme: "grey"
+    layouts:
+      - id: table
+        ppt_layout: "table"
+        automation_status: "partial"
+        use_for:
+          - "table"
+          - "raci"
+          - "portfolio_matrix"
+          - "prioritisation_matrix"
+          - "structured_comparison"
+
+      - id: chart_manual_family
+        ppt_layout: "table"
+        automation_status: "exploratory"
+        use_for:
+          - "chart_placeholder_family"
+          - "future_chart_rendering"
+
+selection_bias:
+  preferred_theme_order:
+    - "grey"
+    - "white"
+    - "image_led"
+    - "accent_colour"
+
+  default_family_by_modality:
+    title_slide: "covers"
+    index_slide: "contents_and_dividers"
+    closing_slide: "covers"
+    context_statement: "text_or_imagery"
+    problem_framing: "ruled_text_blocks"
+    hypothesis_success_criteria: "ruled_text_blocks"
+    options_considered: "ruled_text_blocks"
+    chosen_approach: "ruled_text_blocks"
+    architecture_view: "text_or_imagery"
+    evidence_results: "text_or_imagery"
+    learnings_constraints: "ruled_text_blocks"
+    implications: "ruled_text_blocks"
+    next_steps: "ruled_text_blocks"
+    case_study: "case_studies"
+    strategy: "ruled_text_blocks"
+    prioritisation: "charts_or_tables"
+    operating_model: "charts_or_tables"
+
+  fallback_family_order:
+    - "ruled_text_blocks"
+    - "text_or_imagery"
+    - "contents_and_dividers"
+    - "case_studies"
+    - "charts_or_tables"
+    - "covers"

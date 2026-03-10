@@ -106,19 +106,13 @@ def _write_closing_slide(slide, fields: dict) -> None:
 def _write_title_text_slide(slide, fields: dict, body_idx: int = 12) -> None:
     set_title(slide, fields["title"])
     body = fields.get("body", [])
-
     if isinstance(body, list):
         set_body_bullets(slide, body, idx=body_idx)
     else:
         set_body_paragraph(slide, str(body), idx=body_idx)
 
 
-def _write_two_column_slide(
-    slide,
-    fields: dict,
-    left_idx: int = 13,
-    right_idx: int = 12,
-) -> None:
+def _write_two_column_slide(slide, fields: dict, left_idx: int = 13, right_idx: int = 12) -> None:
     set_title(slide, fields["title"])
 
     left = fields.get("body_left", [])
@@ -171,7 +165,6 @@ def _write_half_image_slide(
         image_path = Path(image)
         if not image_path.is_absolute():
             image_path = yaml_base / image_path
-
         if image_path.exists():
             set_picture(slide, image_path, idx=image_idx, padding_ratio=0.01)
 
@@ -196,7 +189,6 @@ def _write_insight_boxes_slide(slide, fields: dict) -> None:
 
 def _write_next_steps_boxes_slide(slide, fields: dict) -> None:
     set_title(slide, fields["title"])
-
     intro = ["The immediate priority is to move from proof to operational hardening"]
     set_body_bullets(slide, intro, idx=13)
 
@@ -239,7 +231,6 @@ def _write_case_study_slide(slide, fields: dict, yaml_base: Path) -> None:
         image_path = Path(image)
         if not image_path.is_absolute():
             image_path = yaml_base / image_path
-
         if image_path.exists():
             set_picture(slide, image_path, idx=14, padding_ratio=0.01)
 
@@ -259,57 +250,67 @@ def add_slide_from_spec(
             f"Supported modalities: {sorted(SUPPORTED_MODALITIES)}"
         )
 
-    layout_id = resolve_layout(modality, fields, registry)
+    resolved = resolve_layout(modality, fields, registry)
+    family_name = resolved["family"]
+    layout_id = resolved["layout_id"]
+    actual_layout_name = resolved["ppt_layout"]
 
-    if layout_id not in registry["layouts"]:
-        raise ValueError(
-            f"Layout id '{layout_id}' not found in layout registry. "
-            f"Available ids: {sorted(registry['layouts'].keys())}"
-        )
-
-    actual_layout_name = registry["layouts"][layout_id]["ppt_layout"]
     layout = find_layout_by_name(prs, actual_layout_name)
     slide = prs.slides.add_slide(layout)
 
     print(f"\nAdded slide using modality: {modality}")
+    print(f"Resolved family: {family_name}")
     print(f"Resolved layout id: {layout_id}")
     print(f"Resolved PowerPoint layout: {actual_layout_name}")
     print(f"Available placeholders: {debug_placeholders(slide)}")
 
-    if layout_id == "title_slide":
+    if layout_id in {"title_slide", "cover_image_1", "cover_image_2", "cover_image_7", "cover_image_8"}:
         _write_title_slide(slide, fields)
 
     elif layout_id == "index_slide":
         _write_index_slide(slide, fields)
 
-    elif layout_id == "closing_slide":
+    elif layout_id == "thank_you":
         _write_closing_slide(slide, fields)
 
-    elif layout_id == "title_text":
+    elif layout_id in {"title_text", "title_text_split_background"}:
         _write_title_text_slide(slide, fields, body_idx=12)
 
-    elif layout_id == "title_text_two_columns":
+    elif layout_id in {
+        "title_text_two_columns",
+        "title_text_two_columns_diff",
+        "title_text_two_narrow_columns",
+    }:
         _write_two_column_slide(slide, fields, left_idx=13, right_idx=12)
 
     elif layout_id == "title_text_four_columns":
         _write_four_points_slide(slide, fields)
 
-    elif layout_id == "title_text_half_image":
-        _write_half_image_slide(slide, fields, yaml_base, body_idx=13, image_idx=14)
+    elif layout_id in {
+        "title_text_half_image",
+        "fact_number_half_image",
+        "title_image",
+        "title_gray_box_over_images",
+        "text_gray_box_over_images",
+    }:
+        if layout_id == "fact_number_half_image":
+            _write_half_image_slide(slide, fields, yaml_base, body_idx=12, image_idx=13)
+        else:
+            _write_half_image_slide(slide, fields, yaml_base, body_idx=13, image_idx=14)
 
-    elif layout_id == "insight_boxes":
+    elif layout_id == "insight_text_boxes":
         if modality == "next_steps":
             _write_next_steps_boxes_slide(slide, fields)
         else:
             _write_insight_boxes_slide(slide, fields)
 
-    elif layout_id in {"fact_number_half_image", "fact_number"}:
-        _write_half_image_slide(slide, fields, yaml_base, body_idx=12, image_idx=13)
+    elif layout_id == "fact_number":
+        _write_title_text_slide(slide, fields, body_idx=12)
 
-    elif layout_id == "case_study_1":
+    elif layout_id in {"case_study_1", "case_study_2"}:
         _write_case_study_slide(slide, fields, yaml_base)
 
-    elif layout_id == "large_statement":
+    elif layout_id == "big_text":
         set_title(slide, fields["title"])
 
     else:
@@ -350,8 +351,8 @@ def main() -> None:
     parser.add_argument("--input", required=True, help="Path to YAML deck spec")
     parser.add_argument(
         "--catalogue",
-        default="layout_registry.yaml",
-        help="Path to layout registry YAML",
+        default="visual_family_registry.yaml",
+        help="Path to visual family registry YAML",
     )
     parser.add_argument(
         "--output",

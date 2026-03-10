@@ -12,8 +12,8 @@ REQUIRED_FIELDS_BY_MODALITY = {
     "hypothesis_success_criteria": {"title", "body_left", "body_right"},
     "options_considered": {"title"},
     "chosen_approach": {"title", "body"},
-    "architecture_view": {"title", "body", "image"},
-    "evidence_results": {"title"},
+    "architecture_view": {"title", "image"},
+    "evidence_results": {"title", "image"},
     "learnings_constraints": {"title", "body"},
     "implications": {"title", "body"},
     "next_steps": {"title", "body_left", "body_right"},
@@ -82,3 +82,4 @@ def validate_deck_structure(deck_spec: dict[str, Any]) -> None:
                 raise ValueError(
                     f"Slide {i}: closing_slide must provide at least 'title' or 'contact'."
                 )
+            
