@@ -1,0 +1,171 @@
+layouts:
+
+  large_statement:
+    slide_reference: 47
+    description: "Large narrative statement"
+    placeholders:
+      title: 0
+      body: 12
+
+  headline_summary:
+    slide_reference: 40
+    description: "Headline with short explanation"
+    placeholders:
+      title: 0
+      body: 12
+
+  headline_detail:
+    slide_reference: 41
+    description: "Headline with extended explanation"
+    placeholders:
+      title: 0
+      body: 12
+
+  four_points:
+    slide_reference: 42
+    description: "Four structured points"
+    placeholders:
+      title: 0
+      points: [12, 13, 14, 15]
+
+  multi_block_analysis:
+    slide_reference: 48
+    description: "Multi-block analysis layout"
+    placeholders:
+      title: 0
+      body: 12
+
+  two_column_image:
+    slide_reference: 45
+    description: "Two text columns with image"
+    placeholders:
+      title: 0
+      left: 12
+      right: 13
+      image: 14
+
+  image_story:
+    slide_reference: 38
+    description: "Narrative text with large image"
+    placeholders:
+      title: 0
+      body: 12
+      image: 14
+
+  fact_statement:
+    slide_reference: 33
+    description: "Large fact or statement"
+    placeholders:
+      title: 0
+      body: 12
+
+  fact_with_image:
+    slide_reference: 34
+    description: "Fact with image"
+    placeholders:
+      title: 0
+      body: 12
+      image: 14
+
+  case_study:
+    slide_reference: 57
+    description: "Case study narrative"
+    placeholders:
+      title: 0
+      context: 12
+      problem: 13
+      solution: 14
+      impact: 15
+
+  strategy_pillars:
+    slide_reference: 81
+    description: "Strategic pillars overview"
+    placeholders:
+      title: 0
+      pillars: [12, 13, 14]
+
+  value_tree:
+    slide_reference: 76
+    description: "Value tree"
+    placeholders:
+      title: 0
+      root: 12
+      branches: [13, 14, 15]
+
+  prioritisation_matrix:
+    slide_reference: 84
+    description: "Opportunity prioritisation matrix"
+    placeholders:
+      title: 0
+      matrix: 14
+      commentary: 12
+
+  portfolio_matrix:
+    slide_reference: 80
+    description: "Portfolio matrix"
+    placeholders:
+      title: 0
+      matrix: 14
+      commentary: 12
+
+  operating_model_framework:
+    slide_reference: 85
+    description: "Operating model framework"
+    placeholders:
+      title: 0
+      framework: 12
+
+  pyramid:
+    slide_reference: 86
+    description: "Layered pyramid"
+    placeholders:
+      title: 0
+      layers: [12, 13, 14]
+
+  capability_map:
+    slide_reference: 88
+    description: "Capability map"
+    placeholders:
+      title: 0
+      capabilities: [12, 13, 14, 15]
+
+  insight_boxes:
+    slide_reference: 4
+    description: "IBM insight, text, boxes layout from current working template"
+    placeholders:
+      title: 0
+      intro: 13
+      box_1: 17
+      box_2: 18
+      box_3: 19
+
+  title_text:
+    slide_reference: 2
+    description: "IBM title, text layout from current working template"
+    placeholders:
+      title: 0
+      body: 12
+
+  title_text_two_columns:
+    slide_reference: 3
+    description: "IBM title, text (two columns) layout from current working template"
+    placeholders:
+      title: 0
+      body_left: 13
+      body_right: 12
+
+  title_text_half_image:
+    slide_reference: 6
+    description: "IBM title, text, half-image layout from current working template"
+    placeholders:
+      title: 0
+      body: 13
+      image: 14
+
+  fact_number_half_image:
+    slide_reference: 7
+    description: "IBM fact, number, half-image (bleeds) layout from current working template"
+    placeholders:
+      title: 0
+      body: 12
+      image: 13

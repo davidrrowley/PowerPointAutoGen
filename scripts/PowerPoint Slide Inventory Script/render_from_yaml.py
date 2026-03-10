@@ -8,7 +8,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import argparse
 import shutil
 from tempfile import NamedTemporaryFile
-from modality_resolver import resolve_layout
 
 try:
     import yaml
@@ -21,7 +20,7 @@ from pptx import Presentation
 
 from layout_catalouge import load_layout_catalogue
 from layout_resolver import find_layout_by_name
-from pattern_resolver import resolve_layout_for_modality
+from modality_resolver import resolve_layout
 from placeholder_writer import (
     debug_placeholders,
     set_body_bullets,
@@ -46,6 +45,10 @@ SUPPORTED_MODALITIES = {
     "learnings_constraints",
     "implications",
     "next_steps",
+    "case_study",
+    "strategy",
+    "prioritisation",
+    "operating_model",
 }
 
 
@@ -70,51 +73,48 @@ def save_presentation_safely(prs: Presentation, output_path: str | Path) -> None
         ) from exc
 
 
-def _write_title_text_slide(slide, fields: dict) -> None:
+def _write_title_text_slide(slide, fields: dict, body_idx: int = 12) -> None:
     set_title(slide, fields["title"])
     body = fields.get("body", [])
     if isinstance(body, list):
-        set_body_bullets(slide, body, idx=12)
+        set_body_bullets(slide, body, idx=body_idx)
     else:
-        set_body_paragraph(slide, str(body), idx=12)
+        set_body_paragraph(slide, str(body), idx=body_idx)
 
 
-def _write_two_column_slide(slide, fields: dict) -> None:
+def _write_two_column_slide(slide, fields: dict, left_idx: int = 13, right_idx: int = 12) -> None:
     set_title(slide, fields["title"])
 
     left = fields.get("body_left", [])
     right = fields.get("body_right", [])
 
     if isinstance(left, list):
-        set_body_bullets(slide, left, idx=13)
+        set_body_bullets(slide, left, idx=left_idx)
     else:
-        set_body_paragraph(slide, str(left), idx=13)
+        set_body_paragraph(slide, str(left), idx=left_idx)
 
     if isinstance(right, list):
-        set_body_bullets(slide, right, idx=12)
+        set_body_bullets(slide, right, idx=right_idx)
     else:
-        set_body_paragraph(slide, str(right), idx=12)
+        set_body_paragraph(slide, str(right), idx=right_idx)
 
 
-def _write_half_image_slide(slide, fields: dict, yaml_base: Path) -> None:
+def _write_half_image_slide(slide, fields: dict, yaml_base: Path, body_idx: int, image_idx: int) -> None:
     set_title(slide, fields["title"])
 
     body = fields.get("body", [])
     if isinstance(body, list):
-        set_body_bullets(slide, body, idx=13)
+        set_body_bullets(slide, body, idx=body_idx)
     else:
-        set_body_paragraph(slide, str(body), idx=13)
+        set_body_paragraph(slide, str(body), idx=body_idx)
 
     image = fields.get("image")
     if image:
         image_path = Path(image)
         if not image_path.is_absolute():
             image_path = yaml_base / image_path
-
         if image_path.exists():
-            set_picture(slide, image_path, idx=14, padding_ratio=0.01)
-        else:
-            print(f"WARNING: image not found, skipping picture insertion: {image_path}")
+            set_picture(slide, image_path, idx=image_idx, padding_ratio=0.01)
 
 
 def _write_insight_boxes_slide(slide, fields: dict) -> None:
@@ -137,78 +137,51 @@ def _write_insight_boxes_slide(slide, fields: dict) -> None:
 
 def _write_next_steps_boxes_slide(slide, fields: dict) -> None:
     set_title(slide, fields["title"])
-
     intro = ["The immediate priority is to move from proof to operational hardening"]
     set_body_bullets(slide, intro, idx=13)
 
-    left = fields.get("body_left", [])
-    right = fields.get("body_right", [])
+    items = []
+    for key in ("body_left", "body_right"):
+        value = fields.get(key, [])
+        if isinstance(value, list):
+            items.extend(value)
+        elif value:
+            items.append(str(value))
 
-    action_cards = []
-    if isinstance(left, list):
-        action_cards.extend(left)
-    else:
-        action_cards.append(str(left))
+    items = items[:3]
 
-    if isinstance(right, list):
-        action_cards.extend(right)
-    else:
-        action_cards.append(str(right))
-
-    action_cards = [a for a in action_cards if a][:3]
-
-    if len(action_cards) > 0:
-        set_object_text(slide, action_cards[0], idx=17)
-    if len(action_cards) > 1:
-        set_object_text(slide, action_cards[1], idx=18)
-    if len(action_cards) > 2:
-        set_object_text(slide, action_cards[2], idx=19)
+    if len(items) > 0:
+        set_object_text(slide, items[0], idx=17)
+    if len(items) > 1:
+        set_object_text(slide, items[1], idx=18)
+    if len(items) > 2:
+        set_object_text(slide, items[2], idx=19)
 
 
-def _write_evidence_fact_image_slide(slide, fields: dict, yaml_base: Path) -> None:
-    """
-    Supports IBM layout: 'fact, number, half-image (bleeds)'
-    Confirmed placeholders from runtime:
-      - title idx 0
-      - body idx 12
-      - picture idx 13
-    """
+def _write_evidence_slide(slide, fields: dict, yaml_base: Path) -> None:
     set_title(slide, fields["title"])
 
-    if "lead" in fields and "proof_points" in fields:
-        lead = str(fields["lead"]).strip()
-        proof_points = fields["proof_points"]
+    bullets = []
+    if "lead" in fields and fields["lead"]:
+        bullets.append(str(fields["lead"]))
+    bullets.extend(fields.get("proof_points", []))
 
-        bullets = []
-        if lead:
-            bullets.append(lead)
-        bullets.extend(proof_points)
-
-        set_body_bullets(slide, bullets, idx=12)
-    else:
-        body = fields.get("body", [])
-        if isinstance(body, list):
-            set_body_bullets(slide, body, idx=12)
-        else:
-            set_body_paragraph(slide, str(body), idx=12)
+    set_body_bullets(slide, bullets, idx=12)
 
     image = fields.get("image")
     if image:
         image_path = Path(image)
         if not image_path.is_absolute():
             image_path = yaml_base / image_path
-
         if image_path.exists():
             set_picture(slide, image_path, idx=13, padding_ratio=0.01)
-        else:
-            print(f"WARNING: evidence image not found, skipping picture insertion: {image_path}")
 
 
 def add_slide_from_spec(
     prs: Presentation,
     slide_spec: dict,
     yaml_base: Path,
-    catalogue: dict,
+    registry: dict,
 ) -> None:
     modality = slide_spec["modality"]
     fields = slide_spec.get("fields", {})
@@ -219,53 +192,69 @@ def add_slide_from_spec(
             f"Supported modalities: {sorted(SUPPORTED_MODALITIES)}"
         )
 
-    result = resolve_layout_for_modality(modality, catalogue, prefer_safe_only=True)
-    pattern_name = result["pattern"]
-    layout_name = resolve_layout(modality, fields, catalogue)
-    layout_spec = catalogue["layouts"][layout_name]
+    layout_name = resolve_layout(modality, fields, registry)
+    layout = find_layout_by_name(prs, layout_name.replace("_", ", ") if False else layout_name)
 
-    layout = find_layout_by_name(prs, layout_name)
+    # Explicit mapping from registry layout ids to actual PowerPoint layout names
+    actual_layout_names = {
+        "large_statement": "big text",
+        "headline_summary": "title, text",
+        "headline_detail": "title, text",
+        "four_points": "title, text (four columns)",
+        "multi_block_analysis": "title, text",
+        "two_column_image": "title, text, half-image",
+        "image_story": "title, text, half-image",
+        "fact_statement": "fact, number",
+        "fact_with_image": "fact, number, half-image (bleeds)",
+        "case_study": "case study 1: title, text (two columns), half-image",
+        "strategy_pillars": "title, text",
+        "value_tree": "value tree",
+        "prioritisation_matrix": "opportunity prioritization matrix",
+        "portfolio_matrix": "portfolio matrix",
+        "operating_model_framework": "performance health check framework",
+        "pyramid": "stacked 3-layer pyramid",
+        "capability_map": "puzzle piece detail (stacked)",
+        "insight_boxes": "insight, text, boxes",
+        "title_text": "title, text",
+        "title_text_two_columns": "title, text (two columns)",
+        "title_text_half_image": "title, text, half-image",
+        "fact_number_half_image": "fact, number, half-image (bleeds)",
+    }
+
+    actual_layout_name = actual_layout_names[layout_name]
+    layout = find_layout_by_name(prs, actual_layout_name)
     slide = prs.slides.add_slide(layout)
 
     print(f"\nAdded slide using modality: {modality}")
-    print(f"Resolved pattern: {pattern_name}")
-    print(f"Resolved layout: {layout_name}")
+    print(f"Resolved layout id: {layout_name}")
+    print(f"Resolved PowerPoint layout: {actual_layout_name}")
     print(f"Available placeholders: {debug_placeholders(slide)}")
 
-    if modality == "context_statement":
-        set_title(slide, fields["title"])
+    if layout_name in {"title_text", "headline_summary", "headline_detail", "multi_block_analysis"}:
+        _write_title_text_slide(slide, fields, body_idx=12)
 
-    elif modality in {
-        "problem_framing",
-        "chosen_approach",
-        "learnings_constraints",
-        "implications",
-    }:
-        _write_title_text_slide(slide, fields)
+    elif layout_name == "title_text_two_columns":
+        _write_two_column_slide(slide, fields, left_idx=13, right_idx=12)
 
-    elif modality == "evidence_results":
-        _write_evidence_fact_image_slide(slide, fields, yaml_base)
+    elif layout_name in {"title_text_half_image", "image_story", "two_column_image"}:
+        _write_half_image_slide(slide, fields, yaml_base, body_idx=13, image_idx=14)
 
-    elif modality == "options_considered":
-        if layout_name == "insight, text, boxes":
-            _write_insight_boxes_slide(slide, fields)
-        else:
-            _write_two_column_slide(slide, fields)
-
-    elif modality == "next_steps":
-        if layout_name == "insight, text, boxes":
+    elif layout_name == "insight_boxes":
+        if modality == "next_steps":
             _write_next_steps_boxes_slide(slide, fields)
         else:
-            _write_two_column_slide(slide, fields)
+            _write_insight_boxes_slide(slide, fields)
 
-    elif modality == "hypothesis_success_criteria":
-        _write_two_column_slide(slide, fields)
+    elif layout_name in {"fact_number_half_image", "fact_with_image"}:
+        _write_evidence_slide(slide, fields, yaml_base)
 
-    elif modality == "architecture_view":
-        _write_half_image_slide(slide, fields, yaml_base)
+    elif layout_name == "large_statement":
+        set_title(slide, fields["title"])
 
     else:
-        raise ValueError(f"No rendering rule implemented for modality '{modality}'")
+        # safe fallback
+        if "title" in fields:
+            set_title(slide, fields["title"])
 
 
 def render_deck(
@@ -285,11 +274,11 @@ def render_deck(
     validate_deck_structure(deck_spec)
     validate_text_constraints(deck_spec)
 
-    catalogue = load_layout_catalogue(catalogue_path)
+    registry = load_layout_catalogue(catalogue_path)
     yaml_base = Path(yaml_path).resolve().parent
 
     for slide_spec in deck_spec["slides"]:
-        add_slide_from_spec(prs, slide_spec, yaml_base, catalogue)
+        add_slide_from_spec(prs, slide_spec, yaml_base, registry)
 
     save_presentation_safely(prs, output_path)
     print(f"\nGenerated deck: {output_path}")
@@ -301,8 +290,8 @@ def main() -> None:
     parser.add_argument("--input", required=True, help="Path to YAML deck spec")
     parser.add_argument(
         "--catalogue",
-        default="layout_catalouge.yaml",
-        help="Path to layout catalogue YAML",
+        default="layout_registry.yaml",
+        help="Path to layout registry YAML",
     )
     parser.add_argument(
         "--output",
