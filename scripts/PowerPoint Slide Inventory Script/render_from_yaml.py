@@ -117,13 +117,6 @@ def _write_half_image_slide(slide, fields: dict, yaml_base: Path) -> None:
 
 
 def _write_insight_boxes_slide(slide, fields: dict) -> None:
-    """
-    Supports IBM layout: 'insight, text, boxes'
-    Confirmed placeholders:
-      - title idx 0
-      - body idx 13
-      - object idx 17, 18, 19
-    """
     set_title(slide, fields["title"])
 
     intro = fields.get("intro", [])
@@ -230,8 +223,16 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--template", required=True, help="Path to .potx template")
     parser.add_argument("--input", required=True, help="Path to YAML deck spec")
-    parser.add_argument("--catalogue", default="layout_catalouge.yaml", help="Path to layout catalogue YAML")
-    parser.add_argument("--output", default="pocdeck_test_output.pptx", help="Output .pptx path")
+    parser.add_argument(
+        "--catalogue",
+        default="layout_catalouge.yaml",
+        help="Path to layout catalogue YAML",
+    )
+    parser.add_argument(
+        "--output",
+        default="pocdeck_test_output.pptx",
+        help="Output .pptx path",
+    )
     args = parser.parse_args()
 
     render_deck(args.template, args.input, args.output, args.catalogue)

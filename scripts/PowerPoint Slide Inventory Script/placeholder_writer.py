@@ -49,14 +49,8 @@ def set_title(slide, text: str) -> None:
 
 
 def _force_bullet(paragraph) -> None:
-    """
-    Force a visible bullet character onto the paragraph.
-    This is intentionally low-level because some IBM layouts are not
-    consistently surfacing bullets when only text/level are set.
-    """
     pPr = paragraph._p.get_or_add_pPr()
 
-    # Remove any existing bullet settings first to avoid duplicates.
     for child in list(pPr):
         tag = child.tag.rsplit("}", 1)[-1]
         if tag in {"buNone", "buChar", "buAutoNum", "buBlip"}:
@@ -101,10 +95,6 @@ def set_picture(
     idx: int | None = None,
     padding_ratio: float = 0.08,
 ) -> None:
-    """
-    Insert an image into a picture placeholder using contain behaviour
-    rather than fill/crop behaviour.
-    """
     image_path = Path(image_path)
     if not image_path.exists():
         raise FileNotFoundError(f"Image file not found: {image_path}")
@@ -161,3 +151,4 @@ def set_picture(
 
     sp = ph._element
     sp.getparent().remove(sp)
+    

@@ -1,174 +1,154 @@
-theme: ibm
-template_file: IBM_Consulting_Presentation_Template_2022_V02_Arial.potx
+from __future__ import annotations
 
-patterns:
+from pathlib import Path
 
-  statement:
-    description: "Single dominant message or opening assertion"
-    candidate_layouts:
-      - name: "big text"
-        safe_for_automation: true
-        notes: "Best opening statement layout"
-        placeholders:
-          title: { type: "title", idx: 0 }
+from PIL import Image
+from pptx.dml.color import RGBColor
+from pptx.enum.shapes import MSO_AUTO_SHAPE_TYPE, PP_PLACEHOLDER
 
-      - name: "cover"
-        safe_for_automation: partial
-        notes: "More cover-oriented than narrative statement"
-        placeholders:
-          title: { type: "title", idx: 0 }
 
-  text_single:
-    description: "Single explanatory text region with title"
-    candidate_layouts:
-      - name: "title, text"
-        safe_for_automation: true
-        notes: "Core analytical layout"
-        placeholders:
-          title: { type: "title", idx: 0 }
-          body: { type: "body", idx: 12 }
+def _all_placeholders(slide):
+    return list(slide.placeholders)
 
-      - name: "fact, number"
-        safe_for_automation: partial
-        notes: "Useful where the text is short and metric-led"
-        placeholders:
-          title: { type: "title", idx: 0 }
-          body: { type: "body", idx: 12 }
 
-  text_two_column:
-    description: "Two side-by-side text regions"
-    candidate_layouts:
-      - name: "title, text (two columns)"
-        safe_for_automation: true
-        notes: "Best current paired reasoning layout"
-        placeholders:
-          title: { type: "title", idx: 0 }
-          body_left: { type: "body", idx: 13 }
-          body_right: { type: "body", idx: 12 }
+def debug_placeholders(slide) -> list[dict]:
+    result = []
+    for ph in _all_placeholders(slide):
+        fmt = ph.placeholder_format
+        result.append(
+            {
+                "idx": fmt.idx,
+                "type": str(fmt.type),
+                "name": getattr(ph, "name", None),
+                "shape_type": str(ph.shape_type),
+            }
+        )
+    return result
 
-      - name: "title, text (two columns, different text sizes)"
-        safe_for_automation: partial
-        notes: "Useful where one side should dominate"
-        placeholders:
-          title: { type: "title", idx: 0 }
-          body_left: { type: "obj", idx: 13 }
-          body_right: { type: "body", idx: 12 }
 
-  text_three_or_card_comparison:
-    description: "Three-part comparison or boxed option layout"
-    candidate_layouts:
-      - name: "insight, text, boxes"
-        safe_for_automation: partial
-        notes: "Promising for option cards and grouped takeaways"
-        placeholders:
-          title: { type: "title", idx: 0 }
+def get_placeholder(slide, ph_type=None, idx: int | None = None):
+    for ph in _all_placeholders(slide):
+        fmt = ph.placeholder_format
 
-      - name: "boxes"
-        safe_for_automation: partial
-        notes: "Potentially useful for next steps or options"
-        placeholders:
-          title: { type: "title", idx: 0 }
+        if ph_type is not None and fmt.type != ph_type:
+            continue
+        if idx is not None and fmt.idx != idx:
+            continue
 
-  text_four_column:
-    description: "Four-part compact summary layout"
-    candidate_layouts:
-      - name: "title, text (four columns)"
-        safe_for_automation: partial
-        notes: "Useful for short grouped summaries"
-        placeholders:
-          title: { type: "title", idx: 0 }
+        return ph
 
-  image_right_text_left:
-    description: "Text explanation paired with image or diagram"
-    candidate_layouts:
-      - name: "title, text, half-image"
-        safe_for_automation: true
-        notes: "Current best architecture/process layout"
-        placeholders:
-          title: { type: "title", idx: 0 }
-          body: { type: "body", idx: 13 }
-          image: { type: "pic", idx: 14 }
+    raise ValueError(
+        f"Placeholder not found. Requested type={ph_type}, idx={idx}. "
+        f"Available placeholders={debug_placeholders(slide)}"
+    )
 
-      - name: "fact, number, half-image (bleeds)"
-        safe_for_automation: true
-        notes: "Strong evidence layout with visual support"
-        placeholders:
-          title: { type: "title", idx: 0 }
-          body: { type: "body", idx: 12 }
-          image: { type: "pic", idx: 13 }
 
-  image_full:
-    description: "Large image-led or diagram-led slide"
-    candidate_layouts:
-      - name: "title, image"
-        safe_for_automation: true
-        notes: "Good for clean visual explanation"
-        placeholders:
-          title: { type: "title", idx: 0 }
-          image: { type: "pic", idx: 12 }
+def set_title(slide, text: str) -> None:
+    ph = get_placeholder(slide, PP_PLACEHOLDER.TITLE)
+    ph.text = text
 
-  facts_metrics:
-    description: "Evidence, proof points and key numbers"
-    candidate_layouts:
-      - name: "fact, number"
-        safe_for_automation: partial
-        notes: "Best for one or two proof points"
-        placeholders:
-          title: { type: "title", idx: 0 }
-          body: { type: "body", idx: 12 }
 
-      - name: "fact, number, half-image (bleeds)"
-        safe_for_automation: true
-        notes: "Best evidence layout where a supporting image exists"
-        placeholders:
-          title: { type: "title", idx: 0 }
-          body: { type: "body", idx: 12 }
-          image: { type: "pic", idx: 13 }
+def _force_bullet(paragraph) -> None:
+    pPr = paragraph._p.get_or_add_pPr()
 
-  table_structured:
-    description: "Structured table layout"
-    candidate_layouts:
-      - name: "table"
-        safe_for_automation: partial
-        notes: "Useful for tabular evidence"
-        placeholders:
-          title: { type: "title", idx: 0 }
+    for child in list(pPr):
+        tag = child.tag.rsplit("}", 1)[-1]
+        if tag in {"buNone", "buChar", "buAutoNum", "buBlip"}:
+            pPr.remove(child)
 
-  blank_controlled:
-    description: "Fallback layout retaining footer and branding"
-    candidate_layouts:
-      - name: "blank (with footer)"
-        safe_for_automation: partial
-        notes: "Last resort only"
-        placeholders: {}
+    bu = paragraph._element.makeelement(
+        "{http://schemas.openxmlformats.org/drawingml/2006/main}buChar"
+    )
+    bu.set("char", "•")
+    pPr.insert(0, bu)
 
-modality_preferences:
-  context_statement:
-    preferred_patterns: ["statement"]
 
-  problem_framing:
-    preferred_patterns: ["text_single"]
+def set_body_bullets(slide, bullets, idx: int | None = None) -> None:
+    ph = get_placeholder(slide, PP_PLACEHOLDER.BODY, idx=idx)
+    tf = ph.text_frame
+    tf.clear()
 
-  hypothesis_success_criteria:
-    preferred_patterns: ["text_two_column"]
+    for i, bullet in enumerate(bullets):
+        p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        p.text = bullet
+        p.level = 0
+        _force_bullet(p)
 
-  options_considered:
-    preferred_patterns: ["text_three_or_card_comparison", "text_four_column", "text_two_column"]
 
-  chosen_approach:
-    preferred_patterns: ["text_single"]
+def set_body_paragraph(slide, text: str, idx: int | None = None) -> None:
+    ph = get_placeholder(slide, PP_PLACEHOLDER.BODY, idx=idx)
+    tf = ph.text_frame
+    tf.clear()
+    tf.paragraphs[0].text = text
 
-  architecture_view:
-    preferred_patterns: ["image_right_text_left", "image_full"]
 
-  evidence_results:
-    preferred_patterns: ["facts_metrics", "table_structured", "text_single"]
+def set_object_text(slide, text: str, idx: int) -> None:
+    ph = get_placeholder(slide, PP_PLACEHOLDER.OBJECT, idx=idx)
+    tf = ph.text_frame
+    tf.clear()
+    tf.paragraphs[0].text = text
 
-  learnings_constraints:
-    preferred_patterns: ["text_single", "text_two_column"]
 
-  implications:
-    preferred_patterns: ["text_single"]
+def set_picture(
+    slide,
+    image_path: str | Path,
+    idx: int | None = None,
+    padding_ratio: float = 0.08,
+) -> None:
+    image_path = Path(image_path)
+    if not image_path.exists():
+        raise FileNotFoundError(f"Image file not found: {image_path}")
 
-  next_steps:
-    preferred_patterns: ["text_three_or_card_comparison", "text_two_column"]
+    ph = get_placeholder(slide, PP_PLACEHOLDER.PICTURE, idx=idx)
+
+    left = ph.left
+    top = ph.top
+    box_w = ph.width
+    box_h = ph.height
+
+    pad_w = int(box_w * padding_ratio)
+    pad_h = int(box_h * padding_ratio)
+
+    inner_left = left + pad_w
+    inner_top = top + pad_h
+    inner_w = box_w - (2 * pad_w)
+    inner_h = box_h - (2 * pad_h)
+
+    bg = slide.shapes.add_shape(
+        MSO_AUTO_SHAPE_TYPE.RECTANGLE,
+        left,
+        top,
+        box_w,
+        box_h,
+    )
+    bg.fill.solid()
+    bg.fill.fore_color.rgb = RGBColor(255, 255, 255)
+    bg.line.fill.background()
+
+    with Image.open(image_path) as img:
+        img_w_px, img_h_px = img.size
+
+    img_ratio = img_w_px / img_h_px
+    box_ratio = inner_w / inner_h
+
+    if img_ratio > box_ratio:
+        new_w = inner_w
+        new_h = int(inner_w / img_ratio)
+    else:
+        new_h = inner_h
+        new_w = int(inner_h * img_ratio)
+
+    new_left = inner_left + int((inner_w - new_w) / 2)
+    new_top = inner_top + int((inner_h - new_h) / 2)
+
+    slide.shapes.add_picture(
+        str(image_path),
+        new_left,
+        new_top,
+        width=new_w,
+        height=new_h,
+    )
+
+    sp = ph._element
+    sp.getparent().remove(sp)
+    

@@ -48,6 +48,7 @@ def validate_deck_structure(deck_spec: dict[str, Any]) -> None:
             raise ValueError(
                 f"Slide {i}: modality '{modality}' is missing required fields: {sorted(missing)}"
             )
+
         if modality == "options_considered":
             has_two_col = {"body_left", "body_right"}.issubset(fields.keys())
             has_boxes = {"intro", "boxes"}.issubset(fields.keys())

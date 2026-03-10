@@ -48,12 +48,6 @@ def resolve_layout_for_modality(
                 "layout": safe_candidates[0],
             }
 
-        if not prefer_safe_only and candidates:
-            return {
-                "pattern": pattern_name,
-                "layout": candidates[0],
-            }
-
         if first_partial_candidate is None and candidates:
             first_partial_candidate = {
                 "pattern": pattern_name,
