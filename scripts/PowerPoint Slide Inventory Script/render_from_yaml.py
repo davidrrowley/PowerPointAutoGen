@@ -1,3 +1,8 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).parent))
+
 from __future__ import annotations
 
 import argparse
