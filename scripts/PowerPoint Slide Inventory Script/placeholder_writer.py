@@ -48,41 +48,6 @@ def get_placeholder(slide, ph_type=None, idx: int | None = None):
     )
 
 
-def get_first_text_placeholder(slide, exclude_title: bool = True):
-    candidates = []
-
-    for ph in _all_placeholders(slide):
-        fmt = ph.placeholder_format
-        ph_type = fmt.type
-
-        if exclude_title and ph_type == PP_PLACEHOLDER.TITLE:
-            continue
-
-        if hasattr(ph, "text_frame"):
-            candidates.append(ph)
-
-    for ph in candidates:
-        if ph.placeholder_format.type == PP_PLACEHOLDER.BODY:
-            return ph
-
-    if candidates:
-        return candidates[0]
-
-    raise ValueError(
-        f"No text-capable placeholder found. Available placeholders={debug_placeholders(slide)}"
-    )
-
-
-def get_first_picture_placeholder(slide):
-    for ph in _all_placeholders(slide):
-        if ph.placeholder_format.type == PP_PLACEHOLDER.PICTURE:
-            return ph
-
-    raise ValueError(
-        f"No picture placeholder found. Available placeholders={debug_placeholders(slide)}"
-    )
-
-
 def set_title(slide, text: str) -> None:
     ph = get_placeholder(slide, PP_PLACEHOLDER.TITLE)
     ph.text = text
@@ -122,21 +87,6 @@ def set_body_paragraph(slide, text: str, idx: int | None = None) -> None:
     tf.paragraphs[0].text = text
 
 
-def set_first_text(slide, text_or_bullets) -> None:
-    ph = get_first_text_placeholder(slide, exclude_title=True)
-    tf = ph.text_frame
-    tf.clear()
-
-    if isinstance(text_or_bullets, list):
-        for i, bullet in enumerate(text_or_bullets):
-            p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
-            p.text = bullet
-            p.level = 0
-            _force_bullet(p)
-    else:
-        tf.paragraphs[0].text = str(text_or_bullets)
-
-
 def set_object_text(slide, text: str, idx: int) -> None:
     ph = get_placeholder(slide, PP_PLACEHOLDER.OBJECT, idx=idx)
     tf = ph.text_frame
@@ -148,17 +98,13 @@ def set_picture(
     slide,
     image_path: str | Path,
     idx: int | None = None,
-    padding_ratio: float = 0.02,
+    padding_ratio: float = 0.01,
 ) -> None:
     image_path = Path(image_path)
     if not image_path.exists():
         raise FileNotFoundError(f"Image file not found: {image_path}")
 
-    ph = (
-        get_placeholder(slide, PP_PLACEHOLDER.PICTURE, idx=idx)
-        if idx is not None
-        else get_first_picture_placeholder(slide)
-    )
+    ph = get_placeholder(slide, PP_PLACEHOLDER.PICTURE, idx=idx)
 
     left = ph.left
     top = ph.top

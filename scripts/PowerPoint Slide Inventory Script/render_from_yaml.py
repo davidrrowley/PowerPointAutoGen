@@ -25,7 +25,6 @@ from placeholder_writer import (
     debug_placeholders,
     set_body_bullets,
     set_body_paragraph,
-    set_first_text,
     set_object_text,
     set_picture,
     set_title,
@@ -112,7 +111,7 @@ def _write_half_image_slide(slide, fields: dict, yaml_base: Path) -> None:
             image_path = yaml_base / image_path
 
         if image_path.exists():
-            set_picture(slide, image_path, idx=14, padding_ratio=0.02)
+            set_picture(slide, image_path, idx=14, padding_ratio=0.01)
         else:
             print(f"WARNING: image not found, skipping picture insertion: {image_path}")
 
@@ -166,23 +165,31 @@ def _write_next_steps_boxes_slide(slide, fields: dict) -> None:
 
 
 def _write_evidence_fact_image_slide(slide, fields: dict, yaml_base: Path) -> None:
+    """
+    Supports IBM layout: 'fact, number, half-image (bleeds)'
+    Confirmed placeholders from runtime:
+      - title idx 0
+      - body idx 12
+      - picture idx 13
+    """
     set_title(slide, fields["title"])
-
-    print("EVIDENCE PLACEHOLDERS:", debug_placeholders(slide))
 
     if "lead" in fields and "proof_points" in fields:
         lead = str(fields["lead"]).strip()
         proof_points = fields["proof_points"]
 
-        combined = []
+        bullets = []
         if lead:
-            combined.append(lead)
-        combined.extend(proof_points)
+            bullets.append(lead)
+        bullets.extend(proof_points)
 
-        set_first_text(slide, combined)
+        set_body_bullets(slide, bullets, idx=12)
     else:
         body = fields.get("body", [])
-        set_first_text(slide, body)
+        if isinstance(body, list):
+            set_body_bullets(slide, body, idx=12)
+        else:
+            set_body_paragraph(slide, str(body), idx=12)
 
     image = fields.get("image")
     if image:
@@ -191,7 +198,7 @@ def _write_evidence_fact_image_slide(slide, fields: dict, yaml_base: Path) -> No
             image_path = yaml_base / image_path
 
         if image_path.exists():
-            set_picture(slide, image_path, padding_ratio=0.02)
+            set_picture(slide, image_path, idx=13, padding_ratio=0.01)
         else:
             print(f"WARNING: evidence image not found, skipping picture insertion: {image_path}")
 
