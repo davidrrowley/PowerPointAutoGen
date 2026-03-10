@@ -77,17 +77,11 @@ def save_presentation_safely(prs: Presentation, output_path: str | Path) -> None
 
 
 def _write_title_slide(slide, fields: dict) -> None:
-    """
-    The IBM 'cover' layout in your template only exposes a single TITLE placeholder.
-    So subtitle text must be merged into the title block rather than written to a
-    separate text placeholder.
-    """
     title = str(fields["title"]).strip()
     subtitle = str(fields.get("subtitle", "")).strip()
 
     if subtitle:
-        merged = f"{title}\n{subtitle}"
-        set_title(slide, merged)
+        set_title(slide, f"{title}\n{subtitle}")
     else:
         set_title(slide, title)
 
@@ -103,8 +97,6 @@ def _write_closing_slide(slide, fields: dict) -> None:
 
     contact = fields.get("contact")
     if contact:
-        # 'thank you' layout may or may not expose a body placeholder depending on template variant.
-        # Try BODY idx=12 first, then fall back to TITLE append.
         try:
             set_body_paragraph(slide, str(contact), idx=12)
         except Exception:
@@ -161,11 +153,18 @@ def _write_half_image_slide(
 ) -> None:
     set_title(slide, fields["title"])
 
-    body = fields.get("body", [])
-    if isinstance(body, list):
-        set_body_bullets(slide, body, idx=body_idx)
+    if "body" in fields:
+        body = fields.get("body", [])
+        if isinstance(body, list):
+            set_body_bullets(slide, body, idx=body_idx)
+        else:
+            set_body_paragraph(slide, str(body), idx=body_idx)
     else:
-        set_body_paragraph(slide, str(body), idx=body_idx)
+        bullets = []
+        if "lead" in fields and fields["lead"]:
+            bullets.append(str(fields["lead"]))
+        bullets.extend(fields.get("proof_points", []))
+        set_body_bullets(slide, bullets, idx=body_idx)
 
     image = fields.get("image")
     if image:
@@ -217,33 +216,6 @@ def _write_next_steps_boxes_slide(slide, fields: dict) -> None:
         set_object_text(slide, items[1], idx=18)
     if len(items) > 2:
         set_object_text(slide, items[2], idx=19)
-
-
-def _write_evidence_slide(slide, fields: dict, yaml_base: Path) -> None:
-    set_title(slide, fields["title"])
-
-    bullets = []
-    if "lead" in fields and fields["lead"]:
-        bullets.append(str(fields["lead"]))
-    bullets.extend(fields.get("proof_points", []))
-
-    if bullets:
-        set_body_bullets(slide, bullets, idx=12)
-    else:
-        body = fields.get("body", [])
-        if isinstance(body, list):
-            set_body_bullets(slide, body, idx=12)
-        else:
-            set_body_paragraph(slide, str(body), idx=12)
-
-    image = fields.get("image")
-    if image:
-        image_path = Path(image)
-        if not image_path.is_absolute():
-            image_path = yaml_base / image_path
-
-        if image_path.exists():
-            set_picture(slide, image_path, idx=13, padding_ratio=0.01)
 
 
 def _write_case_study_slide(slide, fields: dict, yaml_base: Path) -> None:
@@ -313,7 +285,7 @@ def add_slide_from_spec(
     elif layout_id == "closing_slide":
         _write_closing_slide(slide, fields)
 
-    elif layout_id in {"title_text"}:
+    elif layout_id == "title_text":
         _write_title_text_slide(slide, fields, body_idx=12)
 
     elif layout_id == "title_text_two_columns":
@@ -332,7 +304,7 @@ def add_slide_from_spec(
             _write_insight_boxes_slide(slide, fields)
 
     elif layout_id in {"fact_number_half_image", "fact_number"}:
-        _write_evidence_slide(slide, fields, yaml_base)
+        _write_half_image_slide(slide, fields, yaml_base, body_idx=12, image_idx=13)
 
     elif layout_id == "case_study_1":
         _write_case_study_slide(slide, fields, yaml_base)
