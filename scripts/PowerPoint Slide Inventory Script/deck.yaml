@@ -53,11 +53,12 @@ slides:
   - modality: evidence_results
     fields:
       title: "The PoC proved the logic could move into Fabric cleanly"
-      body:
-        - "A meaningful representation of the spreadsheet process was implemented in Python notebooks"
-        - "The Fabric environment proved viable as the execution surface for the translated logic"
-        - "The resulting pattern aligned better with a repeatable ingestion and processing model"
-        - "The flow created a stronger foundation for later automation and reporting"
+      lead: "The translated notebook pattern was workable, governed and better aligned to repeatable processing."
+      proof_points:
+        - "Core spreadsheet logic was represented successfully in Python notebooks"
+        - "Fabric operated as a viable execution layer for the translated process"
+        - "The resulting pattern improved the footing for automation and reporting"
+      image: "fabric_results_example.png"
 
   - modality: learnings_constraints
     fields:

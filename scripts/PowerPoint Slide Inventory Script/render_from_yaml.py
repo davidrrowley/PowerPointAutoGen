@@ -117,13 +117,6 @@ def _write_half_image_slide(slide, fields: dict, yaml_base: Path) -> None:
 
 
 def _write_insight_boxes_slide(slide, fields: dict) -> None:
-    """
-    Supports IBM layout: 'insight, text, boxes'
-    Confirmed placeholders:
-      - title idx 0
-      - body idx 13
-      - object idx 17, 18, 19
-    """
     set_title(slide, fields["title"])
 
     intro = fields.get("intro", [])
@@ -142,17 +135,13 @@ def _write_insight_boxes_slide(slide, fields: dict) -> None:
 
 
 def _write_next_steps_boxes_slide(slide, fields: dict) -> None:
-    """
-    Reuses the IBM 'insight, text, boxes' layout for next steps.
-    Maps body_left/body_right into one short intro and up to three action cards.
-    """
     set_title(slide, fields["title"])
-
-    left = fields.get("body_left", [])
-    right = fields.get("body_right", [])
 
     intro = ["The immediate priority is to move from proof to operational hardening"]
     set_body_bullets(slide, intro, idx=13)
+
+    left = fields.get("body_left", [])
+    right = fields.get("body_right", [])
 
     action_cards = []
     if isinstance(left, list):
@@ -173,6 +162,41 @@ def _write_next_steps_boxes_slide(slide, fields: dict) -> None:
         set_object_text(slide, action_cards[1], idx=18)
     if len(action_cards) > 2:
         set_object_text(slide, action_cards[2], idx=19)
+
+
+def _write_evidence_fact_image_slide(slide, fields: dict, yaml_base: Path) -> None:
+    """
+    Supports IBM layout: 'fact, number, half-image (bleeds)'
+    Confirmed placeholders:
+      - title idx 0
+      - body idx 12
+      - image idx 13
+    """
+    set_title(slide, fields["title"])
+
+    if "lead" in fields and "proof_points" in fields:
+        lead = str(fields["lead"]).strip()
+        proof_points = fields["proof_points"]
+
+        combined = [lead] + proof_points if lead else proof_points
+        set_body_bullets(slide, combined, idx=12)
+    else:
+        body = fields.get("body", [])
+        if isinstance(body, list):
+            set_body_bullets(slide, body, idx=12)
+        else:
+            set_body_paragraph(slide, str(body), idx=12)
+
+    image = fields.get("image")
+    if image:
+        image_path = Path(image)
+        if not image_path.is_absolute():
+            image_path = yaml_base / image_path
+
+        if image_path.exists():
+            set_picture(slide, image_path, idx=13, padding_ratio=0.06)
+        else:
+            print(f"WARNING: evidence image not found, skipping picture insertion: {image_path}")
 
 
 def add_slide_from_spec(
@@ -208,11 +232,16 @@ def add_slide_from_spec(
     elif modality in {
         "problem_framing",
         "chosen_approach",
-        "evidence_results",
         "learnings_constraints",
         "implications",
     }:
         _write_title_text_slide(slide, fields)
+
+    elif modality == "evidence_results":
+        if layout_name == "fact, number, half-image (bleeds)":
+            _write_evidence_fact_image_slide(slide, fields, yaml_base)
+        else:
+            _write_title_text_slide(slide, fields)
 
     elif modality == "options_considered":
         if layout_name == "insight, text, boxes":

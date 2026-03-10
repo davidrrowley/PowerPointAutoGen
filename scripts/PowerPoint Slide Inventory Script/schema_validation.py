@@ -10,7 +10,7 @@ REQUIRED_FIELDS_BY_MODALITY = {
     "options_considered": {"title"},
     "chosen_approach": {"title", "body"},
     "architecture_view": {"title", "body"},
-    "evidence_results": {"title", "body"},
+    "evidence_results": {"title"},
     "learnings_constraints": {"title", "body"},
     "implications": {"title", "body"},
     "next_steps": {"title", "body_left", "body_right"},
@@ -57,4 +57,14 @@ def validate_deck_structure(deck_spec: dict[str, Any]) -> None:
                 raise ValueError(
                     f"Slide {i}: options_considered must provide either "
                     f"'body_left' and 'body_right' or 'intro' and 'boxes'."
+                )
+
+        if modality == "evidence_results":
+            has_simple_body = "body" in fields
+            has_proof_shape = {"lead", "proof_points"}.issubset(fields.keys())
+
+            if not has_simple_body and not has_proof_shape:
+                raise ValueError(
+                    f"Slide {i}: evidence_results must provide either "
+                    f"'body' or 'lead' and 'proof_points'."
                 )

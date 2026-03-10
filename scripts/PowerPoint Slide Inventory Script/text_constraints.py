@@ -74,7 +74,6 @@ def validate_text_constraints(deck_spec: dict[str, Any]) -> None:
             "problem_framing",
             "chosen_approach",
             "architecture_view",
-            "evidence_results",
             "learnings_constraints",
             "implications",
         }:
@@ -83,6 +82,20 @@ def validate_text_constraints(deck_spec: dict[str, Any]) -> None:
                 _validate_bullets(body, i, "body")
             else:
                 _validate_paragraph(str(body), i, "body")
+
+        elif modality == "evidence_results":
+            if "body" in fields:
+                body = fields["body"]
+                if isinstance(body, list):
+                    _validate_bullets(body, i, "body")
+                else:
+                    _validate_paragraph(str(body), i, "body")
+            else:
+                lead = fields["lead"]
+                proof_points = fields["proof_points"]
+
+                _validate_paragraph(str(lead), i, "lead")
+                _validate_bullets(proof_points, i, "proof_points")
 
         elif modality == "options_considered":
             if "body_left" in fields and "body_right" in fields:

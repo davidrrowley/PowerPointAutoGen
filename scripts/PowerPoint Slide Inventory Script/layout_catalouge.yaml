@@ -100,7 +100,7 @@ patterns:
     description: "Evidence, proof points and key numbers"
     candidate_layouts:
       - name: "fact, number, half-image (bleeds)"
-        safe_for_automation: partial
+        safe_for_automation: true
         placeholders:
           title:
             type: "title"
