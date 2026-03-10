@@ -68,9 +68,10 @@ def validate_text_constraints(deck_spec: dict[str, Any]) -> None:
         if modality in {
             "problem_framing",
             "chosen_approach",
+            "architecture_view",
+            "evidence_results",
             "learnings_constraints",
             "implications",
-            "architecture_view",
         }:
             body = fields["body"]
             if isinstance(body, list):
@@ -78,7 +79,11 @@ def validate_text_constraints(deck_spec: dict[str, Any]) -> None:
             else:
                 _validate_paragraph(str(body), i, "body")
 
-        elif modality in {"hypothesis_success_criteria", "next_steps"}:
+        elif modality in {
+            "hypothesis_success_criteria",
+            "options_considered",
+            "next_steps",
+        }:
             left = fields["body_left"]
             right = fields["body_right"]
 
@@ -94,4 +99,3 @@ def validate_text_constraints(deck_spec: dict[str, Any]) -> None:
 
         elif modality == "context_statement":
             pass
-        
