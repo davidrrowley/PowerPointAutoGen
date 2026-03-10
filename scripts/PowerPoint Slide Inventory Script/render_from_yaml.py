@@ -25,7 +25,6 @@ from placeholder_writer import (
     debug_placeholders,
     set_body_bullets,
     set_body_paragraph,
-    set_first_text,
     set_object_text,
     set_picture,
     set_title,
@@ -78,10 +77,19 @@ def save_presentation_safely(prs: Presentation, output_path: str | Path) -> None
 
 
 def _write_title_slide(slide, fields: dict) -> None:
-    set_title(slide, fields["title"])
-    subtitle = fields.get("subtitle")
+    """
+    The IBM 'cover' layout in your template only exposes a single TITLE placeholder.
+    So subtitle text must be merged into the title block rather than written to a
+    separate text placeholder.
+    """
+    title = str(fields["title"]).strip()
+    subtitle = str(fields.get("subtitle", "")).strip()
+
     if subtitle:
-        set_first_text(slide, str(subtitle))
+        merged = f"{title}\n{subtitle}"
+        set_title(slide, merged)
+    else:
+        set_title(slide, title)
 
 
 def _write_index_slide(slide, fields: dict) -> None:
@@ -90,10 +98,17 @@ def _write_index_slide(slide, fields: dict) -> None:
 
 
 def _write_closing_slide(slide, fields: dict) -> None:
-    set_title(slide, fields.get("title", "Thank you"))
+    title = str(fields.get("title", "Thank you")).strip()
+    set_title(slide, title)
+
     contact = fields.get("contact")
     if contact:
-        set_first_text(slide, str(contact))
+        # 'thank you' layout may or may not expose a body placeholder depending on template variant.
+        # Try BODY idx=12 first, then fall back to TITLE append.
+        try:
+            set_body_paragraph(slide, str(contact), idx=12)
+        except Exception:
+            set_title(slide, f"{title}\n{contact}")
 
 
 def _write_title_text_slide(slide, fields: dict, body_idx: int = 12) -> None:
