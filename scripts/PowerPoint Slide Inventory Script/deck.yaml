@@ -1,9 +1,9 @@
 slides:
-  - layout_name: "big text"
+  - modality: context_statement
     fields:
       title: "Structured PoC slide generation can preserve narrative clarity"
 
-  - layout_name: "title, text"
+  - modality: problem_framing
     fields:
       title: "Manual PoC slide creation introduces inconsistency"
       body:
@@ -12,7 +12,7 @@ slides:
         - "Formatting effort distracts from reasoning"
         - "A repeatable structure would improve clarity"
 
-  - layout_name: "title, text (two columns)"
+  - modality: hypothesis_success_criteria
     fields:
       title: "The PoC must prove both narrative discipline and technical feasibility"
       body_left:
@@ -22,7 +22,15 @@ slides:
         - "Can PowerPoint templates be inspected reliably?"
         - "Can layouts be populated deterministically from Python?"
 
-  - layout_name: "title, text, half-image"
+  - modality: chosen_approach
+    fields:
+      title: "The chosen approach separates reasoning, rendering and template control"
+      body:
+        - "Narrative intent is defined in structured YAML"
+        - "The renderer maps modalities to approved layouts"
+        - "The template enforces visual consistency"
+
+  - modality: architecture_view
     fields:
       title: "Architecture: narrative-driven slide generation pipeline"
       body:
@@ -30,3 +38,30 @@ slides:
         - "AI generates constrained slide content"
         - "Template layouts enforce spatial discipline"
       image: "example_architecture.png"
+
+  - modality: learnings_constraints
+    fields:
+      title: "The mechanics are now proven, but image handling and modality growth remain"
+      body:
+        - "Template conversion from POTX to PPTX works locally"
+        - "IBM placeholder mappings are now reliable"
+        - "Picture insertion requires controlled image sizing"
+        - "The next step is to expand modality coverage carefully"
+
+  - modality: implications
+    fields:
+      title: "The generator can now evolve independently of the visual theme"
+      body:
+        - "Narrative structure is no longer tied directly to IBM layout names"
+        - "The same modalities could later map to Microsoft-themed layouts"
+        - "Claude can generate content without needing PowerPoint awareness"
+
+  - modality: next_steps
+    fields:
+      title: "The next phase is to formalise schema and extend supported slide types"
+      body_left:
+        - "Add evidence and results modality"
+        - "Add options considered modality"
+      body_right:
+        - "Define a proper JSON or YAML schema"
+        - "Introduce validation for text density and image sizing"

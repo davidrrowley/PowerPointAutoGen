@@ -69,5 +69,9 @@ def set_body_paragraph(slide, text: str, idx: int | None = None) -> None:
 
 
 def set_picture(slide, image_path: str | Path, idx: int | None = None) -> None:
+    image_path = Path(image_path)
+    if not image_path.exists():
+        raise FileNotFoundError(f"Image file not found: {image_path}")
+
     ph = get_placeholder(slide, PP_PLACEHOLDER.PICTURE, idx=idx)
     ph.insert_picture(str(image_path))
