@@ -1,0 +1,136 @@
+import logging
+
+
+def resolve_layout(modality, fields, registry):
+    """
+    Determine the most appropriate layout from the layout registry
+    for the given modality and available fields.
+    """
+
+    candidates = modality_candidates().get(modality)
+
+    if not candidates:
+        raise ValueError(f"No layout candidates defined for modality '{modality}'")
+
+    # Evaluate candidates based on fields present
+    for candidate in candidates:
+        layout = registry["layouts"].get(candidate)
+
+        if not layout:
+            continue
+
+        if _fields_match_layout(fields, layout):
+            logging.info(f"Resolved modality '{modality}' to layout '{candidate}'")
+            return candidate
+
+    # fallback to first candidate
+    fallback = candidates[0]
+    logging.warning(
+        f"No strong match for modality '{modality}'. Falling back to '{fallback}'"
+    )
+    return fallback
+
+
+def _fields_match_layout(fields, layout):
+    """
+    Determine whether the provided fields satisfy the placeholder
+    structure required by the layout.
+    """
+
+    placeholders = layout.get("placeholders", {})
+
+    for logical_name in placeholders.keys():
+
+        if logical_name not in fields:
+            continue
+
+        # field exists
+        return True
+
+    return False
+
+
+def modality_candidates():
+    """
+    Map narrative modalities to possible layouts.
+    """
+
+    return {
+
+        "context_statement": [
+            "large_statement",
+            "headline_summary",
+            "fact_statement"
+        ],
+
+        "problem_framing": [
+            "headline_detail",
+            "two_column_image",
+            "multi_block_analysis"
+        ],
+
+        "hypothesis_success_criteria": [
+            "two_column_image",
+            "four_points",
+            "multi_block_analysis"
+        ],
+
+        "options_considered": [
+            "four_points",
+            "multi_block_analysis",
+            "two_column_image"
+        ],
+
+        "chosen_approach": [
+            "headline_summary",
+            "headline_detail",
+            "large_statement"
+        ],
+
+        "architecture_view": [
+            "image_story",
+            "two_column_image"
+        ],
+
+        "evidence_results": [
+            "fact_with_image",
+            "chart_analysis",
+            "multi_block_analysis"
+        ],
+
+        "learnings_constraints": [
+            "headline_detail",
+            "multi_block_analysis"
+        ],
+
+        "implications": [
+            "headline_summary",
+            "large_statement"
+        ],
+
+        "next_steps": [
+            "four_points",
+            "multi_block_analysis"
+        ],
+
+        "case_study": [
+            "case_study"
+        ],
+
+        "strategy": [
+            "strategy_pillars",
+            "value_tree"
+        ],
+
+        "prioritisation": [
+            "prioritisation_matrix",
+            "portfolio_matrix"
+        ],
+
+        "operating_model": [
+            "operating_model_framework",
+            "pyramid",
+            "capability_map"
+        ],
+
+    }

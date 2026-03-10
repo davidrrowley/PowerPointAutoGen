@@ -8,6 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import argparse
 import shutil
 from tempfile import NamedTemporaryFile
+from modality_resolver import resolve_layout
 
 try:
     import yaml
@@ -220,7 +221,8 @@ def add_slide_from_spec(
 
     result = resolve_layout_for_modality(modality, catalogue, prefer_safe_only=True)
     pattern_name = result["pattern"]
-    layout_name = result["layout"]["name"]
+    layout_name = resolve_layout(modality, fields, catalogue)
+    layout_spec = catalogue["layouts"][layout_name]
 
     layout = find_layout_by_name(prs, layout_name)
     slide = prs.slides.add_slide(layout)
