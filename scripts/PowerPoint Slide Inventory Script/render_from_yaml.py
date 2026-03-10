@@ -1,7 +1,4 @@
-import sys
-from pathlib import Path
 
-sys.path.append(str(Path(__file__).parent))
 
 from __future__ import annotations
 
@@ -20,7 +17,10 @@ from placeholder_writer import (
     set_title,
 )
 from template_loader import load_presentation_from_template, remove_existing_slides
+import sys
+from pathlib import Path
 
+sys.path.append(str(Path(__file__).parent))
 
 SUPPORTED_LAYOUTS = {
     "big text",
