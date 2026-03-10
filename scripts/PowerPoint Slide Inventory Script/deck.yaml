@@ -1,79 +1,88 @@
 slides:
   - modality: context_statement
     fields:
-      title: "Structured PoC slide generation can preserve narrative clarity"
+      title: "Spreadsheet logic can be replatformed into Fabric without losing operational clarity"
 
   - modality: problem_framing
     fields:
-      title: "Manual PoC slide creation introduces inconsistency"
+      title: "A manual spreadsheet-driven process was becoming difficult to scale and govern"
       body:
-        - "Narrative structure varies between engagements"
-        - "Slides often become overly text dense"
-        - "Formatting effort distracts from reasoning"
-        - "A repeatable structure would improve clarity"
+        - "Business logic was embedded in spreadsheets rather than a managed execution layer"
+        - "The process depended on manual handling before files could move into the data platform"
+        - "Auditability and repeatability were weaker than the target operating model required"
+        - "The question was whether Fabric notebooks could preserve the logic while improving control"
 
   - modality: hypothesis_success_criteria
     fields:
-      title: "The PoC must prove both narrative discipline and technical feasibility"
+      title: "The PoC needed to prove both functional equivalence and platform suitability"
       body_left:
-        - "Can a PoC narrative arc be expressed as structured data?"
-        - "Can titles and bullets be constrained automatically?"
+        - "Can the spreadsheet logic be translated into Python notebooks accurately?"
+        - "Can the resulting process operate cleanly inside a Fabric and lakehouse pattern?"
       body_right:
-        - "Can PowerPoint templates be inspected reliably?"
-        - "Can layouts be populated deterministically from Python?"
+        - "Can ingestion and downstream reasoning be made more repeatable?"
+        - "Can the approach improve observability without introducing unnecessary complexity?"
 
   - modality: options_considered
     fields:
-      title: "Several paths were available, but only one balanced structure and control"
+      title: "Several implementation paths existed, but they did not offer the same balance of control"
       body_left:
-        - "Free AI slide generation"
-        - "High flexibility"
-        - "Weak layout discipline"
+        - "Retain the spreadsheet as the core execution mechanism"
+        - "Low change effort"
+        - "But governance and automation remain constrained"
       body_right:
-        - "Template-driven rendering"
-        - "Lower freedom"
-        - "Much stronger consistency"
+        - "Move the logic into Fabric notebooks backed by the lakehouse"
+        - "More engineering effort up front"
+        - "But stronger repeatability, visibility and integration potential"
 
   - modality: chosen_approach
     fields:
-      title: "The chosen approach separates reasoning, rendering and template control"
+      title: "The chosen approach moved logic into Python notebooks while keeping ingestion disciplined"
       body:
-        - "Narrative intent is defined in structured YAML"
-        - "The renderer maps modalities to approved layouts"
-        - "The template enforces visual consistency"
+        - "The spreadsheet process was treated as logic to be translated rather than simply automated around"
+        - "Fabric notebooks became the execution layer for that logic"
+        - "The surrounding flow was designed to support controlled ingestion into the lakehouse"
 
   - modality: architecture_view
     fields:
-      title: "Architecture: narrative-driven slide generation pipeline"
+      title: "Architecture: spreadsheet ingestion and notebook-driven execution in Fabric"
       body:
-        - "Narrative arc expressed as structured input"
-        - "AI generates constrained slide content"
-        - "Template layouts enforce spatial discipline"
+        - "Files are prepared and moved into a governed ingestion path"
+        - "Python notebooks execute the translated business logic inside Fabric"
+        - "Outputs land in the lakehouse ready for downstream reasoning and reporting"
       image: "example_architecture.png"
+
+  - modality: evidence_results
+    fields:
+      title: "The PoC proved the logic could move into Fabric cleanly"
+      body:
+        - "A meaningful representation of the spreadsheet process was implemented in Python notebooks"
+        - "The Fabric environment proved viable as the execution surface for the translated logic"
+        - "The resulting pattern aligned better with a repeatable ingestion and processing model"
+        - "The flow created a stronger foundation for later automation and reporting"
 
   - modality: learnings_constraints
     fields:
-      title: "The mechanics are now proven, but image handling and modality growth remain"
+      title: "The main lessons were about process discipline and hidden dependency, not notebook feasibility"
       body:
-        - "Template conversion from POTX to PPTX works locally"
-        - "IBM placeholder mappings are now reliable"
-        - "Picture insertion requires controlled image sizing"
-        - "The next step is to expand modality coverage carefully"
+        - "The hard part was not notebook execution but surfacing the implicit assumptions held in the spreadsheet"
+        - "Human intervention remained useful at the ingestion boundary where source quality varied"
+        - "Folder and metadata handling mattered more than expected in making the flow reliable"
+        - "A controlled trigger point was preferable to trying to automate around partially prepared inputs"
 
   - modality: implications
     fields:
-      title: "The generator can now evolve independently of the visual theme"
+      title: "The outcome supports a broader move from spreadsheet operations to platform-managed execution"
       body:
-        - "Narrative structure is no longer tied directly to IBM layout names"
-        - "The same modalities could later map to Microsoft-themed layouts"
-        - "Claude can generate content without needing PowerPoint awareness"
+        - "The logic no longer needs to remain trapped inside a manually operated spreadsheet"
+        - "Fabric can act as both an execution environment and a bridge into more governed data handling"
+        - "Future automation should focus on reliable ingestion conditions rather than forcing full end-to-end autonomy"
 
   - modality: next_steps
     fields:
-      title: "The next phase is to formalise schema and extend supported slide types"
+      title: "The next step is to operationalise the pattern rather than prove the basic mechanics again"
       body_left:
-        - "Add evidence and results modality"
-        - "Add options considered modality"
+        - "Refine the ingestion trigger and metadata controls"
+        - "Harden the notebook pattern for repeatable execution"
       body_right:
-        - "Define a proper JSON or YAML schema"
-        - "Introduce validation for text density and image sizing"
+        - "Extend the lakehouse outputs for downstream reasoning"
+        - "Connect the flow into reporting and broader automation"
