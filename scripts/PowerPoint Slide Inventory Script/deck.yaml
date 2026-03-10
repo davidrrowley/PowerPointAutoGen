@@ -1,0 +1,32 @@
+slides:
+  - layout_name: "big text"
+    fields:
+      title: "Structured PoC slide generation can preserve narrative clarity"
+
+  - layout_name: "title, text"
+    fields:
+      title: "Manual PoC slide creation introduces inconsistency"
+      body:
+        - "Narrative structure varies between engagements"
+        - "Slides often become overly text dense"
+        - "Formatting effort distracts from reasoning"
+        - "A repeatable structure would improve clarity"
+
+  - layout_name: "title, text (two columns)"
+    fields:
+      title: "The PoC must prove both narrative discipline and technical feasibility"
+      body_left:
+        - "Can a PoC narrative arc be expressed as structured data?"
+        - "Can titles and bullets be constrained automatically?"
+      body_right:
+        - "Can PowerPoint templates be inspected reliably?"
+        - "Can layouts be populated deterministically from Python?"
+
+  - layout_name: "title, text, half-image"
+    fields:
+      title: "Architecture: narrative-driven slide generation pipeline"
+      body:
+        - "Narrative arc expressed as structured input"
+        - "AI generates constrained slide content"
+        - "Template layouts enforce spatial discipline"
+      image: "example_architecture.png"
