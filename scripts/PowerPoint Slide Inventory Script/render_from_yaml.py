@@ -5,7 +5,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from layout_catalogue import load_layout_catalogue
+from layout_catalouge import load_layout_catalogue
 from pattern_resolver import resolve_layout_for_modality
 import argparse
 import shutil
