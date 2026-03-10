@@ -5,13 +5,37 @@ from pathlib import Path
 from pptx import Presentation
 
 
+import shutil
+import zipfile
+from pathlib import Path
+from tempfile import NamedTemporaryFile
+
+
 def copy_template_to_pptx(template_path: Path) -> Path:
     """
-    python-pptx is happiest opening .pptx rather than .potx.
-    We copy the template to a temporary .pptx for editing.
+    Convert a .potx into a real working .pptx by patching the package
+    content type from template to presentation.
     """
     working_file = template_path.with_suffix(".working.pptx")
-    shutil.copy(template_path, working_file)
+
+    with zipfile.ZipFile(template_path, "r") as zin:
+        with NamedTemporaryFile(delete=False, suffix=".pptx") as tmp:
+            temp_path = Path(tmp.name)
+
+        with zipfile.ZipFile(temp_path, "w", zipfile.ZIP_DEFLATED) as zout:
+            for item in zin.infolist():
+                data = zin.read(item.filename)
+
+                if item.filename == "[Content_Types].xml":
+                    text = data.decode("utf-8").replace(
+                        "application/vnd.openxmlformats-officedocument.presentationml.template.main+xml",
+                        "application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml"
+                    )
+                    data = text.encode("utf-8")
+
+                zout.writestr(item, data)
+
+    shutil.move(temp_path, working_file)
     return working_file
 
 
