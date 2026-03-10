@@ -5,6 +5,7 @@ from typing import Any
 
 MAX_TITLE_WORDS = 14
 MAX_BULLETS = 5
+MAX_INDEX_BULLETS = 14
 MAX_BULLET_CHARS = 120
 MAX_PARAGRAPH_CHARS = 280
 
@@ -24,16 +25,21 @@ def _validate_title(title: str, slide_num: int) -> None:
         )
 
 
-def _validate_bullets(bullets: list[str], slide_num: int, field_name: str) -> None:
+def _validate_bullets(
+    bullets: list[str],
+    slide_num: int,
+    field_name: str,
+    max_bullets: int = MAX_BULLETS,
+) -> None:
     if not isinstance(bullets, list):
         raise ValueError(
             f"Slide {slide_num}: field '{field_name}' must be a list of bullet strings."
         )
 
-    if len(bullets) > MAX_BULLETS:
+    if len(bullets) > max_bullets:
         raise ValueError(
             f"Slide {slide_num}: field '{field_name}' has {len(bullets)} bullets, "
-            f"which exceeds the limit of {MAX_BULLETS}."
+            f"which exceeds the limit of {max_bullets}."
         )
 
     for bullet in bullets:
@@ -76,7 +82,12 @@ def validate_text_constraints(deck_spec: dict[str, Any]) -> None:
                 _validate_paragraph(str(fields["subtitle"]), i, "subtitle")
 
         elif modality == "index_slide":
-            _validate_bullets(fields["sections"], i, "sections")
+            _validate_bullets(
+                fields["sections"],
+                i,
+                "sections",
+                max_bullets=MAX_INDEX_BULLETS,
+            )
 
         elif modality == "closing_slide":
             if "contact" in fields:
