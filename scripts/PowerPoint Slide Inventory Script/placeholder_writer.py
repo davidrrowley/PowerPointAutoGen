@@ -71,7 +71,7 @@ from pathlib import Path
 from PIL import Image
 
 
-dfrom pathlib import Path
+from pathlib import Path
 from PIL import Image
 from pptx.enum.shapes import PP_PLACEHOLDER
 from pptx.enum.shapes import MSO_AUTO_SHAPE_TYPE
