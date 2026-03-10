@@ -82,6 +82,30 @@ def set_body_paragraph(slide, text: str, idx: int | None = None) -> None:
     tf.paragraphs[0].text = text
 
 
+def set_first_body(slide, text_or_bullets) -> None:
+    """
+    Finds the first BODY placeholder on the slide dynamically and writes
+    either a paragraph or a bullet list into it.
+    """
+    for ph in slide.placeholders:
+        if ph.placeholder_format.type == PP_PLACEHOLDER.BODY:
+            tf = ph.text_frame
+            tf.clear()
+
+            if isinstance(text_or_bullets, list):
+                for i, bullet in enumerate(text_or_bullets):
+                    p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+                    p.text = bullet
+                    p.level = 0
+                    _force_bullet(p)
+            else:
+                tf.paragraphs[0].text = str(text_or_bullets)
+
+            return
+
+    raise ValueError("No BODY placeholder found on this layout.")
+
+
 def set_object_text(slide, text: str, idx: int) -> None:
     ph = get_placeholder(slide, PP_PLACEHOLDER.OBJECT, idx=idx)
     tf = ph.text_frame
@@ -93,7 +117,7 @@ def set_picture(
     slide,
     image_path: str | Path,
     idx: int | None = None,
-    padding_ratio: float = 0.08,
+    padding_ratio: float = 0.04,
 ) -> None:
     image_path = Path(image_path)
     if not image_path.exists():
@@ -151,4 +175,3 @@ def set_picture(
 
     sp = ph._element
     sp.getparent().remove(sp)
-    
