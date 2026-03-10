@@ -166,10 +166,9 @@ def _write_next_steps_boxes_slide(slide, fields: dict) -> None:
 
 
 def _write_evidence_fact_image_slide(slide, fields: dict, yaml_base: Path) -> None:
-    """
-    Supports richer evidence layouts without relying on a fixed BODY idx.
-    """
     set_title(slide, fields["title"])
+
+    print("EVIDENCE PLACEHOLDERS:", debug_placeholders(slide))
 
     if "lead" in fields and "proof_points" in fields:
         lead = str(fields["lead"]).strip()

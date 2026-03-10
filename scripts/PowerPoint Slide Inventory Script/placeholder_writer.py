@@ -22,6 +22,10 @@ def debug_placeholders(slide) -> list[dict]:
                 "name": getattr(ph, "name", None),
                 "shape_type": str(ph.shape_type),
                 "has_text_frame": hasattr(ph, "text_frame"),
+                "left": getattr(ph, "left", None),
+                "top": getattr(ph, "top", None),
+                "width": getattr(ph, "width", None),
+                "height": getattr(ph, "height", None),
             }
         )
     return result
@@ -45,10 +49,6 @@ def get_placeholder(slide, ph_type=None, idx: int | None = None):
 
 
 def get_first_text_placeholder(slide, exclude_title: bool = True):
-    """
-    Returns the first text-capable placeholder on the slide.
-    Prefer BODY placeholders, then OBJECT placeholders with text frames.
-    """
     candidates = []
 
     for ph in _all_placeholders(slide):
@@ -61,12 +61,10 @@ def get_first_text_placeholder(slide, exclude_title: bool = True):
         if hasattr(ph, "text_frame"):
             candidates.append(ph)
 
-    # Prefer BODY placeholders first
     for ph in candidates:
         if ph.placeholder_format.type == PP_PLACEHOLDER.BODY:
             return ph
 
-    # Then OBJECT placeholders or anything else text-capable
     if candidates:
         return candidates[0]
 
@@ -76,9 +74,6 @@ def get_first_text_placeholder(slide, exclude_title: bool = True):
 
 
 def get_first_picture_placeholder(slide):
-    """
-    Returns the first PICTURE placeholder on the slide.
-    """
     for ph in _all_placeholders(slide):
         if ph.placeholder_format.type == PP_PLACEHOLDER.PICTURE:
             return ph
@@ -128,10 +123,6 @@ def set_body_paragraph(slide, text: str, idx: int | None = None) -> None:
 
 
 def set_first_text(slide, text_or_bullets) -> None:
-    """
-    Finds the first text-capable placeholder dynamically and writes either a
-    paragraph or a bullet list into it.
-    """
     ph = get_first_text_placeholder(slide, exclude_title=True)
     tf = ph.text_frame
     tf.clear()
