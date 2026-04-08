@@ -1,0 +1,262 @@
+Supplier Initial Proposal Response
+DDaT Services Open Framework
+Reference: 57387
+IBM United Kingdom Ltd.
+Contents
+Information for Suppliers3
+Section 1 – Supplier Information4
+Section 2 – Supplier Capabilities4
+Section 3 – Scenario 1 – Customer Platform4
+Section 4 – Scenario 2 – NRW Website Innovation Prototype6
+Section 5 – Sustainability and Social Value7
+Section 6 – Commercial and Pricing Approach (Framework)7
+Section 7 – Contractual Comments (Optional)7
+Section 8 – Presentation Attendees8
+Section 9 – Declarations8
+Section 1 – Supplier Information
+Legal Entity Name
+IBM United Kingdom Limited
+Registered Address
+Building C, Ibm Hursley Office, Hursley Park Road, Hursley, Winchester, England, SO21 2JN
+Company Registration Number
+00741598
+Primary Contact Name
+Philip Davenport
+Contact Email Address
+philip.davenport@ibm.com
+Contact Telephone Number
+07884 358 698
+SME Status (Y/N)
+N
+Section 2 – Supplier Capabilities
+Core strengths and principal areas of specialism and capability within the scope of this DDaT Framework
+Key differentiators that distinguish them from comparable DDaT providers
+The types of requirements for which the organisation is particularly well suited, including reference to scale, complexity and transformation environment
+IBM’s core strengths within this DDaT Framework are in delivering end-to-end digital, data and technology services in complex, regulated and multi-stakeholder environments. We combine strong experience of public sector delivery with structured engineering, product, design and governance disciplines, enabling organisations to move from discovery through delivery into live service in a controlled and sustainable way.
+Our principal areas of specialism are:
+Digital Service Design – user-centred, inclusive and outcome-driven service design aligned to GDS principles and accessibility standards, using research, journey mapping, service blueprints and prototyping to improve user outcomes.
+Data, Analytics and AI – design and implementation of modern, governed data platforms, including Azure-based services and Microsoft Fabric, supporting progression from reporting to predictive and AI-enabled decision-making with strong governance, lineage and trust in data.
+Platforms, Integration and Application Development – modular, API-led and microservices-based architectures that support interoperability, incremental modernisation and maintainability across complex estates.
+Cloud, DevOps and Infrastructure – secure hybrid cloud adoption using DevSecOps, containerisation, observability, site reliability practices and FinOps to improve resilience, control cost and maintain compliance.
+Technical Consultancy and Capability Uplift – architecture, engineering and product advisory services combined with knowledge transfer, coaching and embedded delivery practices that help clients build sustainable internal capability.
+Agile Delivery and Transformation Support – product-led delivery, measurable value management and structured scaling approaches that support transformation aligned to organisational readiness and governance requirements.
+Our delivery approach is centred on IBM’s Digital Product Design and Engineering (DPDE) model, which integrates user-centred design, cloud-native engineering and product-led delivery through a defined Product Development Lifecycle. This provides clear architectural, data and delivery guardrails while enabling teams to iterate safely and at pace. It is particularly effective where traceability, service continuity, governance and continuous improvement are critical.
+IBM’s key differentiators are the combination of scale, structured methods and sustainable capability building. Unlike providers focused solely on resource augmentation or delivery of isolated work packages, IBM brings an integrated transformation approach that connects strategy, architecture, design, engineering and live service operations. We are experienced in working within public sector governance, formal framework call-off structures and multi-supplier environments while maintaining delivery momentum and control.
+A further differentiator is our blended delivery model with Stable, our Welsh-based partner. Stable provides local architectural, engineering and delivery capability embedded within IBM-led teams, creating a practical Team Wales model. This offers the benefits of local presence, continuity of engagement and understanding of NRW’s operating environment, including bilingual requirements, while also providing access to IBM’s wider specialist expertise, accelerators and delivery scale. Stable is integrated into delivery, not used as a peripheral subcontract resource.
+Another important differentiator is our emphasis on knowledge transfer and reduced client dependency. We do not retain delivery capability, methods and artefacts solely within supplier teams; instead, these are continuously transferred to the client through shared tooling, structured knowledge management and embedded ways of working. This supports long-term sustainability and internal capability growth.
+IBM is particularly well suited to requirements that involve:
+Large-scale or enterprise-wide transformation, where multiple services, platforms, data domains or suppliers must be coordinated;
+Complex technical environments, including legacy modernisation, hybrid cloud, integration-heavy estates and Microsoft-centric ecosystems such as Azure, Dynamics 365, Power Platform and Microsoft Fabric
+Regulated and governance-intensive settings, where assurance, traceability, secure-by-design delivery and live service continuity are essential
+Multi-stakeholder transformation environments, where delivery must operate across policy, operational, user and supplier boundaries
+Capability uplift alongside delivery, where the client wants not only implementation outcomes but also stronger internal architecture, engineering, product and delivery capability.
+This makes IBM particularly suited to your requirements to modernise services while maintaining operational resilience, building internal capability and establishing scalable digital and data foundations. Across all services, we place strong emphasis on responsible innovation, sustainability, security-by-design and operational resilience. Combining IBM’s global engineering and AI expertise with strong UK public sector delivery capability and local Welsh partnership support, we are well placed to help Natural Resources Wales deliver secure, adaptable and user-centred transformation at the scale and complexity required.
+Section 3 – Scenario 1 – Customer Platform
+Discovery and Shaping Approach
+How you would scope and shape the next 18-24 months of the Customer Platform roadmap
+How discovery would inform business case development and investment decisions
+How you ensure traceability from user needs to architectural and commercial decisions
+IBM would begin the Customer Platform programme with a structured discovery phase designed to establish a clear roadmap for the next 18 to 24 months while ensuring that investment decisions are grounded in validated user need, technical evidence and delivery realism. Discovery would be delivered through a blended IBM and Stable team, ensuring close engagement with NRW stakeholders in Wales and grounding the roadmap in NRW’s operational context from the outset. The phase is treated not only as a shaping exercise, but also as a controlled mobilisation step that establishes delivery readiness, governance and ways of working early.
+The discovery phase is deliberately structured around three parallel activities.  First, user and stakeholder discovery, working with NRW teams, operational users and external stakeholders to understand how services are currently accessed, where friction exists and which user journeys create the greatest operational or customer pain. User research, service mapping, analytics and direct observation are used to identify priority opportunities for improving customer interactions across the platform.
+Second, technical and architectural assessment spanning the ecosystem components such as Dynamics 365, Power Platform, SharePoint and Azure services, alongside existing CMS, data and integration capabilities. The aim is to establish a clear baseline architecture, identify technical constraints and determine where modernisation, integration uplift or platform consolidation would provide the greatest benefit.
+Third, commercial and delivery assessment establishes programme phases, delivery models, sequencing options and key investment assumptions, while exposing cost drivers and delivery dependencies early. This enables NRW to take staged, evidence-based investment decisions rather than committing upfront to a fully specified programme.
+Discovery outputs would typically include:
+A prioritised 18-24 month service roadmap aligned to NRW’s desired outcomes (single customer portal, consolidated customer account, omni-channel engagement, AI-enabled interactions, and the Product Delivery CoE etc.)
+An architectural direction aligned with the Microsoft ecosystem.
+A platform capability model describing required services and integrations.
+A sequenced delivery plan supporting business case development
+A delivery mobilisation view covering governance, team shape and knowledge transfer approach
+Traceability from user needs through to architectural and investment decisions would be maintained through structured artefacts such as user journeys, service blueprints, capability maps, architecture decision records and outcome-based prioritisation frameworks, ensuring that prioritisation and funding decisions remain directly anchored to validated user and organisational needs.
+The discovery phase would therefore provide Natural Resources Wales with a clear, evidence-based foundation for investment decisions and future platform evolution.
+Foundational Architectural Direction
+High-level view of how the Customer Platform should evolve within the Microsoft ecosystem (Dynamics 365, Power Platform, Azure, SharePoint)
+How CMS, CRM and integration components should be treated as foundational building blocks
+Key architectural principles you would apply (not detailed designs)
+The Customer Platform should be evolved as a cohesive, product-aligned platform built on NRW’s existing Microsoft estate, rather than as a set of loosely connected solutions. The current baseline is already Azure-centric, with established use of Dynamics 365, Power Platform and Microsoft 365. The architectural task is therefore to organise these capabilities into a layered, Microsoft-aligned ecosystem, with clear separation of responsibility and controlled integration between components.
+At a high level, four logical layers should structure the platform.
+Customer Engagement Layer - provides the primary interface for citizens, businesses and partners. This includes portals, web services and content platforms. Power Pages should support transactional journeys, while CMS capabilities and SharePoint should manage structured content, publishing and document-centric interactions. This layer should remain decoupled from business logic, consuming services through APIs.
+Customer Relationship and Service Management Layer is centred on Dynamics 365. This acts as the system of record for customer identity, interaction history and service lifecycle, supporting case management and operational workflows. It establishes a single, authoritative customer domain and should not be bypassed by channel-specific implementations.
+Integration and Platform Services Layer forms the control plane of the architecture. Delivered through Azure integration services, it exposes APIs, manages service orchestration and supports event-driven communication. It enables interoperability across CRM, CMS, SharePoint, legacy systems and external services without creating point-to-point dependencies.
+Data and Insights Layer underpins reporting, analytics and data sharing. Built on Azure data services, it should provide governed access to customer and operational data, with capabilities such as lineage, cataloguing and access control to ensure data remains trusted and reusable.
+Within this model Dynamics 365 owns the customer domain, CMS and SharePoint own content, navigation and document management. The integration layer governs connectivity and decoupling. This separation reflects NRW’s mixed estate and enables incremental modernisation, reducing coupling between channels and back-end systems while allowing controlled evolution of data and service boundaries.  The architectural principles applied should reinforce this structure;
+A cloud-first, SaaS-preferred approach should remain the default, maximising use of managed Microsoft services and limiting bespoke infrastructure. Modularity and loose coupling should guide design, ensuring clear separation between experience, business logic and integration concerns. API-first and event-driven patterns should be used consistently to support scalability and avoid point-to-point integration.
+Data should be treated as a governed asset, with clear ownership, lineage and interoperability aligned to the emerging data platform. Security and privacy should be embedded from the outset, using identity-led design and zero trust principles. Observability, resilience and operability should be built in, ensuring services are monitorable and reliable in live operation. A reuse-first approach should be applied, favouring native platform capabilities and configured services ahead of custom development.
+Finally, the platform should be managed as a product, with clear ownership, defined backlogs and continuous improvement. The objective is not to deliver a fixed end state, but to establish a modular, API-driven architecture that supports incremental delivery, integrates across a complex estate and provides a controlled pathway for future change.
+Data Integration and Platform Thinking
+Your approach to addressing fragmented customer data over time
+How discovery would validate assumptions around data quality and integration complexity
+Key risks and sequencing issues
+Customer data fragmentation within NRW should be understood in three related forms: inconsistent customer records across systems, disconnected data flows between platforms, and fragmented user journeys where services do not present a coherent, real-time view to users. Addressing this requires both technical integration and clear control of customer identity and data ownership.
+IBM’s approach (What Is Data Integration? | IBM) focuses on establishing a governed data integration framework that resolves fragmentation progressively, rather than through a high-risk, single-stage consolidation.
+The first step during discovery is to map customer data across CRM platforms, operational systems, document repositories, GIS platforms and legacy applications. This identifies duplication, inconsistencies, ownership gaps and integration constraints. Particular attention is given to how customer identity is represented, including variations in identifiers and matching logic, as this is typically the root cause of fragmentation across both data and user experience.
+From this baseline, a shared customer identifier model would be introduced. In practice, Dynamics 365 would act as the authoritative customer domain, assigning a unique, persistent identifier to each customer. Integration services would map existing system identifiers to this canonical ID using matching rules based on attributes such as name, address or organisation details. Where confidence thresholds are not met, records are flagged for resolution rather than merged automatically.
+This establishes a logical master customer record, allowing NRW to resolve identity consistently across channels without requiring immediate physical consolidation of all data. A user interacting through the website, contacting support or progressing a case would be recognised as the same customer, enabling continuity of service and reducing fragmented journeys.
+In the early stages, existing systems remain operational while integration services provide a unified interface to customer data. API-based integration and event-driven messaging ensure that updates are propagated using the shared identifier, allowing channels, CRM and operational systems to access consistent, near real-time information. This directly addresses issues such as limited integration with live data sources and inconsistent service views.
+Over time, data consolidation can be introduced in a controlled manner. This includes master data management patterns, deduplication processes, survivorship rules and data quality controls, progressively improving the reliability of the customer record while reducing duplication across systems.
+A trusted data platform should be established to curate customer and operational datasets for analytics and cross-service insight. In practice, this would be delivered using Azure-native services, including Microsoft Fabric, to create governed, reusable data products derived from operational systems. These datasets maintain lineage, ownership and access controls, ensuring that data remains trusted while supporting reporting and advanced analytics. This complements, rather than replaces, operational data stores such as Dataverse and line-of-business systems.
+Discovery activities would validate key assumptions before wider implementation proceeds. These include data quality and completeness, integration complexity and dependency mapping, regulatory constraints and governance requirements, and the feasibility of identity matching at scale. It would also assess organisational readiness to adopt consistent data ownership and stewardship practices.
+Sequencing is critical to managing risk. Identity resolution and integration capabilities should be established early, enabling consistent data exchange and improved user journeys without requiring immediate system replacement. More complex data consolidation and platform changes can then be introduced incrementally.
+Key risks include poor data quality affecting matching accuracy, hidden dependencies within legacy systems, integration performance and security constraints, and inconsistent ownership of customer data across domains. There is also a dependency on organisational adoption of new governance practices and ways of working.
+By combining identity-led integration, API-driven connectivity and strong governance, the Customer Platform can transition from fragmented data and disjointed journeys towards a consistent, organisation-wide customer view that supports service delivery, real-time interaction and future innovation.
+Delivery Model, Governance and Risk
+Structure of multidisciplinary teams during discovery
+How delivery would scale into subsequent phases
+High-level governance and risk management approach
+IBM would establish multidisciplinary discovery teams comprising service designers, business analysts, solution architects, platform engineers, data specialists, product managers, and UX researchers. These teams would work collaboratively with NRW stakeholders through structured co-design workshops, iterative analysis, rapid prototyping, and user testing to validate assumptions early.
+Discovery would typically operate using agile delivery practices with two-week sprints, shared backlogs, daily standups, and fortnightly stakeholder show-and-tells. This ensures insights and recommendations are continuously validated, reducing rework and building stakeholder confidence throughout discovery.
+Scaling into subsequent phases would follow a structured maturity pathway. Initial discovery findings would inform the establishment of long-lived, cross-functional product teams aligned to specific value streams (e.g., customer services, data platform, integration services). Each team would combine IBM specialists with embedded NRW staff to accelerate knowledge transfer, build internal capability, and ensure sustainable ownership.
+Scaling would be phased and risk-based, starting with a small number of pilot teams during Alpha, expanding through Beta, and reaching full operational capacity during Live. Team sizing would flex based on complexity, dependencies, and NRW's organisational readiness.
+Governance would operate at three integrated levels:
+Strategic governance (monthly) ensures alignment with NRW's organisational priorities, Welsh Government mandates, and technology strategy through an executive steering group
+Programme governance (fortnightly) oversees delivery milestones, financial management, benefits realization, risk monitoring, and cross-team dependencies via a programme board
+Technical governance (weekly) ensures architectural consistency, standards compliance, security assurance, and technical quality across all platform components through an architecture review board
+Risk management would be proactive and embedded. Key risks, integration complexity, data quality issues, legacy system dependencies, security vulnerabilities, and service disruption during migration - would be actively managed through:
+Live risk registers with clearly assigned owners and mitigation actions
+Regular architectural reviews and threat modelling sessions
+Iterative testing strategies including integration testing, performance testing, and disaster recovery exercises
+Clear rollback and contingency plans for all deployments
+Disciplined knowledge management would be core to our approach. All documentation, architectural decisions (ADRs), design rationale, runbooks, and operational artefacts would be maintained continuously in accessible repositories, reducing key-person dependency and enabling seamless scaling, team transitions, and long-term sustainability.
+This structured approach ensures platform development remains strategically aligned while enabling teams to deliver with agility and resilience.
+Security, Testing and Service Sustainability
+How security, privacy and compliance considerations would inform early discovery and design decisions
+Proportionate testing and assurance principles
+Approach to designing for live service, operability and continuous improvement
+Knowledge transfer and capability uplift within NRW
+Security, privacy and compliance inform design decisions from the outset rather than acting as downstream assurance gates. During discovery, structured threat modelling, data-flow mapping and compliance analysis establish NRW’s risk profile, regulatory obligations and the sensitivity of environmental and citizen data. These findings directly shape architectural patterns, identity models and integration controls. A security-by-design approach aligned to Zero Trust principles is applied across the platform, including strong identity verification, role-based access control, encryption in transit and at rest, and policy-driven configuration. This ensures alignment with UK GDPR, Cyber Essentials Plus and HMG Minimum Cyber Security Standards, while also addressing personnel assurance requirements such as BS7858 vetting. Privacy is embedded through data protection impact assessments, minimisation and retention strategies, and auditable least-privilege access. Formal compliance is supported through production of a Statement of Assurance, with traceable evidence derived from design and delivery activities.
+Testing and assurance are proportionate to risk and data classification. High-risk components, particularly those handling personal or externally exposed data, undergo enhanced assurance including penetration testing, dependency scanning and code analysis. Lower-risk components follow a streamlined approach while still benefiting from automated functional, security and performance testing within CI/CD pipelines. Assurance activities are explicitly mapped to identified risks and control requirements, ensuring that outputs support both operational confidence and formal compliance obligations, including audit and assurance reporting.
+Live-service operability is treated as a primary design consideration. Observability is built in through structured logging, monitoring and alerting to provide clear visibility of service health, performance and security events. Resilience is supported through automated recovery, health checks and scalable architecture aligned to NRW’s sustainability objectives. Operational readiness is established through runbooks, support models and defined service ownership, with ongoing compliance monitoring embedded as part of live service management. Continuous improvement is driven by telemetry and user feedback, enabling iterative refinement of reliability, usability and security.
+Knowledge transfer and capability uplift are embedded throughout delivery. Blended teams, paired working and joint backlog ownership ensure NRW staff participate directly in design, build and operation. This is reinforced through structured documentation, communities of practice and targeted coaching across engineering, operations and security disciplines. Responsibility is transitioned progressively, enabling NRW to take full ownership with confidence. The outcome is a secure, resilient service supported by an in-house team capable of sustaining and evolving the platform independently.
+Resourcing Approach
+Roles and capabilities required for discovery
+How team composition may evolve beyond discovery
+Geographic distribution of key roles and approach to collaborative working with NRW Wales-based stakeholders
+Discovery would be delivered by a small multidisciplinary team combining strategic and technical expertise.
+Key roles during discovery would include:
+Engagement Lead / Delivery Manager (IBM)
+Service Designer and User Researcher (IBM)
+Solution Architect (Stable)
+Data Architect (IBM)
+Integration Architect (Stable)
+Business Analyst (IBM)
+Security Specialist (Stable)
+Platform Engineer (Stable)
+These roles enable discovery to address organisational, technical and operational considerations simultaneously.
+As the programme transitions into delivery phases, the team structure would evolve into long-lived product teams aligned with key platform capabilities. Each team would typically include product management, engineering and operational expertise to ensure services can be delivered and maintained sustainably.
+Alpha: Team expands to include a service owner and a broader mix of product, delivery, research, design, development and technical roles. Additional specialists (analysts, architects, SREs, QA) support as needed. Sustainment resources begin embedding good practice.
+Beta: Team grows further to handle frequent iterations. More developers, designers, content designers and performance analysts join, with shared specialists drafted in as required. Sustainment skills become more integrated to prepare for live operation.
+Live: Need for intensive development decreases. Team shifts to a sustainable mix focused on maintenance, iteration and operations. Planned transition to a central sustainment team occurs with minimal risk due to early involvement.
+Retire: Team focuses on decommissioning, using specialist sustainment skills to retire the capability while maintaining user engagement.
+IBM supports collaborative delivery through blended teams combining supplier and client personnel - such as NRW owning Product Owner roles - This supports knowledge transfer, shared ownership and smoother transition into live service. Stable provides a Welsh-based contingent within this model, strengthening local engagement, stakeholder access, on-site collaboration where needed and practical alignment to bilingual and user-centred service needs.
+Resourcing would be managed through structured demand planning, with short and medium-term views of role demand, capability requirements and mobilisation dates. This allows scale-up or scale-down to be managed in a controlled way as priorities evolve, while maintaining continuity and delivery quality.
+Where appropriate, delivery roles may be distributed across locations within the UK, nearshore or offshore, while maintaining close collaboration with NRW stakeholders in Wales.  Modern collaboration tools, shared repositories and targeted in-person engagement support effective communication and coordination.
+This resourcing model enables discovery to be delivered efficiently while providing a scalable and resilient structure for subsequent delivery phases.
+Indicative Commercial Model (Discovery Phase Only)
+Please complete ISIP Pricing Template (Scenario 1)
+Section 4 – Scenario 2 – NRW Website Innovation Prototype
+Proposed approach and sequencing for a 12-week innovation window
+The types of outcomes and deliverables that could be reasonably achieved within 12 weeks
+Key risks, dependencies and assumptions
+High-level team structure and capability mix appropriate to this innovation window
+This 12-week website innovation prototype should be understood as a structured innovation window designed to reduce uncertainty, not as a miniature delivery project using IBM Garage (IBM Garage). The purpose is to test whether targeted changes to NRW’s website can materially improve usability, accessibility, content effectiveness and service outcomes within the constraints of the current estate, including Umbraco CMS, Microsoft 365 authoring workflows, Azure-hosted services and APIs via Azure API Manager, and identity through Entra ID and Azure AD B2C. The website is therefore the validation environment rather than the final product.
+The approach is hypothesis-led. At the outset, NRW and IBM agree a small number of testable hypotheses linked to identifiable user or organisational problems. These typically relate to navigation friction, search relevance, accessibility barriers, bilingual content usability, or the presentation of live and location-based information. Each hypothesis is defined so it can be tested through evidence rather than opinion. The intent is not to generate ideas, but to determine which changes create measurable value and are feasible within NRW’s constraints. For example, a hypothesis may focus on improving alignment to the Digital Service Standards for Wales and WCAG 2.2 AA through bilingual, user-centred prototypes and proportionate measurement of usability and accessibility outcomes.
+This aligns with the Digital Service Standard for Wales and embeds user-centred design, accessibility and bilingual considerations throughout. It supports NRW’s objective of exploring improvement within a defined period without committing to a full rebuild.
+A critical aspect is that NRW remains actively involved throughout. Stakeholders participate in defining problems, agreeing success criteria, reviewing evidence and making decisions on whether to continue, adapt or stop. The value of the 12-week window lies in enabling better decisions, not simply producing artefacts.
+The work is structured around three innovation modes depending on the nature of the challenge.
+Discovery-led innovation is applied where the problem is not fully understood and the initial task is identifying viable opportunities.
+Proof-led innovation is used where a defined idea requires validation within the existing architectural, data and security context.
+Optimisation-led innovation focuses on known pain points where the objective is to improve a measurable baseline.
+Across all modes, the operating pattern remains consistent. A hypothesis is defined, a lightweight experiment is designed, the experiment is run in a controlled way, evidence is gathered, and a decision is made on whether to continue, adapt or stop. The emphasis is on rapid learning and disciplined disposal of weak ideas rather than progressing a fixed backlog.
+The team combines IBM delivery capability, Stable’s Welsh-based expertise and NRW participation. The core team includes product, delivery and technical leadership, supported by UX and content design, engineering, and data or AI capability where required. This is complemented by embedded NRW roles, including sponsor, subject matter experts, content owners and access to representative users. These roles ensure decisions are timely and grounded in operational reality.
+Rather than structuring the 12 weeks as fixed sprints, the work progresses through four phases of evidence generation:
+Explore & Discover establishes the problem and defines hypotheses through analysis of user journeys, analytics, search behaviour, accessibility issues and bilingual content considerations. The output is a small number of explicit hypotheses with defined success measures and evidence requirements.
+Ideate/Co-create focuses on low-cost experimentation, including clickable prototypes, revised content structures and search concepts. The objective is to invalidate weak ideas early and identify those that justify further investment.
+Design and Build/Co-execute deepens the strongest candidates through more representative prototypes, controlled integration with live or near-live data, and strengthened accessibility and bilingual testing. Where appropriate, selected changes may be exposed to real users. The aim is to distinguish between ideas that are interesting and those that are workable within NRW’s environment.
+Scale/Co-operate consolidates evidence into a decision-ready position. For each hypothesis, NRW receives a clear view of what was tested, what evidence was generated, whether the hypothesis is supported, what constraints exist and what the recommended next step should be. This may lead to scale, refinement or cessation.
+Where proportionate, limited live deployment may be used to validate behaviour under real conditions rather than relying solely on workshop feedback.
+Outputs at the end of the 12 weeks are practical and decision oriented. These include validated hypotheses, reusable design and content patterns, and MVP components with proven technical feasibility. Supporting artefacts include:
+User-centred and bilingual design outputs, including prioritised journeys, content patterns and accessibility considerations aligned to WCAG 2.2 AA
+Navigation and information architecture prototypes addressing complexity and inconsistency, aligned to Umbraco and Microsoft 365 content models
+Evidence-led search improvements, including metadata and UX changes to improve relevance
+End-to-end prototypes for priority user journeys, demonstrating measurable improvements in usability and task completion
+A prioritised accessibility and content improvement backlog, including bilingual guidance and design system adjustments
+A lightweight proof of feasibility for live data integration using Azure APIs and identity patterns aligned to governance constraints
+A structured content model and authoring approach to improve consistency and findability
+A measurement framework defining success metrics such as search effectiveness, task completion and bilingual parity
+High-level technical considerations and a sequenced backlog for scaling beyond the innovation window
+Key risks are managed through the design of the innovation window. Poorly defined objectives are addressed through early hypothesis definition. Limited user access is mitigated by securing stakeholder and user engagement upfront. Technical and content constraints are addressed through early feasibility testing. The discipline to stop weak ideas protects time and investment for higher-value opportunities.
+This approach assumes access to stakeholders, representative users, analytics and relevant technical and content constraints. It also assumes that the purpose of the 12-week window is to generate evidence for future action rather than deliver a production-ready service.
+Framed in this way, the innovation prototype becomes a controlled mechanism for learning. It enables NRW to test ideas credibly, fail safely where necessary, and move forward only where there is sufficient evidence that the outcome justifies scaling.
+Indicative Commercial Model (12-week Innovation Window)
+Please complete ISIP Pricing Template (Scenario 2)
+Section 5 – Sustainability and Social Value
+How environmental sustainability principles would be reflected in digital delivery under the Framework
+How social value commitments would be delivered in practice within Wales, including support for local employment, skills development, Welsh SMEs or social enterprises
+How social value commitments could be structured proportionately at call-off level, including views on appropriate scaling mechanisms and measurable outcomes
+How sustainability and social value performance would be monitored and reported at call-off level
+IBM recognises that environmental sustainability and social value are central priorities for Natural Resources Wales and the Welsh public sector more broadly.
+Environmental sustainability would be embedded throughout digital delivery under the framework rather than treated as a separate reporting exercise. Cloud platforms can reduce environmental impact by consolidating infrastructure and improving energy efficiency, but that only translates into benefit if supported by active management. IBM supports this through FinOps and GreenOps practices that provide visibility into both financial cost and carbon impact associated with digital services. This can include service-level reporting, workload optimisation, management of non-production environments and use of managed services where they reduce operational and environmental overhead.
+Digital platforms can also support environmental outcomes directly. Data platforms, analytics tools and environmental intelligence solutions can provide better visibility of environmental conditions, supporting more informed decision-making around resilience, biodiversity, operational efficiency and resource management.
+IBM already maintains formal carbon reduction plans, environmental governance arrangements and recognised sustainability practices. We also use a structured Social Value Delivery Model in other public sector environments to define, deliver and measure environmental and social commitments through baseline assessment, prioritised actions, reporting and continuous improvement. The same disciplined approach can be applied proportionately under this framework.
+Social value delivery under the framework would prioritise practical benefit within Wales. A core feature of our approach is the use of Stable as a Welsh-based delivery partner, with it’s headquarters in Cardiff and Welsh‑speaking CEO and Managing Director, it maintains deep ties to Welsh communities, culture and public sector needs. They prioritise Welsh‑based teams to support local employment and talent retention and work closely with Welsh SMEs and social enterprises to strengthen the digital economy. Their commitment includes running internship pathways with local universities, where a number of interns have already progressed into full‑time roles.  Stable also proudly supports a number of Welsh charities as clients such as Tŷ Hafan, Llamau, Gareth Edwards Cancer Charity, Ategi and others, contributing time, expertise and community engagement. They actively participate in youth and skills initiatives, including Scouts events, DigiGirlz programmes and partnerships with local schools to promote digital skills and career awareness.
+At call-off level, sustainability and social value commitments should be proportionate to the size and scope of the requirement and tracked through clear KPIs, milestones and transparent reporting, ensuring measurable, lasting impact across Wales. Smaller engagements may focus on local supplier involvement, targeted skills transfer or defined carbon-reduction practices. Larger programmes may include more formal capability uplift, wider community engagement or structured environmental initiatives.
+Performance monitoring is important to ensure these commitments are delivered effectively. Metrics such as carbon impact, local supplier participation, skills uplift and training outcomes will be collaboratively defined & subsequently tracked through structured reporting aligned to framework governance.
+By embedding sustainability and social value within the way services are delivered, rather than treating them as add-on activities, digital transformation can support both NRW’s organisational goals and wider Welsh public value.
+Section 6 – Commercial and Pricing Approach (Framework)
+Suppliers must submit a competed DDaT ISIP Pricing.xls and provide a written commercial summary explaining:
+The proposed Pricing structure under the framework (e.g. time and materials, fixed price where applicable)
+Key assumptions underpinning the submitted rate card
+How any proposed volume discounts would operate in practice
+IBM supports flexible commercial models that allow public sector organisations to select the most appropriate pricing approach depending on the nature, maturity and certainty of each requirement, indeed different delivery stages potentially benefit from different commercial models.
+Time and Materials arrangements are often appropriate during discovery or early exploration where requirements are still evolving. This model provides flexibility to scale effort as insight emerges while ensuring transparency around effort and cost.
+Fixed Price delivery can provide greater financial predictability where scope, outcomes and acceptance criteria are sufficiently clear. This is useful where requirements are stable and the supplier is best placed to manage the associated delivery risk.
+Fixed Capacity delivery, such as a defined number of delivery sprints or a stable team for a fixed period, provides a balance between agility and cost certainty. This model works well where priorities may shift but the budget envelope needs to remain controlled.
+Supplier-led delivery models can be appropriate for ongoing operational services such as managed platforms, DevOps, support or infrastructure services, where predictable service charges and agreed service levels are more suitable than project-based charging.
+Blended delivery models combining buyer and supplier teams are often particularly effective. These allow specialist expertise to be introduced where required while maintaining internal ownership, building capability and encouraging shared delivery accountability.
+The rate card submitted for the framework reflects the typical market roles required for digital, data and technology delivery, including architecture, engineering, delivery management, design, data and security capabilities. At ISIP stage, pricing is structured to expose the main cost drivers and assumptions so that commercial realism can be discussed during dialogue.
+Key assumptions underpinning the rate card include standard role definitions, innovation fund contribution, inclusive of all delivery costs, an 8-hour working day, normal delivery environments and framework-level delivery assumptions. Where call-off requirements differ significantly, for example due to specialist assurance needs, unusual mobilisation requirements or sustained volume demand, rates and delivery models may be refined through the appropriate call-off process.
+Volume discounts can operate where sustained delivery volumes allow efficiencies to be achieved through team stability, reduced onboarding friction and longer-term planning. These efficiencies can be passed through via reduced blended rates or agreed discount structures.
+Overall, the commercial approach is intended to provide NRW with flexibility, transparency and value for money across the DDaT lifecycle, while supporting the range of delivery models envisaged in the framework documentation. It also aligns to the commercial positions already described in our earlier market engagement response, particularly the use of phased models that evolve as requirement certainty increases.
+Innovation Fund Commentary (Optional)
+We would highlight the importance of ensuring that all suppliers contributing to the innovation fund benefit in a fair and transparent manner. The intent is to establish an equitable model where contributors see value either directly through funded initiatives or indirectly through improvements delivered across the wider service ecosystem. This can be achieved through a structured approach incorporating the following principles.
+Clear and transparent eligibility. All contributing suppliers are able to submit proposals, with eligibility criteria and submission processes documented, published and subject to periodic review. This provides a consistent and accessible route for participation.
+Balanced access to funds. Guardrails such as caps on annual funding per supplier, alongside prioritisation for those who have not received recent awards, help prevent disproportionate allocation while still enabling high-impact proposals to progress.
+Impact-based funding decisions. Proposals are assessed on their ability to deliver value across the framework rather than benefiting a single supplier’s position. Priority is given to initiatives that improve customer experience, quality, efficiency, sustainability or shared processes, ensuring broader benefit.
+Support for collaborative innovation. Joint proposals involving multiple suppliers are encouraged. This supports more even distribution of benefit while enabling shared learning, knowledge transfer and co-development of solutions.
+Transparent governance and decision-making. A joint governance group, including customer representatives and independent oversight, is responsible for funding decisions. Criteria, scoring, outcomes and rationale are visible to all contributors, ensuring decisions are accountable and aligned to framework objectives.
+Annual equity and value review. A periodic review compares contributions with realised benefits. Where imbalances emerge, adjustments or additional opportunities are introduced, with outcomes shared openly to maintain trust.
+Through this approach, NRW can ensure the innovation fund delivers value across all contributors while maximising customer benefit and overall framework performance.
+Section 7 – Contractual Comments (Optional)
+Suppliers may optionally provide comments on the Draft Framework Agreement and Draft Call-off agreement limited to matters of clarity or material concern.
+If required, please complete DDaT Contractual Comments.xls
+Section 8 – Presentation Attendees
+Suppliers should provide the names, roles and organisational affiliation of individuals proposed to attend the ISIP presentation.
+Name
+Email Address (for Teams Invite)
+Role Title
+Area of Responsibility
+Dave Aspden
+dave@stable.co.uk
+Stable
+Stable CEO
+Phil Davenport
+philip.davenport@ibm.com
+IBM
+IBM Client Delivery Partner
+David Rowley
+david.rowley@ibm.com
+IBM
+IBM Microsoft Practice CTO
+Ryan Lewis
+ryan@stable.co.uk
+Stable
+Stable CTO/MD
+Section 9 – Declarations
+The supplier confirms that:
+The information provided in this Initial Tender Response is complete and accurate
+Pricing submitted is indicative and non-binding at ISIP stage
+The supplier understands that Initial Tenders are non-scored
+The supplier understands that Final Tenders submitted at ISFT stage will be evaluated and scored
+Authorised Signatory Name: Philip Davenport
+Role: Associate Partner
+Signature:
+Date: 30th March 2026

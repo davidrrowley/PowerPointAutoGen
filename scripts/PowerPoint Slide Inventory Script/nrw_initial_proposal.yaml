@@ -1,0 +1,58 @@
+slides:
+  - modality: title_slide
+    fields:
+      title: "Initial Proposal Process"
+      subtitle: "Section 4.1 — NRW Procurement"
+
+  - modality: index_slide
+    fields:
+      title: "Process stages"
+      sections:
+        - "Initial Proposal submission"
+        - "Supplier presentations"
+        - "Dialogue and negotiation"
+        - "Key principles"
+
+  - modality: context_statement
+    fields:
+      title: "Initial Proposals must include all information required for early assessment"
+
+  - modality: problem_framing
+    fields:
+      title: "Initial Proposals must meet NRW submission requirements"
+      body:
+        - "Submit in accordance with the instructions and timetable in the ISIP"
+        - "Include all information required to enable early assessment by NRW and dialogue"
+        - "Initial Proposals will not be evaluated or scored"
+        - "NRW may give feedback to suppliers following submission"
+
+  - modality: chosen_approach
+    fields:
+      title: "Presentations provide an opportunity for suppliers to demonstrate readiness"
+      body:
+        - "Clarify elements of their initial proposal"
+        - "Demonstrate understanding of the requirement"
+        - "Present their delivery approach and capability"
+        - "Presentations will not be evaluated or scored — NRW may give feedback"
+
+  - modality: implications
+    fields:
+      title: "Following presentations, NRW may undertake dialogue or negotiation"
+      body:
+        - "Technical, commercial or legal dialogue to refine proposals"
+        - "Allow NRW to consider refinement of the procurement process and evaluation criteria"
+        - "Clarify assumptions or discuss draft contractual terms"
+        - "Dialogue will be proportionate and conducted consistently for all suppliers"
+
+  - modality: learnings_constraints
+    fields:
+      title: "Key principles governing the dialogue stage"
+      body:
+        - "NRW may hold more than one round of dialogue where this is considered beneficial"
+        - "Any changes to requirements or documentation will be communicated to all suppliers simultaneously through the portal"
+        - "NRW may choose to adjust or waive the presentation or dialogue stages where not required"
+
+  - modality: closing_slide
+    fields:
+      title: "Initial Proposal Process"
+      contact: "Submit via the portal in accordance with the ISIP timetable"

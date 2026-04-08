@@ -166,3 +166,22 @@ def validate_text_constraints(deck_spec: dict[str, Any]) -> None:
                 _validate_bullets(right, i, "body_right")
             else:
                 _validate_paragraph(str(right), i, "body_right")
+
+        elif modality == "key_metric":
+            if "body" in fields:
+                body = fields["body"]
+                if isinstance(body, list):
+                    _validate_bullets(body, i, "body")
+                else:
+                    _validate_paragraph(str(body), i, "body")
+
+        elif modality == "four_pillars":
+            columns = fields.get("columns", [])
+            _validate_bullets(columns, i, "columns", max_bullets=4)
+
+        elif modality == "quote_slide":
+            _validate_paragraph(str(fields["quote"]), i, "quote")
+            if "attribution" in fields:
+                _validate_paragraph(str(fields["attribution"]), i, "attribution")
+
+        # section_divider and ibm_sign_off have only title / no text — already validated above

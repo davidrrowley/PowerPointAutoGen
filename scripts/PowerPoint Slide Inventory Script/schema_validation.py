@@ -12,8 +12,8 @@ REQUIRED_FIELDS_BY_MODALITY = {
     "hypothesis_success_criteria": {"title", "body_left", "body_right"},
     "options_considered": {"title"},
     "chosen_approach": {"title", "body"},
-    "architecture_view": {"title", "image"},
-    "evidence_results": {"title", "image"},
+    "architecture_view": {"title"},
+    "evidence_results": {"title"},
     "learnings_constraints": {"title", "body"},
     "implications": {"title", "body"},
     "next_steps": {"title", "body_left", "body_right"},
@@ -21,6 +21,11 @@ REQUIRED_FIELDS_BY_MODALITY = {
     "strategy": {"title", "body"},
     "prioritisation": {"title", "body"},
     "operating_model": {"title", "body"},
+    "section_divider": {"title"},
+    "key_metric": {"title"},
+    "four_pillars": {"title"},
+    "quote_slide": {"quote"},
+    "ibm_sign_off": set(),
 }
 
 

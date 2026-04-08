@@ -52,6 +52,11 @@ SUPPORTED_MODALITIES = {
     "strategy",
     "prioritisation",
     "operating_model",
+    "section_divider",
+    "key_metric",
+    "four_pillars",
+    "quote_slide",
+    "ibm_sign_off",
 }
 
 
@@ -131,7 +136,7 @@ def _write_two_column_slide(slide, fields: dict, left_idx: int = 13, right_idx: 
 
 def _write_four_points_slide(slide, fields: dict) -> None:
     set_title(slide, fields["title"])
-    points = fields.get("points", [])
+    points = fields.get("columns", fields.get("points", []))
     point_indices = [12, 13, 14, 15]
 
     for idx, point in zip(point_indices, points):
@@ -208,6 +213,13 @@ def _write_next_steps_boxes_slide(slide, fields: dict) -> None:
         set_object_text(slide, items[1], idx=18)
     if len(items) > 2:
         set_object_text(slide, items[2], idx=19)
+
+
+def _write_quote_slide(slide, fields: dict) -> None:
+    quote = str(fields.get("quote", "")).strip()
+    attribution = str(fields.get("attribution", "")).strip()
+    full_text = f"{quote}\n\u2014 {attribution}" if attribution else quote
+    set_title(slide, full_text)
 
 
 def _write_case_study_slide(slide, fields: dict, yaml_base: Path) -> None:
@@ -317,7 +329,24 @@ def add_slide_from_spec(
         _write_case_study_slide(slide, fields, yaml_base)
 
     elif layout_id == "big_text":
+        if "quote" in fields:
+            _write_quote_slide(slide, fields)
+        else:
+            set_title(slide, fields["title"])
+
+    elif layout_id == "divider_standard":
         set_title(slide, fields["title"])
+
+    elif layout_id == "divider_with_contents":
+        set_title(slide, fields["title"])
+        if "sections" in fields:
+            set_body_bullets(slide, fields["sections"], idx=13)
+
+    elif layout_id == "quote_layout":
+        _write_quote_slide(slide, fields)
+
+    elif layout_id in {"ibm_sign_off_blue80", "ibm_sign_off_blue60", "ibm_sign_off_black"}:
+        pass  # purely graphical brand slide — no text placeholders
 
     else:
         if "title" in fields:

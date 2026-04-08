@@ -58,6 +58,31 @@ visual_families:
           - "closing_slide"
           - "thank_you"
 
+      - id: ibm_sign_off_blue80
+        ppt_layout: "ibm sign-off (blue80)"
+        automation_status: "safe"
+        use_for:
+          - "ibm_sign_off"
+        style_bias:
+          - "brand_close"
+          - "ibm_preferred"
+
+      - id: ibm_sign_off_blue60
+        ppt_layout: "ibm sign-off (blue60)"
+        automation_status: "safe"
+        use_for:
+          - "ibm_sign_off"
+        style_bias:
+          - "brand_close"
+
+      - id: ibm_sign_off_black
+        ppt_layout: "ibm sign-off (black)"
+        automation_status: "safe"
+        use_for:
+          - "ibm_sign_off"
+        style_bias:
+          - "brand_close"
+
   contents_and_dividers:
     description: "Navigation, contents, section starts and transitions"
     preferred_theme: "grey"
@@ -179,6 +204,16 @@ visual_families:
         use_for:
           - "image_narrative"
           - "captioned_visual"
+
+      - id: quote_layout
+        ppt_layout: "quote"
+        automation_status: "safe"
+        use_for:
+          - "quote_slide"
+          - "pull_quote"
+        style_bias:
+          - "high_emphasis"
+          - "single_message"
 
   ruled_text_blocks:
     description: "Analytical explanation, comparisons, structured prose and card-like text"
@@ -342,6 +377,11 @@ selection_bias:
     strategy: "ruled_text_blocks"
     prioritisation: "charts_or_tables"
     operating_model: "charts_or_tables"
+    section_divider: "contents_and_dividers"
+    key_metric: "text_or_imagery"
+    four_pillars: "ruled_text_blocks"
+    quote_slide: "text_or_imagery"
+    ibm_sign_off: "covers"
 
   fallback_family_order:
     - "ruled_text_blocks"

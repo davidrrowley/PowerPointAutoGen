@@ -1,0 +1,39 @@
+slides:
+  - modality: title_slide
+    fields:
+      title: "New Modalities Test Deck"
+      subtitle: "Verifying all five new layout types"
+
+  - modality: section_divider
+    fields:
+      title: "Section One: Customer Platform"
+
+  - modality: key_metric
+    fields:
+      title: "Delivery performance across the programme"
+      body:
+        - "93% of sprint goals delivered on time"
+        - "Zero critical defects at Beta launch"
+        - "14 services migrated in first 6 months"
+
+  - modality: four_pillars
+    fields:
+      title: "Four principles underpinning our delivery model"
+      columns:
+        - "User-centred design from discovery to live"
+        - "Architecture governed and evidence-led"
+        - "Data trusted, lineaged and reusable"
+        - "Secure by design across all layers"
+
+  - modality: quote_slide
+    fields:
+      quote: "IBM and Stable bring the scale and the local knowledge that NRW needs"
+      attribution: "NRW Programme Sponsor"
+
+  - modality: ibm_sign_off
+    fields: {}
+
+  - modality: closing_slide
+    fields:
+      title: "Thank you"
+      contact: "Questions and discussion welcome"

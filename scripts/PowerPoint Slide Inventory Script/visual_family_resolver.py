@@ -1,8 +1,47 @@
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any
 
-from visual_family_resolver import get_family_layouts, resolve_visual_family
+import yaml
+
+
+def _load_registry() -> dict[str, Any]:
+    registry_path = Path(__file__).resolve().parent / "visual_family_registry.yaml"
+    with registry_path.open(encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+
+def resolve_visual_family(modality: str, registry: dict[str, Any] | None = None) -> str:
+    if registry is None:
+        registry = _load_registry()
+    selection_bias = registry.get("selection_bias", {})
+    default_map = selection_bias.get("default_family_by_modality", {})
+    if modality in default_map:
+        return default_map[modality]
+    fallback_order = selection_bias.get("fallback_family_order", [])
+    families = registry.get("visual_families", {})
+    for family_name in fallback_order:
+        if family_name in families:
+            return family_name
+    if families:
+        return next(iter(families))
+    raise ValueError(
+        f"Cannot resolve a visual family for modality '{modality}'. "
+        f"No mapping found and no fallback families available."
+    )
+
+
+def get_family_layouts(family_name: str, registry: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+    if registry is None:
+        registry = _load_registry()
+    families = registry.get("visual_families", {})
+    if family_name not in families:
+        raise ValueError(
+            f"Visual family '{family_name}' not found in registry. "
+            f"Available families: {list(families.keys())}"
+        )
+    return families[family_name].get("layouts", [])
 
 
 def _matches_title_slide(fields: dict[str, Any]) -> bool:
@@ -67,6 +106,18 @@ def _layout_matches_fields(layout_id: str, fields: dict[str, Any]) -> bool:
 
     if layout_id == "big_text":
         return "title" in fields and "body" not in fields and "image" not in fields
+
+    if layout_id == "quote_layout":
+        return "quote" in fields or "title" in fields
+
+    if layout_id == "divider_standard":
+        return "title" in fields
+
+    if layout_id == "divider_with_contents":
+        return "title" in fields
+
+    if layout_id in {"ibm_sign_off_blue80", "ibm_sign_off_blue60", "ibm_sign_off_black"}:
+        return True
 
     if layout_id in {"title_text", "title_text_split_background"}:
         return _matches_simple_body(fields)
@@ -194,6 +245,29 @@ def _preferred_layout_ids_for_modality(modality: str) -> list[str]:
             "table",
             "title_text_four_columns",
             "title_text",
+        ],
+        "section_divider": [
+            "divider_standard",
+            "divider_with_contents",
+        ],
+        "key_metric": [
+            "fact_number",
+            "fact_number_half_image",
+            "title_text",
+        ],
+        "four_pillars": [
+            "title_text_four_columns",
+            "insight_text_boxes",
+            "title_text",
+        ],
+        "quote_slide": [
+            "quote_layout",
+            "big_text",
+        ],
+        "ibm_sign_off": [
+            "ibm_sign_off_blue80",
+            "ibm_sign_off_blue60",
+            "ibm_sign_off_black",
         ],
     }.get(modality, [])
 
