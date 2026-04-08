@@ -292,7 +292,7 @@ def add_slide_from_spec(
     elif layout_id == "thank_you":
         _write_closing_slide(slide, fields)
 
-    elif layout_id in {"title_text", "title_text_split_background"}:
+    elif layout_id in {"title_text", "title_text_split_background", "title_text_body_fallback"}:
         _write_title_text_slide(slide, fields, body_idx=12)
 
     elif layout_id in {

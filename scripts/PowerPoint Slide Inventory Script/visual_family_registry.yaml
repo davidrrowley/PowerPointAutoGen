@@ -205,6 +205,13 @@ visual_families:
           - "image_narrative"
           - "captioned_visual"
 
+      - id: title_text_body_fallback
+        ppt_layout: "title, text"
+        automation_status: "safe"
+        use_for:
+          - "architecture_view_no_image"
+          - "text_fallback"
+
       - id: quote_layout
         ppt_layout: "quote"
         automation_status: "safe"
