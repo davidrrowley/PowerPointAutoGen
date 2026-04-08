@@ -30,11 +30,8 @@ def _matches_boxes(fields: dict[str, Any]) -> bool:
 
 
 def _matches_four_points(fields: dict[str, Any]) -> bool:
-    return (
-        "points" in fields
-        and isinstance(fields["points"], list)
-        and len(fields["points"]) == 4
-    )
+    pts = fields.get("points", fields.get("columns", None))
+    return pts is not None and isinstance(pts, list) and 2 <= len(pts) <= 4
 
 
 def _matches_half_image(fields: dict[str, Any]) -> bool:
@@ -121,20 +118,20 @@ def _preferred_layout_ids_for_modality(modality: str) -> list[str]:
         "title_slide": ["title_slide", "cover_image_1", "cover_image_2", "cover_image_7", "cover_image_8"],
         "index_slide": ["index_slide"],
         "closing_slide": ["thank_you", "title_slide"],
-        "context_statement": ["big_text", "fact_number", "title_text"],
-        "problem_framing": ["title_text", "title_text_two_columns", "title_text_split_background"],
+        "context_statement": ["big_text", "title_text_body_fallback", "fact_number", "title_text"],
+        "problem_framing": ["title_text_four_columns", "title_text_two_columns", "title_text_split_background", "title_text"],
         "hypothesis_success_criteria": ["title_text_two_columns", "title_text_four_columns", "title_text_two_columns_diff"],
         "options_considered": ["insight_text_boxes", "title_text_four_columns", "title_text_two_columns", "boxes_3_med_2_small"],
-        "chosen_approach": ["title_text", "title_text_two_columns"],
+        "chosen_approach": ["title_text_two_columns", "title_text_split_background", "title_text"],
         "architecture_view": ["title_text_half_image", "title_image", "title_text_body_fallback", "fact_number", "big_text"],
         "evidence_results": ["title_text_half_image", "fact_number_half_image", "fact_number", "title_text"],
-        "learnings_constraints": ["title_text", "title_text_two_columns"],
-        "implications": ["title_text", "big_text"],
+        "learnings_constraints": ["title_text_two_columns", "title_text"],
+        "implications": ["title_text_four_columns", "title_text_two_columns", "title_text", "big_text"],
         "next_steps": ["insight_text_boxes", "title_text_four_columns", "title_text_two_columns"],
         "case_study": ["case_study_1", "case_study_2"],
-        "strategy": ["title_text_four_columns", "title_text", "table"],
+        "strategy": ["title_text_four_columns", "title_text_two_columns", "title_text", "table"],
         "prioritisation": ["table"],
-        "operating_model": ["title_text", "title_text_two_columns", "title_text_four_columns"],
+        "operating_model": ["title_text_four_columns", "title_text_two_columns", "title_text"],
         "section_divider": ["divider_standard", "divider_with_contents"],
         "key_metric": ["fact_number", "fact_number_half_image", "title_text"],
         "four_pillars": ["title_text_four_columns", "insight_text_boxes", "boxes_3_med_2_small", "boxes_1_large_4_small"],

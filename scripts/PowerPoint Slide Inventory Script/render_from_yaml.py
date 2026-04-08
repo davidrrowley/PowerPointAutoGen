@@ -372,6 +372,9 @@ def render_deck(
     yaml_path: str,
     output_path: str,
     catalogue_path: str,
+    critique: bool = False,
+    previews_dir: str = "slide_previews",
+    critique_output: str = "critique.json",
 ) -> None:
     prs, working_pptx = load_presentation_from_template(template_path)
     print(f"Opened working presentation: {working_pptx}")
@@ -393,6 +396,54 @@ def render_deck(
     save_presentation_safely(prs, output_path)
     print(f"\nGenerated deck: {output_path}")
 
+    if critique:
+        _run_critique_pipeline(Path(output_path), Path(previews_dir), Path(critique_output))
+
+
+def _run_critique_pipeline(
+    pptx_path: Path,
+    previews_dir: Path,
+    critique_output: Path,
+) -> None:
+    """Export slides to PNG, run vision critique, and save results."""
+    import subprocess
+
+    script_dir = Path(__file__).resolve().parent
+
+    print("\n--- Running critique pipeline ---")
+
+    # Step 1: export slides to PNG
+    render_cmd = [
+        sys.executable,
+        str(script_dir / "render_slide_previews.py"),
+        "--input", str(pptx_path),
+        "--output-dir", str(previews_dir),
+    ]
+    print(f"Exporting slide previews -> {previews_dir}")
+    result = subprocess.run(render_cmd, capture_output=True, text=True)
+    if result.returncode != 0:
+        print(f"Preview export failed:\n{result.stderr}", file=sys.stderr)
+        print("Install pywin32 with: pip install pywin32", file=sys.stderr)
+        return
+
+    print(result.stdout)
+
+    # Step 2: run critique
+    critique_cmd = [
+        sys.executable,
+        str(script_dir / "critique_slides.py"),
+        "--slides-dir", str(previews_dir),
+        "--output", str(critique_output),
+    ]
+    print(f"Running vision critique -> {critique_output}")
+    result = subprocess.run(critique_cmd, capture_output=True, text=True)
+    if result.returncode != 0:
+        print(f"Critique failed:\n{result.stderr}", file=sys.stderr)
+        print("Check that OPENAI_API_KEY is set.", file=sys.stderr)
+        return
+
+    print(result.stdout)
+
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -408,9 +459,32 @@ def main() -> None:
         default="pocdeck_test_output.pptx",
         help="Output .pptx path",
     )
+    parser.add_argument(
+        "--critique",
+        action="store_true",
+        help="After rendering, export slide PNGs and run the vision critique pipeline",
+    )
+    parser.add_argument(
+        "--previews-dir",
+        default="slide_previews",
+        help="Directory for exported slide PNG previews (default: slide_previews/)",
+    )
+    parser.add_argument(
+        "--critique-output",
+        default="critique.json",
+        help="Path to write the critique JSON results (default: critique.json)",
+    )
     args = parser.parse_args()
 
-    render_deck(args.template, args.input, args.output, args.catalogue)
+    render_deck(
+        args.template,
+        args.input,
+        args.output,
+        args.catalogue,
+        critique=args.critique,
+        previews_dir=args.previews_dir,
+        critique_output=args.critique_output,
+    )
 
 
 if __name__ == "__main__":

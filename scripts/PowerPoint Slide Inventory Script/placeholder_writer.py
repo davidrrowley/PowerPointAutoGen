@@ -5,6 +5,15 @@ from pathlib import Path
 from PIL import Image
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_AUTO_SHAPE_TYPE, PP_PLACEHOLDER
+from pptx.util import Pt
+
+# IBM brand constants
+_IBM_BLUE = RGBColor(0x00, 0x43, 0xCE)
+_IBM_NEAR_BLACK = RGBColor(0x21, 0x27, 0x2A)
+_IBM_FONT = "Arial"
+_BODY_FONT_SIZE = Pt(14)
+_BODY_SPACE_BEFORE = Pt(4)
+_BODY_LINE_SPACING = 1.2
 
 
 def _all_placeholders(slide):
@@ -93,6 +102,13 @@ def _force_bullet(paragraph) -> None:
     pPr.insert(0, bu)
 
 
+def _style_body_paragraph(paragraph) -> None:
+    """Apply IBM body typography to a paragraph (spacing + font, no colour override)."""
+    paragraph.space_before = _BODY_SPACE_BEFORE
+    for run in paragraph.runs:
+        run.font.name = _IBM_FONT
+
+
 def set_body_bullets(slide, bullets, idx: int | None = None) -> None:
     ph = get_placeholder(slide, PP_PLACEHOLDER.BODY, idx=idx)
     tf = ph.text_frame
@@ -103,13 +119,16 @@ def set_body_bullets(slide, bullets, idx: int | None = None) -> None:
         p.text = bullet
         p.level = 0
         _force_bullet(p)
+        _style_body_paragraph(p)
 
 
 def set_body_paragraph(slide, text: str, idx: int | None = None) -> None:
     ph = get_placeholder(slide, PP_PLACEHOLDER.BODY, idx=idx)
     tf = ph.text_frame
     tf.clear()
-    tf.paragraphs[0].text = text
+    p = tf.paragraphs[0]
+    p.text = text
+    _style_body_paragraph(p)
 
 
 def set_first_text(slide, text_or_bullets) -> None:
@@ -131,7 +150,9 @@ def set_object_text(slide, text: str, idx: int) -> None:
     ph = get_placeholder(slide, PP_PLACEHOLDER.OBJECT, idx=idx)
     tf = ph.text_frame
     tf.clear()
-    tf.paragraphs[0].text = text
+    p = tf.paragraphs[0]
+    p.text = text
+    _style_body_paragraph(p)
 
 
 def set_speaker_notes(slide, text: str) -> None:
