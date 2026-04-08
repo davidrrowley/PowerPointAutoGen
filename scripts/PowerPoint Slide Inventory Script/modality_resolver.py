@@ -108,7 +108,7 @@ def _layout_matches_fields(layout_id: str, fields: dict[str, Any]) -> bool:
         return _matches_case_study(fields)
 
     if layout_id == "table":
-        return "body" in fields or "table_rows" in fields
+        return "table_rows" in fields  # only use table layout when structured table data is provided
 
     return "title" in fields
 
@@ -131,7 +131,7 @@ def _preferred_layout_ids_for_modality(modality: str) -> list[str]:
         "case_study": ["case_study_1", "case_study_2"],
         "strategy": ["title_text_four_columns", "title_text", "table"],
         "prioritisation": ["table"],
-        "operating_model": ["table", "title_text_four_columns", "title_text"],
+        "operating_model": ["title_text", "title_text_two_columns", "title_text_four_columns"],
         "section_divider": ["divider_standard", "divider_with_contents"],
         "key_metric": ["fact_number", "fact_number_half_image", "title_text"],
         "four_pillars": ["title_text_four_columns", "insight_text_boxes", "boxes_3_med_2_small", "boxes_1_large_4_small"],

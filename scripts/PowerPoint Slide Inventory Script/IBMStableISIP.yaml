@@ -1,0 +1,322 @@
+slides:
+  - modality: title_slide
+    fields:
+      title: "NRW DDaT Framework Initial Proposal Presentation"
+      subtitle: "IBM Consulting and Stable Joint Delivery Approach"
+
+  - modality: index_slide
+    fields:
+      title: "Agenda"
+      sections:
+        - "1. Introductions and Context"
+        - "2. Understanding of NRW Requirements"
+        - "3. Clarifications on Our Proposal"
+        - "4. Customer Platform Approach"
+        - "5. Delivery Model and Governance"
+        - "6. Website Innovation Approach"
+        - "7. Sustainability and Social Value"
+        - "8. Commercial Approach"
+        - "9. Questions and Discussion"
+
+  - modality: section_divider
+    fields:
+      title: "Section 1: Introductions and Context"
+
+  - modality: problem_framing
+    fields:
+      title: "Purpose of this session"
+      body:
+        - "Clarify key aspects of our initial proposal submission"
+        - "Demonstrate our understanding of NRW priorities and constraints"
+        - "Walk through our delivery approach and capability"
+        - "Provide transparency on how we would mobilise and deliver"
+
+  - modality: context_statement
+    fields:
+      title: "Our proposal is designed to balance transformation ambition with operational control"
+
+  - modality: section_divider
+    fields:
+      title: "Section 2: Our Understanding of NRW Requirements"
+
+  - modality: problem_framing
+    fields:
+      title: "We understand NRW is operating within a complex environment"
+      body:
+        - "Multiple systems supporting customer, environmental and operational services"
+        - "Fragmented customer data across platforms and services"
+        - "Need to modernise without disrupting live service delivery"
+        - "Strong governance, regulatory and sustainability expectations"
+
+  - modality: problem_framing
+    fields:
+      title: "Key outcomes NRW is seeking"
+      body:
+        - "A coherent customer platform supporting consistent journeys"
+        - "Improved data maturity and trusted insight for decision making"
+        - "Reduced operational complexity and improved integration"
+        - "Sustainable internal capability alongside delivery outcomes"
+
+  - modality: evidence_results
+    fields:
+      title: "Typical patterns we see in similar organisations"
+      body:
+        - "Customer data fragmented across CRM, case systems and documents"
+        - "Integration achieved through point to point connections"
+        - "Limited visibility of end to end user journeys"
+        - "High manual effort to reconcile and validate information"
+
+  - modality: implications
+    fields:
+      title: "What this means for NRW"
+      body:
+        - "Transformation must be phased and evidence led"
+        - "Architecture needs to enable incremental change not replacement"
+        - "Data integration must precede data consolidation"
+        - "Capability uplift must be embedded within delivery"
+
+  - modality: section_divider
+    fields:
+      title: "Section 3: Clarifications on Our Proposal"
+
+  - modality: problem_framing
+    fields:
+      title: "Clarifying our blended delivery model with Stable"
+      body:
+        - "Stable is embedded within IBM delivery teams not a peripheral supplier"
+        - "Provides local Welsh capability and continuity of engagement"
+        - "Supports bilingual and user centred service delivery"
+        - "Combined model balances scale with local responsiveness"
+
+  - modality: problem_framing
+    fields:
+      title: "Clarifying our transformation approach"
+      body:
+        - "Not a single programme delivery but a product aligned evolution"
+        - "Focus on controlled, iterative delivery with measurable outcomes"
+        - "Strong emphasis on governance, traceability and assurance"
+        - "Continuous knowledge transfer to reduce dependency"
+
+  - modality: problem_framing
+    fields:
+      title: "Clarifying our use of Microsoft ecosystem"
+      body:
+        - "Build on existing investment in Azure, Dynamics and Microsoft 365"
+        - "Prioritise SaaS and managed services over bespoke build"
+        - "Use platform capabilities before introducing custom solutions"
+        - "Ensure alignment with existing estate and operating model"
+
+  - modality: section_divider
+    fields:
+      title: "Section 4: Customer Platform Approach"
+
+  - modality: chosen_approach
+    fields:
+      title: "We propose a structured discovery led platform evolution"
+      body:
+        - "Discovery phase establishes roadmap, architecture and investment logic"
+        - "Parallel focus on users, technology and delivery model"
+        - "Outputs support staged and evidence based decision making"
+        - "Foundation for long term product aligned delivery"
+
+  - modality: strategy
+    fields:
+      title: "Discovery structured across three parallel workstreams"
+      body:
+        - "User and stakeholder discovery to identify priority journeys"
+        - "Technical and architectural assessment of current estate"
+        - "Commercial and delivery shaping for phased execution"
+
+  - modality: architecture_view
+    fields:
+      title: "Target customer platform architecture within Microsoft ecosystem"
+      body:
+        - "Customer engagement layer using portals, CMS and content platforms"
+        - "Dynamics 365 as authoritative customer and service domain"
+        - "Azure integration services enabling API and event driven connectivity"
+        - "Governed data platform supporting analytics and insight"
+
+  - modality: four_pillars
+    fields:
+      title: "Core architectural principles"
+      columns:
+        - "Cloud first and SaaS preferred with minimal bespoke infrastructure"
+        - "Modular and loosely coupled architecture across all layers"
+        - "API first and event driven integration patterns"
+        - "Data governed with clear ownership lineage and access control"
+
+  - modality: problem_framing
+    fields:
+      title: "Approach to resolving customer data fragmentation"
+      body:
+        - "Establish shared customer identifier anchored in Dynamics 365"
+        - "Use integration layer to map and reconcile existing identifiers"
+        - "Avoid immediate consolidation to reduce delivery risk"
+        - "Progressively improve data quality and consistency over time"
+
+  - modality: implications
+    fields:
+      title: "Sequencing and risk management approach"
+      body:
+        - "Prioritise identity resolution and integration early"
+        - "Maintain existing systems while improving interoperability"
+        - "Introduce consolidation only when data confidence improves"
+        - "Mitigate risk through incremental delivery and validation"
+
+  - modality: section_divider
+    fields:
+      title: "Section 5: Delivery Model and Governance"
+
+  - modality: operating_model
+    fields:
+      title: "Multidisciplinary delivery model"
+      body:
+        - "Teams include design, architecture, engineering and data capability"
+        - "Close collaboration with NRW stakeholders and product owners"
+        - "Agile delivery using iterative sprints and continuous validation"
+        - "Blended IBM and NRW teams supporting knowledge transfer"
+
+  - modality: strategy
+    fields:
+      title: "Scaling from discovery into delivery"
+      body:
+        - "Alpha phase with small number of focused product teams"
+        - "Beta phase expanding capability and delivery throughput"
+        - "Live phase transitioning to sustainable operational teams"
+        - "Progressive handover to NRW ownership"
+
+  - modality: operating_model
+    fields:
+      title: "Governance model"
+      body:
+        - "Strategic governance ensuring alignment to organisational priorities"
+        - "Programme governance managing delivery and dependencies"
+        - "Technical governance ensuring architectural consistency"
+        - "Integrated risk management embedded across all levels"
+
+  - modality: learnings_constraints
+    fields:
+      title: "Key delivery risks and mitigations"
+      body:
+        - "Data quality challenges affecting identity matching accuracy"
+        - "Legacy system dependencies impacting integration complexity"
+        - "Security and compliance requirements influencing design"
+        - "Organisational readiness for new ways of working"
+
+  - modality: problem_framing
+    fields:
+      title: "Security and sustainability by design"
+      body:
+        - "Zero Trust principles embedded across architecture"
+        - "Compliance aligned to UK GDPR and public sector standards"
+        - "Observability and resilience built into all services"
+        - "Continuous improvement driven by telemetry and feedback"
+
+  - modality: section_divider
+    fields:
+      title: "Section 6: Website Innovation Approach"
+
+  - modality: chosen_approach
+    fields:
+      title: "12 week innovation window designed to reduce uncertainty"
+      body:
+        - "Hypothesis led approach focusing on measurable improvements"
+        - "Testing usability, accessibility and content effectiveness"
+        - "Operate within existing NRW technology constraints"
+        - "Focus on evidence to support future investment decisions"
+
+  - modality: strategy
+    fields:
+      title: "Four phase innovation approach"
+      body:
+        - "Explore and discover to define problems and hypotheses"
+        - "Ideate and co create to test concepts quickly"
+        - "Design and build to validate feasibility"
+        - "Scale or stop based on evidence and outcomes"
+
+  - modality: hypothesis_success_criteria
+    fields:
+      title: "Hypothesis driven delivery model"
+      body_left:
+        - "Improved navigation reduces user effort"
+        - "Enhanced search improves content findability"
+        - "Bilingual design improves accessibility and usability"
+      body_right:
+        - "Measured reduction in task completion time"
+        - "Improved search success rate and engagement"
+        - "Accessibility compliance and user feedback improvements"
+
+  - modality: implications
+    fields:
+      title: "Outcome of innovation window"
+      body:
+        - "Validated hypotheses with clear evidence base"
+        - "Reusable design and content patterns"
+        - "Proven technical feasibility for key concepts"
+        - "Decision ready backlog for future delivery"
+
+  - modality: section_divider
+    fields:
+      title: "Section 7: Sustainability and Social Value"
+
+  - modality: strategy
+    fields:
+      title: "Embedding sustainability into delivery"
+      body:
+        - "Use of cloud platforms to improve energy efficiency"
+        - "FinOps and GreenOps to manage cost and carbon impact"
+        - "Optimisation of workloads and environments"
+        - "Support environmental insight through data platforms"
+
+  - modality: problem_framing
+    fields:
+      title: "Delivering social value in Wales"
+      body:
+        - "Welsh based delivery through Stable partnership"
+        - "Support for local employment and skills development"
+        - "Engagement with Welsh SMEs and social enterprises"
+        - "Structured and measurable social value commitments"
+
+  - modality: section_divider
+    fields:
+      title: "Section 8: Commercial Approach"
+
+  - modality: options_considered
+    fields:
+      title: "Flexible commercial models"
+      intro: "We can operate across a range of commercial models depending on delivery phase and scope maturity."
+      boxes:
+        - "Time and materials for discovery and evolving scope"
+        - "Fixed price where scope and outcomes are clear"
+        - "Fixed capacity for controlled delivery periods"
+        - "Supplier led services for ongoing operations"
+
+  - modality: problem_framing
+    fields:
+      title: "Commercial principles"
+      body:
+        - "Transparency of cost drivers and assumptions"
+        - "Flexibility to adapt to delivery phase maturity"
+        - "Alignment to value delivered and outcomes achieved"
+        - "Support for blended delivery with NRW teams"
+
+  - modality: section_divider
+    fields:
+      title: "Section 9: Closing and Discussion"
+
+  - modality: next_steps
+    fields:
+      title: "Next steps"
+      body_left:
+        - "Provide further clarification on proposal areas as required"
+        - "Refine scope and assumptions through dialogue"
+        - "Align on priorities for discovery phase"
+      body_right:
+        - "Confirm stakeholders and engagement model"
+        - "Agree mobilisation approach and timelines"
+        - "Progress towards final tender submission"
+
+  - modality: closing_slide
+    fields:
+      title: "Thank you"
+      contact: "We welcome questions and discussion"

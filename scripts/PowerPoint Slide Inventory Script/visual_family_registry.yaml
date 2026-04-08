@@ -376,7 +376,7 @@ selection_bias:
     case_study: "case_studies"
     strategy: "ruled_text_blocks"
     prioritisation: "charts_or_tables"
-    operating_model: "charts_or_tables"
+    operating_model: "ruled_text_blocks"
     section_divider: "contents_and_dividers"
     key_metric: "text_or_imagery"
     four_pillars: "ruled_text_blocks"
