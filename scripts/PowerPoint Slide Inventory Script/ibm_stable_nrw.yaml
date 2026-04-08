@@ -3,6 +3,8 @@ slides:
     fields:
       title: "IBM + Stable: Proposal for NRW DDaT Framework"
       subtitle: "Delivering digital transformation for Natural Resources Wales"
+    notes: |
+      Welcome and introductions. This presentation sets out the IBM and Stable joint response to the NRW DDaT framework opportunity. We will cover our proposition, delivery approach, and commercial model.
 
   - modality: index_slide
     fields:
@@ -24,6 +26,8 @@ slides:
         - "Strong alignment with NRW objectives: customer experience and data maturity"
         - "Sustainable capability uplift as a core delivery outcome"
         - "Bilingual Welsh-based execution through the Team Wales model"
+    notes: |
+      IBM brings enterprise-grade DDaT capability and deep Microsoft ecosystem expertise. Stable brings Welsh-based bilingual delivery and strong local stakeholder relationships. Together the proposition is greater than the sum of its parts — addressing NRW's need for scale, sustainability and local accountability.
 
   - modality: problem_framing
     fields:

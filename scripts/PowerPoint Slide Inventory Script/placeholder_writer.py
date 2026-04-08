@@ -134,6 +134,13 @@ def set_object_text(slide, text: str, idx: int) -> None:
     tf.paragraphs[0].text = text
 
 
+def set_speaker_notes(slide, text: str) -> None:
+    notes_slide = slide.notes_slide
+    tf = notes_slide.notes_text_frame
+    tf.clear()
+    tf.paragraphs[0].text = text.strip()
+
+
 def set_picture(
     slide,
     image_path: str | Path,

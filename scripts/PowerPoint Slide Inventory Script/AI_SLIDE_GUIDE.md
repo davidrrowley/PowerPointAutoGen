@@ -37,12 +37,39 @@ slides:
       field_two:
         - "bullet one"
         - "bullet two"
+    notes: |
+      Optional presenter narrative written here.
+      Use a YAML block scalar (the pipe character) for multi-line text.
   - modality: <modality_name>
     fields:
       ...
 ```
 
 Every slide **must** have a `modality` key and a `fields` dictionary.
+The `notes` key is **optional** — when present, its value is written into the
+PowerPoint speaker notes pane for that slide.
+
+### Speaker notes (`notes`)
+
+- Placed at the same level as `modality` and `fields` (not inside `fields`)
+- Use YAML block scalar syntax (`|`) for multi-line text
+- No length limit enforced — write as much narrative as needed
+- Intended to carry context extracted from the source document so presenters
+  have background without it appearing on the visible slide
+
+```yaml
+- modality: chosen_approach
+  fields:
+    title: "Our recommended delivery model"
+    body:
+      - "Blended IBM and Stable team embedded with NRW"
+      - "Product-led approach with structured knowledge transfer"
+  notes: |
+    IBM brings enterprise delivery capability and deep Microsoft ecosystem
+    expertise. Stable provides Welsh-based bilingual delivery and strong
+    local stakeholder relationships. Together they address NRW's need for
+    scale, sustainability and local accountability in a single proposition.
+```
 
 ---
 
@@ -647,6 +674,16 @@ Paste sections 3–6 of this guide into your prompt, then add something like:
 > Titles must be ≤14 words. Bullets must be ≤120 characters and at most 5 per slide.
 > Output only the raw YAML, no markdown fences, no commentary."
 
+### Adding speaker notes from a source document
+
+To generate speaker notes, append something like:
+
+> "For each slide, add a `notes` field at the same level as `modality` and `fields`.
+> Extract relevant narrative from the source document provided and use it to write
+> 2–5 sentences of presenter context per slide. The notes should expand on the slide
+> content and give the speaker background that does not appear on the visible slide.
+> Use YAML block scalar syntax (pipe character) for all `notes` values."
+
 The AI does not need to know about the Python script, the template file, or the
 internal layout names — all it needs to produce is valid YAML matching the schema
 above.
@@ -678,6 +715,10 @@ slides:
     fields:
       title: "NRW DDaT Programme — Initial Proposal"
       subtitle: "IBM Consulting & Stable"
+    notes: |
+      Welcome and introductions. This presentation sets out the IBM and Stable
+      joint response to the NRW DDaT framework opportunity. We will cover our
+      understanding, proposed approach, team, and commercial model.
 
   - modality: index_slide
     fields:
@@ -687,6 +728,9 @@ slides:
         - "2. Proposed Approach"
         - "3. Team & Experience"
         - "4. Commercial Summary"
+    notes: |
+      Walk through the four sections briefly. Confirm the expected duration
+      with the audience and note when Q&A will be taken.
 
   - modality: section_divider
     fields:

@@ -1,58 +1,357 @@
-slides:
+﻿slides:
   - modality: title_slide
     fields:
-      title: "Initial Proposal Process"
-      subtitle: "Section 4.1 — NRW Procurement"
+      title: "NRW DDaT Initial Proposal Presentation"
+      subtitle: "IBM Consulting and Stable Delivery Approach"
+    notes: |
+      This session is based on our initial proposal submission. The intent is to
+      clarify how we have interpreted your requirements, explain how we would
+      approach delivery, and provide confidence in how IBM and Stable would work
+      with NRW. The emphasis is on controlled transformation rather than
+      disruptive change.
 
   - modality: index_slide
     fields:
-      title: "Process stages"
+      title: "Agenda"
       sections:
-        - "Initial Proposal submission"
-        - "Supplier presentations"
-        - "Dialogue and negotiation"
-        - "Key principles"
+        - "Context and Purpose"
+        - "Understanding NRW"
+        - "Proposal Clarifications"
+        - "Customer Platform Approach"
+        - "Delivery and Governance"
+        - "Website Innovation"
+        - "Sustainability and Social Value"
+        - "Commercial Model"
+        - "Next Steps"
+    notes: |
+      We will move from context into our understanding of your environment,
+      then clarify elements of our proposal before stepping through approach,
+      delivery model and supporting areas. The intention is to create a clear
+      line from requirement through to delivery and operation.
+
+  - modality: section_divider
+    fields:
+      title: "Section 1: Context and Purpose"
 
   - modality: context_statement
     fields:
-      title: "Initial Proposals must include all information required for early assessment"
+      title: "Transformation must balance ambition with operational control"
+    notes: |
+      The proposal is deliberately structured to avoid large-scale disruption.
+      NRW is operating live services, so transformation has to be incremental,
+      governed and evidence-led. This is reflected in how we structure discovery,
+      architecture and delivery sequencing.
 
   - modality: problem_framing
     fields:
-      title: "Initial Proposals must meet NRW submission requirements"
-      body:
-        - "Submit in accordance with the instructions and timetable in the ISIP"
-        - "Include all information required to enable early assessment by NRW and dialogue"
-        - "Initial Proposals will not be evaluated or scored"
-        - "NRW may give feedback to suppliers following submission"
+      title: "Purpose of this session"
+      body_left:
+        - "Clarify our proposal"
+        - "Demonstrate understanding"
+      body_right:
+        - "Explain delivery approach"
+        - "Provide transparency"
+    notes: |
+      The session is not intended to restate the written proposal. It is focused
+      on making the reasoning behind it explicit. We will show how our approach
+      aligns to your constraints and where we have made deliberate trade-offs.
 
-  - modality: chosen_approach
+  - modality: section_divider
     fields:
-      title: "Presentations provide an opportunity for suppliers to demonstrate readiness"
+      title: "Section 2: Understanding NRW"
+
+  - modality: problem_framing
+    fields:
+      title: "Four systemic challenges"
+      columns:
+        - "Fragmented customer data"
+        - "Point-to-point integration"
+        - "Limited journey visibility"
+        - "Manual reconciliation effort"
+    notes: |
+      From the proposal, we recognise fragmentation across customer data,
+      integration patterns and user journeys. These issues are typically linked,
+      with inconsistent identity models and disconnected systems driving both
+      operational inefficiency and poor user experience.
+
+  - modality: problem_framing
+    fields:
+      title: "Desired outcomes"
       body:
-        - "Clarify elements of their initial proposal"
-        - "Demonstrate understanding of the requirement"
-        - "Present their delivery approach and capability"
-        - "Presentations will not be evaluated or scored — NRW may give feedback"
+        - "Consistent customer platform"
+        - "Improved data maturity"
+        - "Reduced complexity"
+        - "Sustainable capability"
+    notes: |
+      The target outcomes described in the proposal centre on coherence rather
+      than replacement. This includes a unified customer experience, trusted
+      data for decision making and reduced dependency on manual processes,
+      alongside internal capability uplift.
 
   - modality: implications
     fields:
-      title: "Following presentations, NRW may undertake dialogue or negotiation"
+      title: "Implications for delivery"
+      body_left:
+        - "Phased transformation"
+        - "Incremental architecture"
+      body_right:
+        - "Integration before consolidation"
+        - "Capability embedded in delivery"
+    notes: |
+      These challenges imply that a single-step transformation would carry high
+      risk. The proposal therefore emphasises sequencing, starting with identity
+      and integration, and building towards consolidation and optimisation once
+      confidence improves.
+
+  - modality: section_divider
+    fields:
+      title: "Section 3: Proposal Clarifications"
+
+  - modality: problem_framing
+    fields:
+      title: "IBM and Stable model"
+      columns:
+        - "Integrated delivery teams"
+        - "Welsh-based capability"
+        - "Bilingual alignment"
+        - "Access to IBM scale"
+    notes: |
+      The proposal describes a blended model where Stable is embedded within IBM
+      delivery teams. This is not a subcontracting arrangement but a combined
+      team structure that brings local knowledge and continuity alongside IBM's
+      scale and specialist capability.
+
+  - modality: problem_framing
+    fields:
+      title: "Transformation approach"
+      body_left:
+        - "Product-led evolution"
+        - "Iterative delivery"
+      body_right:
+        - "Strong governance"
+        - "Continuous knowledge transfer"
+    notes: |
+      The approach is framed as ongoing product evolution rather than a fixed
+      programme. Governance and traceability are built in from the outset, and
+      knowledge transfer is continuous to reduce long-term dependency.
+
+  - modality: section_divider
+    fields:
+      title: "Section 4: Customer Platform Approach"
+
+  - modality: chosen_approach
+    fields:
+      title: "Discovery-led platform evolution"
+      body_left:
+        - "Define roadmap and architecture"
+        - "Validate through multiple lenses"
+      body_right:
+        - "Enable staged investment"
+        - "Support long-term delivery"
+    notes: |
+      Discovery is positioned as both a shaping and mobilisation phase. It runs
+      across user research, technical assessment and delivery planning, ensuring
+      that roadmap decisions are grounded in evidence and delivery realism.
+
+  - modality: strategy
+    fields:
+      title: "Discovery workstreams"
+      points:
+        - "User and stakeholder discovery"
+        - "Technical assessment"
+        - "Architecture definition"
+        - "Commercial shaping"
+    notes: |
+      These three parallel workstreams are explicitly described in the proposal.
+      Together they establish a validated baseline, identify constraints and
+      create a sequenced roadmap aligned to NRW priorities.
+
+  - modality: architecture_view
+    fields:
+      title: "Target platform architecture"
       body:
-        - "Technical, commercial or legal dialogue to refine proposals"
-        - "Allow NRW to consider refinement of the procurement process and evaluation criteria"
-        - "Clarify assumptions or discuss draft contractual terms"
-        - "Dialogue will be proportionate and conducted consistently for all suppliers"
+        - "Decoupled engagement layer"
+        - "Dynamics as customer domain"
+        - "Azure integration layer"
+        - "Governed data platform"
+    notes: |
+      The architecture is structured into four layers. Dynamics 365 owns the
+      customer domain, the integration layer manages connectivity, and the data
+      layer provides governed insight. This enables incremental change without
+      tightly coupling components.
+
+  - modality: problem_framing
+    fields:
+      title: "Data fragmentation approach"
+      body_left:
+        - "Shared customer identifier"
+        - "Integration-based reconciliation"
+      body_right:
+        - "Avoid early consolidation risk"
+        - "Progressive data improvement"
+    notes: |
+      The proposal avoids a single-stage data consolidation. Instead it introduces
+      a logical master record using shared identifiers, allowing systems to remain
+      operational while integration resolves fragmentation over time.
+
+  - modality: implications
+    fields:
+      title: "Sequencing and risk"
+      columns:
+        - "Identity first"
+        - "Integration next"
+        - "Consolidation later"
+        - "Continuous validation"
+    notes: |
+      Sequencing is critical. Identity and integration are prioritised to improve
+      user journeys quickly while managing risk. More complex changes are deferred
+      until confidence in data quality and architecture increases.
+
+  - modality: section_divider
+    fields:
+      title: "Section 5: Delivery and Governance"
+
+  - modality: operating_model
+    fields:
+      title: "Delivery model"
+      body:
+        - "Multidisciplinary teams"
+        - "Agile delivery practices"
+        - "Blended NRW collaboration"
+        - "Continuous knowledge transfer"
+    notes: |
+      Teams are structured around product delivery, combining design, engineering
+      and data capability. NRW stakeholders are embedded within teams to ensure
+      alignment and support capability uplift.
+
+  - modality: operating_model
+    fields:
+      title: "Governance model"
+      columns:
+        - "Strategic governance"
+        - "Programme governance"
+        - "Technical governance"
+        - "Risk management"
+    notes: |
+      Governance operates at three levels, supported by integrated risk management.
+      This ensures alignment to organisational priorities while maintaining control
+      over delivery quality and technical consistency.
 
   - modality: learnings_constraints
     fields:
-      title: "Key principles governing the dialogue stage"
+      title: "Key risks and mitigations"
+      body_left:
+        - "Data quality challenges"
+        - "Legacy dependencies"
+      body_right:
+        - "Profiling and validation"
+        - "Integration abstraction"
+    notes: |
+      The proposal highlights data quality and legacy constraints as primary risks.
+      These are mitigated through structured validation, controlled integration
+      patterns and incremental delivery.
+
+  - modality: section_divider
+    fields:
+      title: "Section 6: Website Innovation"
+
+  - modality: chosen_approach
+    fields:
+      title: "12-week innovation window"
+      body_left:
+        - "Hypothesis-led approach"
+        - "Focused experimentation"
+      body_right:
+        - "Evidence-driven decisions"
+        - "Operate within constraints"
+    notes: |
+      The innovation phase is designed to reduce uncertainty rather than deliver
+      a full solution. It tests specific hypotheses around usability, accessibility
+      and content effectiveness within the current estate.
+
+  - modality: strategy
+    fields:
+      title: "Innovation phases"
+      points:
+        - "Explore"
+        - "Ideate"
+        - "Build"
+        - "Scale or stop"
+    notes: |
+      The work progresses through structured phases, each focused on generating
+      evidence. Weak ideas are discarded early, allowing effort to focus on those
+      that demonstrate measurable value.
+
+  - modality: section_divider
+    fields:
+      title: "Section 7: Sustainability and Social Value"
+
+  - modality: strategy
+    fields:
+      title: "Sustainability approach"
       body:
-        - "NRW may hold more than one round of dialogue where this is considered beneficial"
-        - "Any changes to requirements or documentation will be communicated to all suppliers simultaneously through the portal"
-        - "NRW may choose to adjust or waive the presentation or dialogue stages where not required"
+        - "Cloud efficiency optimisation"
+        - "FinOps and GreenOps"
+        - "Carbon visibility"
+        - "Data for environmental insight"
+    notes: |
+      Sustainability is embedded into delivery through operational practices such
+      as FinOps and workload optimisation. The proposal also highlights the role
+      of data platforms in supporting environmental decision making.
+
+  - modality: problem_framing
+    fields:
+      title: "Social value in Wales"
+      columns:
+        - "Welsh delivery presence"
+        - "Local employment"
+        - "Skills development"
+        - "SME engagement"
+    notes: |
+      Social value is delivered through the Stable partnership and broader
+      engagement with Welsh communities, including skills programmes, local
+      employment and collaboration with SMEs and social enterprises.
+
+  - modality: section_divider
+    fields:
+      title: "Section 8: Commercial Model"
+
+  - modality: options_considered
+    fields:
+      title: "Commercial models"
+      intro: "The model used depends on delivery phase and scope certainty."
+      boxes:
+        - "Time and materials"
+        - "Fixed price"
+        - "Fixed capacity"
+        - "Managed services"
+    notes: |
+      The proposal supports multiple commercial models depending on delivery phase.
+      Early stages favour flexibility, while later stages can move towards greater
+      cost certainty as scope becomes clearer.
+
+  - modality: section_divider
+    fields:
+      title: "Section 9: Next Steps"
+
+  - modality: next_steps
+    fields:
+      title: "Next steps"
+      body_left:
+        - "Refine scope"
+        - "Align priorities"
+      body_right:
+        - "Confirm stakeholders"
+        - "Agree timelines"
+    notes: |
+      The next step is structured dialogue to refine assumptions and confirm
+      priorities. This supports transition from initial proposal into final
+      submission and mobilisation planning.
 
   - modality: closing_slide
     fields:
-      title: "Initial Proposal Process"
-      contact: "Submit via the portal in accordance with the ISIP timetable"
+      title: "Thank you"
+      contact: "Questions and discussion welcome"
+    notes: |
+      Close by inviting discussion. The intent is to explore areas where further
+      clarification is needed and ensure alignment before progressing.

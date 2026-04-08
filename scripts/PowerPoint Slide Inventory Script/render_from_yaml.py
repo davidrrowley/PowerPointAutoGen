@@ -27,6 +27,7 @@ from placeholder_writer import (
     set_body_paragraph,
     set_object_text,
     set_picture,
+    set_speaker_notes,
     set_title,
 )
 from schema_validation import validate_deck_structure
@@ -275,6 +276,10 @@ def add_slide_from_spec(
     print(f"Resolved layout id: {layout_id}")
     print(f"Resolved PowerPoint layout: {actual_layout_name}")
     print(f"Available placeholders: {debug_placeholders(slide)}")
+
+    notes = slide_spec.get("notes")
+    if notes:
+        set_speaker_notes(slide, str(notes))
 
     if layout_id in {"title_slide", "cover_image_1", "cover_image_2", "cover_image_7", "cover_image_8"}:
         _write_title_slide(slide, fields)
