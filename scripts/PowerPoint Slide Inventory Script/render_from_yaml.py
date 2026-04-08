@@ -103,10 +103,12 @@ def _write_closing_slide(slide, fields: dict) -> None:
 
     contact = fields.get("contact")
     if contact:
-        try:
-            set_body_paragraph(slide, str(contact), idx=12)
-        except Exception:
-            set_title(slide, f"{title}\n{contact}")
+        for idx in (13, 14, 12):
+            try:
+                set_body_paragraph(slide, str(contact), idx=idx)
+                break
+            except Exception:
+                continue
 
 
 def _write_title_text_slide(slide, fields: dict, body_idx: int = 12) -> None:
@@ -284,7 +286,7 @@ def add_slide_from_spec(
     if layout_id in {"title_slide", "cover_image_1", "cover_image_2", "cover_image_7", "cover_image_8"}:
         _write_title_slide(slide, fields)
 
-    elif layout_id == "index_slide":
+    elif layout_id in {"index_slide", "contents_standard"}:
         _write_index_slide(slide, fields)
 
     elif layout_id == "thank_you":

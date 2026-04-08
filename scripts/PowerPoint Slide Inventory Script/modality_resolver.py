@@ -123,7 +123,7 @@ def _preferred_layout_ids_for_modality(modality: str) -> list[str]:
         "hypothesis_success_criteria": ["title_text_two_columns", "title_text_four_columns", "title_text_two_columns_diff"],
         "options_considered": ["insight_text_boxes", "title_text_four_columns", "title_text_two_columns", "boxes_3_med_2_small"],
         "chosen_approach": ["title_text", "title_text_two_columns"],
-        "architecture_view": ["title_text_half_image", "title_image", "big_text"],
+        "architecture_view": ["title_text_half_image", "title_image", "fact_number", "big_text"],
         "evidence_results": ["title_text_half_image", "fact_number_half_image", "fact_number", "title_text"],
         "learnings_constraints": ["title_text", "title_text_two_columns"],
         "implications": ["title_text", "big_text"],
