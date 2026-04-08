@@ -22,10 +22,10 @@ slides:
     fields:
       title: "Section 1: Introductions and Context"
 
-  - modality: problem_framing
+  - modality: four_pillars
     fields:
       title: "Purpose of this session"
-      body:
+      columns:
         - "Clarify key aspects of our initial proposal submission"
         - "Demonstrate our understanding of NRW priorities and constraints"
         - "Walk through our delivery approach and capability"
@@ -39,39 +39,41 @@ slides:
     fields:
       title: "Section 2: Our Understanding of NRW Requirements"
 
-  - modality: problem_framing
+  - modality: strategy
     fields:
       title: "We understand NRW is operating within a complex environment"
-      body:
+      points:
         - "Multiple systems supporting customer, environmental and operational services"
         - "Fragmented customer data across platforms and services"
         - "Need to modernise without disrupting live service delivery"
         - "Strong governance, regulatory and sustainability expectations"
 
-  - modality: problem_framing
+  - modality: four_pillars
     fields:
       title: "Key outcomes NRW is seeking"
-      body:
+      columns:
         - "A coherent customer platform supporting consistent journeys"
         - "Improved data maturity and trusted insight for decision making"
         - "Reduced operational complexity and improved integration"
         - "Sustainable internal capability alongside delivery outcomes"
 
-  - modality: evidence_results
+  - modality: chosen_approach
     fields:
       title: "Typical patterns we see in similar organisations"
-      body:
+      body_left:
         - "Customer data fragmented across CRM, case systems and documents"
         - "Integration achieved through point to point connections"
+      body_right:
         - "Limited visibility of end to end user journeys"
         - "High manual effort to reconcile and validate information"
 
-  - modality: implications
+  - modality: chosen_approach
     fields:
       title: "What this means for NRW"
-      body:
+      body_left:
         - "Transformation must be phased and evidence led"
         - "Architecture needs to enable incremental change not replacement"
+      body_right:
         - "Data integration must precede data consolidation"
         - "Capability uplift must be embedded within delivery"
 
@@ -79,30 +81,32 @@ slides:
     fields:
       title: "Section 3: Clarifications on Our Proposal"
 
-  - modality: problem_framing
+  - modality: four_pillars
     fields:
       title: "Clarifying our blended delivery model with Stable"
-      body:
+      columns:
         - "Stable is embedded within IBM delivery teams not a peripheral supplier"
         - "Provides local Welsh capability and continuity of engagement"
         - "Supports bilingual and user centred service delivery"
         - "Combined model balances scale with local responsiveness"
 
-  - modality: problem_framing
+  - modality: chosen_approach
     fields:
       title: "Clarifying our transformation approach"
-      body:
+      body_left:
         - "Not a single programme delivery but a product aligned evolution"
         - "Focus on controlled, iterative delivery with measurable outcomes"
+      body_right:
         - "Strong emphasis on governance, traceability and assurance"
         - "Continuous knowledge transfer to reduce dependency"
 
-  - modality: problem_framing
+  - modality: hypothesis_success_criteria
     fields:
       title: "Clarifying our use of Microsoft ecosystem"
-      body:
+      body_left:
         - "Build on existing investment in Azure, Dynamics and Microsoft 365"
         - "Prioritise SaaS and managed services over bespoke build"
+      body_right:
         - "Use platform capabilities before introducing custom solutions"
         - "Ensure alignment with existing estate and operating model"
 
@@ -110,27 +114,28 @@ slides:
     fields:
       title: "Section 4: Customer Platform Approach"
 
-  - modality: chosen_approach
+  - modality: strategy
     fields:
       title: "We propose a structured discovery led platform evolution"
-      body:
+      points:
         - "Discovery phase establishes roadmap, architecture and investment logic"
         - "Parallel focus on users, technology and delivery model"
         - "Outputs support staged and evidence based decision making"
         - "Foundation for long term product aligned delivery"
 
-  - modality: strategy
+  - modality: chosen_approach
     fields:
       title: "Discovery structured across three parallel workstreams"
-      body:
+      body_left:
         - "User and stakeholder discovery to identify priority journeys"
         - "Technical and architectural assessment of current estate"
+      body_right:
         - "Commercial and delivery shaping for phased execution"
 
-  - modality: architecture_view
+  - modality: strategy
     fields:
       title: "Target customer platform architecture within Microsoft ecosystem"
-      body:
+      points:
         - "Customer engagement layer using portals, CMS and content platforms"
         - "Dynamics 365 as authoritative customer and service domain"
         - "Azure integration services enabling API and event driven connectivity"
@@ -145,21 +150,22 @@ slides:
         - "API first and event driven integration patterns"
         - "Data governed with clear ownership lineage and access control"
 
-  - modality: problem_framing
+  - modality: strategy
     fields:
       title: "Approach to resolving customer data fragmentation"
-      body:
+      points:
         - "Establish shared customer identifier anchored in Dynamics 365"
         - "Use integration layer to map and reconcile existing identifiers"
         - "Avoid immediate consolidation to reduce delivery risk"
         - "Progressively improve data quality and consistency over time"
 
-  - modality: implications
+  - modality: chosen_approach
     fields:
       title: "Sequencing and risk management approach"
-      body:
+      body_left:
         - "Prioritise identity resolution and integration early"
         - "Maintain existing systems while improving interoperability"
+      body_right:
         - "Introduce consolidation only when data confidence improves"
         - "Mitigate risk through incremental delivery and validation"
 
@@ -167,10 +173,10 @@ slides:
     fields:
       title: "Section 5: Delivery Model and Governance"
 
-  - modality: operating_model
+  - modality: four_pillars
     fields:
       title: "Multidisciplinary delivery model"
-      body:
+      columns:
         - "Teams include design, architecture, engineering and data capability"
         - "Close collaboration with NRW stakeholders and product owners"
         - "Agile delivery using iterative sprints and continuous validation"
@@ -179,34 +185,39 @@ slides:
   - modality: strategy
     fields:
       title: "Scaling from discovery into delivery"
-      body:
+      points:
         - "Alpha phase with small number of focused product teams"
         - "Beta phase expanding capability and delivery throughput"
         - "Live phase transitioning to sustainable operational teams"
         - "Progressive handover to NRW ownership"
 
-  - modality: operating_model
+  - modality: four_pillars
     fields:
       title: "Governance model"
-      body:
+      columns:
         - "Strategic governance ensuring alignment to organisational priorities"
         - "Programme governance managing delivery and dependencies"
         - "Technical governance ensuring architectural consistency"
         - "Integrated risk management embedded across all levels"
 
-  - modality: learnings_constraints
+  - modality: hypothesis_success_criteria
     fields:
       title: "Key delivery risks and mitigations"
-      body:
+      body_left:
         - "Data quality challenges affecting identity matching accuracy"
         - "Legacy system dependencies impacting integration complexity"
         - "Security and compliance requirements influencing design"
         - "Organisational readiness for new ways of working"
+      body_right:
+        - "Structured data profiling and continuous quality validation"
+        - "Integration layer that wraps existing systems without replacement"
+        - "Compliance by design with embedded DPIA and security reviews"
+        - "Change management and capability uplift embedded in delivery"
 
-  - modality: problem_framing
+  - modality: four_pillars
     fields:
       title: "Security and sustainability by design"
-      body:
+      columns:
         - "Zero Trust principles embedded across architecture"
         - "Compliance aligned to UK GDPR and public sector standards"
         - "Observability and resilience built into all services"
@@ -216,19 +227,20 @@ slides:
     fields:
       title: "Section 6: Website Innovation Approach"
 
-  - modality: chosen_approach
+  - modality: hypothesis_success_criteria
     fields:
       title: "12 week innovation window designed to reduce uncertainty"
-      body:
+      body_left:
         - "Hypothesis led approach focusing on measurable improvements"
         - "Testing usability, accessibility and content effectiveness"
+      body_right:
         - "Operate within existing NRW technology constraints"
         - "Focus on evidence to support future investment decisions"
 
   - modality: strategy
     fields:
       title: "Four phase innovation approach"
-      body:
+      points:
         - "Explore and discover to define problems and hypotheses"
         - "Ideate and co create to test concepts quickly"
         - "Design and build to validate feasibility"
@@ -246,12 +258,13 @@ slides:
         - "Improved search success rate and engagement"
         - "Accessibility compliance and user feedback improvements"
 
-  - modality: implications
+  - modality: chosen_approach
     fields:
       title: "Outcome of innovation window"
-      body:
+      body_left:
         - "Validated hypotheses with clear evidence base"
         - "Reusable design and content patterns"
+      body_right:
         - "Proven technical feasibility for key concepts"
         - "Decision ready backlog for future delivery"
 
@@ -259,19 +272,19 @@ slides:
     fields:
       title: "Section 7: Sustainability and Social Value"
 
-  - modality: strategy
+  - modality: four_pillars
     fields:
       title: "Embedding sustainability into delivery"
-      body:
+      columns:
         - "Use of cloud platforms to improve energy efficiency"
         - "FinOps and GreenOps to manage cost and carbon impact"
         - "Optimisation of workloads and environments"
         - "Support environmental insight through data platforms"
 
-  - modality: problem_framing
+  - modality: four_pillars
     fields:
       title: "Delivering social value in Wales"
-      body:
+      columns:
         - "Welsh based delivery through Stable partnership"
         - "Support for local employment and skills development"
         - "Engagement with Welsh SMEs and social enterprises"
@@ -291,12 +304,13 @@ slides:
         - "Fixed capacity for controlled delivery periods"
         - "Supplier led services for ongoing operations"
 
-  - modality: problem_framing
+  - modality: chosen_approach
     fields:
       title: "Commercial principles"
-      body:
+      body_left:
         - "Transparency of cost drivers and assumptions"
         - "Flexibility to adapt to delivery phase maturity"
+      body_right:
         - "Alignment to value delivered and outcomes achieved"
         - "Support for blended delivery with NRW teams"
 

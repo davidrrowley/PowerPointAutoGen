@@ -59,7 +59,28 @@ Every slide **must** have a `modality` key and a `fields` dictionary.
 
 ---
 
-## 5. Modalities — full reference
+## 5. Layout cheat sheet — field shape determines layout
+
+**The single biggest factor in visual variety is your field shape, not just your modality.**
+The same modality can produce three completely different layouts:
+
+| Field shape | Layout you get | When to use |
+|---|---|---|
+| `body: [list]` | Title + stacked bullet list | Narrative or mixed-length points |
+| `body_left: [...]` + `body_right: [...]` | Two-column split | Contrasts, risk/mitigation, before/after, hypotheses |
+| `points: [exactly 4]` | Four-column strip | Four sequential phases, pillars, or steps |
+| `columns: [exactly 4]` | Four-box grid | Four parallel themes, principles, or quadrants |
+
+Modalities that support **all four shapes**: `problem_framing`, `chosen_approach`,
+`implications`, `learnings_constraints`, `strategy`, `operating_model`.
+
+> **AI instruction tip:** When generating a deck, actively vary field shapes.
+> Avoid using `body: [list]` for every slide — over-use produces a deck where
+> every content slide looks identical.
+
+---
+
+## 6. Modalities — full reference
 
 Each section below gives:
 - **Purpose** — when to use this slide type
@@ -142,12 +163,9 @@ Works best as a large-text layout with no bullets.
 
 ### `problem_framing`
 Sets out the problem, challenge or opportunity in detail.
+The **field shape you choose determines the layout** — pick the one that suits your content:
 
-| Field | Required | Type |
-|---|---|---|
-| `title` | ✅ | string |
-| `body` | ✅ | string *or* list[string] |
-
+**Body bullets** (plain title + bullet list)
 ```yaml
 - modality: problem_framing
   fields:
@@ -157,6 +175,35 @@ Sets out the problem, challenge or opportunity in detail.
       - "Manual reconciliation takes 3 days per reporting cycle"
       - "No audit trail for regulatory submissions"
 ```
+
+**Two columns** (split left / right — good for contrasts or paired points)
+```yaml
+- modality: problem_framing
+  fields:
+    title: "The current landscape creates operational risk"
+    body_left:
+      - "Legacy systems hold critical environmental data"
+      - "Manual reconciliation takes 3 days per cycle"
+    body_right:
+      - "No audit trail for regulatory submissions"
+      - "Data quality issues compound over time"
+```
+
+**Four columns / grid** (exactly 4 parallel themes — use `columns:`)
+```yaml
+- modality: problem_framing
+  fields:
+    title: "Four systemic challenges"
+    columns:
+      - "Fragmented data with no single source of truth"
+      - "Point-to-point integrations that are brittle"
+      - "No end-to-end visibility of user journeys"
+      - "Manual effort to validate and reconcile"
+```
+
+> **Tip:** `columns: [4 items]` or `points: [4 items]` gives a 4-box or 4-column grid layout.
+> `body_left` + `body_right` gives a two-column layout.
+> `body: [list]` gives the standard title + stacked bullets layout.
 
 ---
 
@@ -204,21 +251,19 @@ Use **one** of the three field patterns:
 ---
 
 ### `chosen_approach`
-The recommended or selected approach.
-
-| Field | Required | Type |
-|---|---|---|
-| `title` | ✅ | string |
-| `body` | ✅ | string *or* list[string] |
+The recommended or selected approach. Accepts the same field shapes as `problem_framing`:
+`body:`, `body_left` + `body_right`, or `columns:` / `points:` for 4-item grids.
 
 ```yaml
 - modality: chosen_approach
   fields:
     title: "We recommend an agile product-led delivery model"
-    body:
+    body_left:
       - "Dedicated multi-disciplinary team embedded with NRW"
       - "Six-week discovery followed by quarterly releases"
+    body_right:
       - "IBM governance and Stable local knowledge combined"
+      - "Continuous knowledge transfer to build internal capability"
 ```
 
 ---
@@ -298,12 +343,9 @@ statement with proof points (not both).
 
 ### `learnings_constraints`
 Lessons learned, constraints, or known risks.
+For a risk + mitigation layout use `body_left` (risks) and `body_right` (mitigations).
 
-| Field | Required | Type |
-|---|---|---|
-| `title` | ✅ | string |
-| `body` | ✅ | string *or* list[string] |
-
+**Body bullets** (risks listed only)
 ```yaml
 - modality: learnings_constraints
   fields:
@@ -314,23 +356,35 @@ Lessons learned, constraints, or known risks.
       - "All data must remain within UK jurisdiction"
 ```
 
+**Two columns** (risk + mitigation pairs — recommended for risk slides)
+```yaml
+- modality: learnings_constraints
+  fields:
+    title: "Key delivery risks and mitigations"
+    body_left:
+      - "Data quality affecting identity matching accuracy"
+      - "Legacy system dependencies slowing integration"
+    body_right:
+      - "Structured data profiling and continuous validation"
+      - "Integration layer that wraps existing systems"
+```
+
 ---
 
 ### `implications`
 So-what conclusions — what follows from the evidence or analysis.
-
-| Field | Required | Type |
-|---|---|---|
-| `title` | ✅ | string |
-| `body` | ✅ | string *or* list[string] |
+Accepts `body:`, `body_left` + `body_right`, or `columns:` / `points:` for grids (same rules as `problem_framing`).
 
 ```yaml
 - modality: implications
   fields:
     title: "What this means for NRW"
-    body:
+    body_left:
       - "Investment in integration now avoids £4m remediation cost in Year 3"
       - "A phased approach reduces business disruption to BAU teams"
+    body_right:
+      - "Capability uplift embedded in delivery reduces long-term dependency"
+      - "Evidence-led sequencing de-risks the programme at each stage"
 ```
 
 ---
@@ -385,12 +439,9 @@ A referenced case study with a supporting image.
 
 ### `strategy`
 Strategic framework, pillars, or a structured plan.
+Use `points: [4 items]` to get a four-column strip layout instead of a bullet list.
 
-| Field | Required | Type |
-|---|---|---|
-| `title` | ✅ | string |
-| `body` | ✅ | string *or* list[string] |
-
+**Body bullets** (3, 5+ items or narrative)
 ```yaml
 - modality: strategy
   fields:
@@ -399,6 +450,18 @@ Strategic framework, pillars, or a structured plan.
       - "Horizon 1 (0–6m): stabilise and integrate core systems"
       - "Horizon 2 (6–18m): build unified data platform"
       - "Horizon 3 (18–36m): self-service analytics and AI"
+```
+
+**Four-column strip** (exactly 4 parallel phases / pillars — preferred layout)
+```yaml
+- modality: strategy
+  fields:
+    title: "Four phase delivery approach"
+    points:
+      - "Discover: define problems and hypotheses"
+      - "Ideate: test concepts quickly"
+      - "Build: validate feasibility"
+      - "Scale: based on evidence and outcomes"
 ```
 
 ---
@@ -425,12 +488,9 @@ Prioritised list or scoring table.
 
 ### `operating_model`
 Team structure, ways of working, governance model.
+If the model has exactly 4 tiers or components, use `columns:` for a grid layout.
 
-| Field | Required | Type |
-|---|---|---|
-| `title` | ✅ | string |
-| `body` | ✅ | string *or* list[string] |
-
+**Body bullets**
 ```yaml
 - modality: operating_model
   fields:
@@ -439,6 +499,18 @@ Team structure, ways of working, governance model.
       - "Joint IBM/NRW product team: two-week sprints"
       - "Monthly programme board: IBM Director + NRW SRO"
       - "Quarterly strategic review: executive sponsors"
+```
+
+**Four-box grid** (4 governance levels or team layers)
+```yaml
+- modality: operating_model
+  fields:
+    title: "Governance model"
+    columns:
+      - "Strategic governance ensuring alignment to organisational priorities"
+      - "Programme governance managing delivery and dependencies"
+      - "Technical governance ensuring architectural consistency"
+      - "Integrated risk management embedded across all levels"
 ```
 
 ---

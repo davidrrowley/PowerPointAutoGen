@@ -103,11 +103,24 @@ def validate_text_constraints(deck_spec: dict[str, Any]) -> None:
             "prioritisation",
             "operating_model",
         }:
-            body = fields["body"]
-            if isinstance(body, list):
-                _validate_bullets(body, i, "body")
-            else:
-                _validate_paragraph(str(body), i, "body")
+            if "body" in fields:
+                body = fields["body"]
+                if isinstance(body, list):
+                    _validate_bullets(body, i, "body")
+                else:
+                    _validate_paragraph(str(body), i, "body")
+            elif "body_left" in fields or "body_right" in fields:
+                for side in ("body_left", "body_right"):
+                    if side in fields:
+                        val = fields[side]
+                        if isinstance(val, list):
+                            _validate_bullets(val, i, side)
+                        else:
+                            _validate_paragraph(str(val), i, side)
+            elif "points" in fields:
+                _validate_bullets(fields["points"], i, "points")
+            elif "columns" in fields:
+                _validate_bullets(fields["columns"], i, "columns", max_bullets=4)
 
         elif modality == "evidence_results":
             if "body" in fields:
@@ -154,18 +167,13 @@ def validate_text_constraints(deck_spec: dict[str, Any]) -> None:
             "next_steps",
             "case_study",
         }:
-            left = fields["body_left"]
-            right = fields["body_right"]
-
-            if isinstance(left, list):
-                _validate_bullets(left, i, "body_left")
-            else:
-                _validate_paragraph(str(left), i, "body_left")
-
-            if isinstance(right, list):
-                _validate_bullets(right, i, "body_right")
-            else:
-                _validate_paragraph(str(right), i, "body_right")
+            for side in ("body_left", "body_right"):
+                if side in fields:
+                    val = fields[side]
+                    if isinstance(val, list):
+                        _validate_bullets(val, i, side)
+                    else:
+                        _validate_paragraph(str(val), i, side)
 
         elif modality == "key_metric":
             if "body" in fields:

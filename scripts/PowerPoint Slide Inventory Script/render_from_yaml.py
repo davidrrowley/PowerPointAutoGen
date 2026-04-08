@@ -298,6 +298,13 @@ def add_slide_from_spec(
     elif layout_id == "title_text_four_columns":
         _write_four_points_slide(slide, fields)
 
+    elif layout_id in {"boxes_3_med_2_small", "boxes_1_large_4_small", "boxes_4_tall"}:
+        # Content placeholders are OBJECT type: top-left=17, top-right=18, bottom-left=20, bottom-right=19
+        set_title(slide, fields["title"])
+        columns = fields.get("columns", fields.get("points", []))
+        for idx, text in zip([17, 18, 20, 19], columns):
+            set_object_text(slide, str(text), idx=idx)
+
     elif layout_id in {
         "title_text_half_image",
         "title_image",
