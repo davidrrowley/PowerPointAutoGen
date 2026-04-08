@@ -1,9 +1,0 @@
-{
-  // Minimal safe config for template repos
-  "config": {
-    "default": true
-  },
-
-  // Explicitly disable external custom rules
-  "customRules": []
-}

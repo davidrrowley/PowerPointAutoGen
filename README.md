@@ -1,61 +1,60 @@
-# Baseline: Spec-Driven Multi-Agent Engineering Template
+# PowerPoint AutoGen
 
-This repository is a baseline engineering template designed for:
+A Python tool that generates `.pptx` files from a YAML deck definition using an IBM Consulting slide template.
 
-- Spec-first delivery powered by spec-kit assets in `.specify/`
-- A multi-agent catalogue (contracts, personas, skills, evals in `agents/`)
-- IBM Carbon aligned UX structure (`apps/web/`)
+## How it works
 
-The goal is repeatability: every new project starts with the same structure, guardrails, and working loop.
-
----
-
-## Agent-native workflow
-
-- Agent catalogue: `AGENTS.md`
-- Operating pipeline: `AGENT_PIPELINE.md`
-- Task block contract: `agents/contracts/task-block.md`
-- Routing defaults: `agents/routing.yml`
-- Governance checks: `.github/workflows/agent-governance.yml`
-
-Platform UI agents: `frontend-carbon` (web), `windows-fluent` (Windows), `android-material` (Android).
-
-Source of truth: root docs are canonical. The `origin/` tree is a baseline snapshot used by scaffold/refresh scripts.
-
-## Start here
-
-Specs drive delivery.
-
-- Spec-kit engine and templates: `.specify/`
-- Product and feature specs: `specs/`
-- Agent operating model: `AGENTS.md`
-- Agent contracts and routing: `agents/registry/agents.v1.yml`, `agents/routing.yml`
-
-The constitution (shared principles and constraints) lives in:
-
-```
-.specify/memory/constitution.md
-```
-
-## Governance entry points
-
-- Guardrails and required output structure: `agents/policies/guardrails.md`
-- Evidence and citation rules: `agents/policies/citations-and-evidence.md`
+Define your presentation in `deck.yaml` using named modalities (e.g. `title_slide`, `problem_framing`, `architecture_view`). The tool resolves each modality to an IBM slide layout, writes content into the correct placeholders, and outputs a `.pptx` file.
 
 ## Quick start
 
-### 1) Create a new feature spec bundle
-
-From repo root, run:
-
 ```powershell
-pwsh .\.specify\scripts\powershell\create-new-feature.ps1 -ShortName "demo" -Number 1 "Describe the feature in one paragraph"
+cd "scripts/PowerPoint Slide Inventory Script"
+pip install -r requirements.txt
+python render_from_yaml.py deck.yaml --output output.pptx
 ```
 
-This creates a folder under:
+## Supported modalities
+
+| Modality | Layout pattern |
+|---|---|
+| `title_slide` | Cover slide with title and subtitle |
+| `index_slide` | Contents / section list |
+| `closing_slide` | Thank you / closing |
+| `context_statement` | Single large statement |
+| `problem_framing` | Title + bullet body |
+| `hypothesis_success_criteria` | Two-column body |
+| `options_considered` | Intro text + option boxes |
+| `chosen_approach` | Title + bullet body |
+| `architecture_view` | Title + body + image |
+| `evidence_results` | Lead + proof points + image |
+| `learnings_constraints` | Title + bullet body |
+| `implications` | Title + bullet body |
+| `next_steps` | Title + bullet body |
+| `case_study` | Two-column + image |
+| `strategy` | Flexible narrative |
+| `prioritisation` | Flexible narrative |
+| `operating_model` | Flexible narrative |
+
+## Project layout
 
 ```
-specs/<branch-name>/
+scripts/PowerPoint Slide Inventory Script/
+  render_from_yaml.py          # main entrypoint
+  deck.yaml                    # example deck
+  layout_registry.yaml         # layout → placeholder mapping
+  layout_catalouge.yaml        # layout catalogue
+  visual_family_registry.yaml  # layout families
+  modality_resolver.py         # modality → layout ID
+  layout_resolver.py           # layout ID → pptx layout object
+  visual_family_resolver.py    # family-based layout selection
+  pattern_resolver.py          # pattern-based layout fallback
+  placeholder_writer.py        # writes text/images into placeholders
+  template_loader.py           # opens .potx template
+  text_constraints.py          # per-layout text length validation
+  schema_validation.py         # deck YAML schema validation
+  IBM_Consulting_Presentation_Template_2022_V02_Arial.potx  # template
+  requirements.txt
 ```
 
 with:
