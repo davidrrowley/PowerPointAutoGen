@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
 from typing import Any
 
 
@@ -29,7 +31,7 @@ REQUIRED_FIELDS_BY_MODALITY = {
 }
 
 
-def validate_deck_structure(deck_spec: dict[str, Any]) -> None:
+def validate_deck_structure(deck_spec: dict[str, Any], base_dir: Path | None = None) -> None:
     if not isinstance(deck_spec, dict):
         raise ValueError("Deck spec must be a dictionary.")
 
@@ -87,4 +89,62 @@ def validate_deck_structure(deck_spec: dict[str, Any]) -> None:
                 raise ValueError(
                     f"Slide {i}: closing_slide must provide at least 'title' or 'contact'."
                 )
-            
+
+        if modality == "four_pillars":
+            pillars = fields.get("pillars")
+            columns = fields.get("columns")
+            # Enforce exactly 4 when either field is present
+            if pillars is not None and len(pillars) != 4:
+                raise ValueError(
+                    f"Slide {i}: four_pillars 'pillars' must have exactly 4 items, got {len(pillars)}."
+                )
+            if columns is not None and len(columns) != 4:
+                raise ValueError(
+                    f"Slide {i}: four_pillars 'columns' must have exactly 4 items, got {len(columns)}."
+                )
+
+        if modality == "case_study" and base_dir is not None:
+            image = fields.get("image", "")
+            if image:
+                image_path = Path(base_dir) / image
+                if not image_path.exists():
+                    print(
+                        f"WARNING Slide {i}: case_study image '{image}' not found at '{image_path}'.",
+                        file=sys.stderr,
+                    )
+
+    # ---- Post-loop cross-deck checks (warnings only) --------------------
+
+    seen_titles: dict[str, int] = {}
+    index_sections_count: int | None = None
+    section_divider_count = 0
+
+    for i, slide in enumerate(slides, start=1):
+        modality = slide.get("modality", "")
+        f = slide.get("fields") or {}
+
+        # Duplicate title detection
+        title = f.get("title", "")
+        if title:
+            if title in seen_titles:
+                print(
+                    f"WARNING: Duplicate slide title on slides {seen_titles[title]} and {i}: "
+                    f"'{title}'.",
+                    file=sys.stderr,
+                )
+            else:
+                seen_titles[title] = i
+
+        if modality == "index_slide":
+            index_sections_count = len(f.get("sections", []))
+        elif modality == "section_divider":
+            section_divider_count += 1
+
+    # Cross-slide: index sections count vs section_divider count
+    if index_sections_count is not None and section_divider_count > 0:
+        if index_sections_count != section_divider_count:
+            print(
+                f"WARNING: index_slide lists {index_sections_count} section(s) but the deck has "
+                f"{section_divider_count} section_divider slide(s). These should match.",
+                file=sys.stderr,
+            )

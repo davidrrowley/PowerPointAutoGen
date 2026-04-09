@@ -46,75 +46,75 @@ slides:
     - Integrated architecture, data, and product delivery
 - modality: learnings_constraints
   fields:
-    title: What differentiates us from other framework suppliers
+    title: Differentiators vs other framework suppliers
     body:
-    - '{''Team Wales model'': ''stable, embedded, bilingual Welsh delivery capability''}'
+    - Embedded, stable, bilingual Welsh delivery capability (Team Wales model)
     - Capability uplift built into delivery from day one
     - Product-led delivery with governance discipline and audit traceability
     - Evidence-based decisions to avoid early over-commitment
 - modality: context_statement
   fields:
-    title: A unified customer experience across all NRW services and channels
+    title: A unified customer experience across NRW services and channels
 - modality: options_considered
   fields:
     title: Three parallel tracks to shape an evidence-based roadmap
     body_left:
     - User & stakeholder discovery
     - Insights, needs, journey, adoption signals
-    - '{''Outputs'': ''roadmap inputs and prioritised requirements''}'
+    - '{''Output'': ''roadmap inputs and prioritised requirements''}'
     body_right:
     - Technical & architectural assessment
     - Current state, target architecture, feasibility
-    - '{''Outputs'': ''solution options and delivery constraints''}'
+    - '{''Output'': ''solution options and delivery constraints''}'
     intro:
     - '{''Outcome'': ''evidence-based roadmap and investment business case''}'
     - Runs concurrently over 18–24 months
     boxes:
     - Commercial & delivery framing
     - Business case, benefits, costs, delivery approach
-    - '{''Outputs'': ''investment case and implementation plan''}'
+    - '{''Output'': ''investment case and implementation plan''}'
 - modality: implications
   fields:
-    title: Evidence to investment decisions
+    title: Evidence to Investment Decisions
     body:
-    - Traceability from user needs to architecture to commercial choices
-    - Validated assumptions on scale, complexity, and technical readiness
-    - Prioritised roadmap for staged, proportionate investment
-    - Sequenced delivery with feasibility confidence before commitment
+    - Trace needs → architecture → commercial choices, with full traceability
+    - Validate assumptions on scale, complexity, and technical readiness
+    - Prioritise a staged, proportionate investment roadmap
+    - Sequence delivery with feasibility confidence before commitment
 - modality: architecture_view
   fields:
-    title: Four-layer architecture model for the NRW customer platform
+    title: NRW Customer Platform — Four-layer Architecture
     body:
     - 'Customer Engagement: portals, web, content, bilingual interfaces'
-    - 'CRM and Service Management: Dynamics 365 as the system of action'
-    - 'Integration and Platform Services: Azure API, orchestration, events'
-    - 'Data and Insights: governed Azure and Fabric data services'
+    - 'CRM & Service Management: Dynamics 365 as system of action'
+    - 'Integration & Platform Services: Azure API, orchestration, events'
+    - 'Data & Insights: governed Azure and Fabric data services'
 - modality: learnings_constraints
   fields:
     title: Architectural principles for platform design
     body:
     - '{''Cloud-first, SaaS-preferred'': ''minimize custom build''}'
     - '{''API-first & event-driven'': ''decouple for interoperability''}'
-    - '{''Governed data'': ''lineage, ownership, and access controls''}'
+    - '{''Governed data'': ''lineage, ownership, access controls''}'
     - Secure-by-design & compliant across layers and environments
     - '{''Modular & loosely coupled'': ''avoid legacy lock-in''}'
 - modality: chosen_approach
   fields:
     title: Platform building blocks
     body:
-    - '{''Dynamics 365'': ''authoritative customer domain and system of action''}'
-    - '{''CMS & SharePoint'': ''structured content, publishing, and knowledge''}'
-    - '{''Azure Integration'': ''decoupled data movement and orchestration layer''}'
-    - '{''Data platform'': ''trusted, discoverable, reusable customer and operational
+    - '{''Dynamics 365'': ''Authoritative customer domain and system of action''}'
+    - '{''CMS & SharePoint'': ''Structured content, publishing, and knowledge''}'
+    - '{''Azure Integration'': ''Decoupled data movement and orchestration''}'
+    - '{''Data platform'': ''Trusted, discoverable, reusable customer and operational
       data''}'
 - modality: problem_framing
   fields:
     title: NRW data fragmentation hinders integration
     body:
-    - Canonical customer identifier to unify records progressively
-    - Progressive unification—avoid big-bang consolidation
-    - Mapping and matching across legacy systems and datasets
-    - Event-driven updates for near real-time consistency
+    - Unify records progressively with a canonical customer ID
+    - Map & match across legacy systems and datasets
+    - Use event-driven updates for near real-time consistency
+    - Avoid big-bang consolidation; reduce integration risk
 - modality: learnings_constraints
   fields:
     title: Data sequencing & key risks across the lifecycle
@@ -122,15 +122,15 @@ slides:
     - '{''Early'': ''identity model, APIs, event layer foundations''}'
     - '{''Mid-term'': ''deduplication, survivorship rules, governance processes''}'
     - '{''Long-term'': ''controlled consolidation across legacy systems''}'
-    - '{''Risks'': ''data quality, legacy dependencies, ownership clarity''}'
+    - '{''Key risks'': ''data quality, legacy dependencies, ownership clarity''}'
 - modality: strategy
   fields:
     title: Product-team delivery model
     body:
-    - '{''Discovery team'': ''multidisciplinary, hypothesis-led, time-boxed''}'
-    - Long-lived product teams sustain Alpha, Beta, and Live phases
-    - Blended IBM, Stable, and NRW capabilities embedded throughout
-    - Ownership and skills progressively transition to NRW
+    - '{''Discovery'': ''multidisciplinary, hypothesis-led, time-boxed''}'
+    - Alpha, Beta, Live phases delivered by long-lived product teams
+    - IBM, Stable, and NRW capabilities embedded across phases
+    - Ownership and skills transition progressively to NRW
 - modality: chosen_approach
   fields:
     title: Three-tier governance for delivery control
@@ -145,32 +145,28 @@ slides:
     body:
     - '{''Security-by-design'': ''zero trust and early threat modelling''}'
     - '{''Proportionate testing'': ''automated, performance, and penetration coverage''}'
-    - '{''Observability and resilience'': ''runbooks from day one''}'
+    - '{''Observability & resilience'': ''runbooks from day one''}'
     - '{''NRW transfer'': ''skills, knowledge, and tooling ownership''}'
 - modality: problem_framing
   fields:
     title: Blended resourcing model
     body:
-    - '{''IBM'': ''architecture, engineering, data, security, product''}'
-    - '{''Stable Team Wales'': ''Welsh-based delivery strength''}'
+    - IBM architecture, engineering, data, security, and product expertise
+    - Stable Team Wales provides Welsh-based delivery strength
     - '{''Hybrid delivery'': ''on-site + remote collaboration across Wales''}'
-    - NRW staff embedded for knowledge transfer
+    - NRW staff embedded to accelerate knowledge transfer
 - modality: context_statement
   fields:
     title: A 12-week hypothesis-led window to generate evidence, not production builds
 - modality: options_considered
   fields:
-    title: Innovation modes by problem clarity and readiness
-    intro:
-    - Select mode using measurable, agreed hypotheses and context
+    title: Choose innovation mode by clarity and readiness
     body_left:
-    - '{''title'': ''Discovery-led'', ''body'': ''Explore unclear or poorly defined
-      problems''}'
+    - '{''Discovery-led'': ''Explore unclear or poorly defined problems''}'
+    - '{''Proof-led'': ''Test feasibility within known constraints''}'
     body_right:
-    - '{''title'': ''Proof-led'', ''body'': ''Test feasibility within known constraints''}'
-    boxes:
-    - '{''title'': ''Optimisation-led'', ''body'': ''Improve well-understood pain
-      points''}'
+    - '{''Optimisation-led'': ''Improve well-understood pain points''}'
+    - Select using measurable, agreed hypotheses and context
 - modality: four_pillars
   fields:
     title: Four phases of the 12-week innovation programme
@@ -189,7 +185,7 @@ slides:
     body_left:
     - Bilingual IA & navigation prototypes with user-tested journeys
     - Search improvements and reusable bilingual content patterns
-    - Accessibility and WCAG improvements with documented audit trail
+    - Accessibility (WCAG) enhancements with documented audit trail
     body_right:
     - Journey prototypes and feasibility evidence for live data integration
     - Prioritised backlog and investment decision evidence pack
@@ -197,7 +193,7 @@ slides:
   fields:
     title: Innovation window risks and mitigations
     body:
-    - Baseline hypothesis clarity at programme start
+    - Clarify baseline hypothesis at programme start
     - Secure user and content-owner access across all four phases
     - CMS/platform constraints limit feasible scope
     - '{''Manage expectations'': ''evidence and prototypes, not production''}'
@@ -213,17 +209,18 @@ slides:
   fields:
     title: Social value commitments in Wales (Stable + IBM)
     body:
-    - '{''Stable'': ''Welsh SME; direct local jobs and skills impact''}'
-    - Internships, skills programmes, and university partnerships across Wales
-    - Support for Welsh charities and local digital communities
+    - '{''Stable'': ''Welsh SMEs; direct local jobs and skills impact''}'
+    - '{''Stable'': ''internships, skills programmes, university partnerships''}'
+    - '{''Stable'': ''support for Welsh charities and local digital communities''}'
     - Commitments scaled proportionately at call-off stage
-- modality: strategy
+- modality: options_considered
   fields:
-    title: Flexible commercial model for discovery-first delivery
-    body:
+    title: Commercial model options for discovery-first delivery
+    body_left:
     - Time & Materials for discovery and shaping phases
-    - Fixed price or fixed capacity for defined delivery scope
     - Transparent rate-card assumptions with volume discount principles
+    body_right:
+    - Fixed price or fixed capacity for defined delivery scope
     - Volume efficiencies for sustained and expanded engagement
 - modality: context_statement
   fields:
@@ -234,4 +231,6 @@ slides:
 - modality: closing_slide
   fields:
     title: Questions & discussion
-    contact: We welcome challenge—open to questions on any area of today’s proposal.
+    body:
+    - We welcome challenge—open to questions on any area of today’s proposal.
+    - Please share your priorities, risks, and desired next steps.

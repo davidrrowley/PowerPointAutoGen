@@ -57,9 +57,13 @@ LAYOUT & STRUCTURE
 - Text should not overflow its placeholder
 
 CONTENT DENSITY
-- No more than 5 bullet points per slide
-- Bullet text should be concise (under 120 characters each)
 - Title should be 14 words or fewer
+- Bullet limits vary by layout:
+  - four_pillars or case_study (narrow 2" columns): ≤60 characters per bullet
+  - options_considered, next_steps, hypothesis_success_criteria (two-column): ≤8 bullets per side, ≤120 chars each
+  - most content slides (wide single-column): ≤7 bullets, ≤120 chars each
+  - key_metric: ≤5 bullets, ≤120 chars each
+- Text must not overflow its placeholder — prefer fewer, shorter bullets over more
 """
 
 _SINGLE_CRITIQUE_PROMPT = """\

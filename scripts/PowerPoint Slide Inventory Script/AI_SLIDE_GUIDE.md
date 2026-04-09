@@ -75,14 +75,18 @@ PowerPoint speaker notes pane for that slide.
 
 ## 4. Text limits (enforced — validation will reject anything over these)
 
-| Thing | Limit |
-|---|---|
-| Title | 14 words max |
-| Bullet item | 120 characters max |
-| Paragraph / prose field | 280 characters max |
-| Bullet list (most slides) | 5 bullets max |
-| `sections` list (index slide only) | 14 items max |
-| `columns` list (four_pillars) | 4 items max |
+Limits vary by modality because the IBM template uses different column widths.
+
+| Modality | Max bullets (per column) | Max chars per bullet | Notes |
+|---|---|---|---|
+| Title field (all slides) | — | — | ≤14 words |
+| Paragraph / prose fields | — | ≤280 chars | `quote`, `contact`, `subtitle`, `lead` |
+| `four_pillars` | 5 per column | **60** | Narrow 2.01" columns |
+| `case_study` | 8 per side | **60** | Narrow 2.01" columns |
+| `index_slide` sections | 14 | 80 | Short agenda labels |
+| `options_considered`, `next_steps`, `hypothesis_success_criteria` | 8 per side | 120 | Wide two-column layout |
+| `key_metric` | 5 | 120 | Short headline stats |
+| All other content slides | 7 | 120 | Wide single-column layout |
 
 ---
 
@@ -568,7 +572,10 @@ Use exactly 4 items in `columns`.
 | Field | Required | Type |
 |---|---|---|
 | `title` | ✅ | string |
-| `columns` | optional | list[string] — exactly 4 items (≤120 chars each) |
+| `pillars` | optional | list of `{title, body}` objects — exactly 4 items |
+| `columns` | optional | list[string] — exactly 4 items (≤60 chars each — narrow column) |
+
+Use `pillars` when each column needs a heading and body text. Use `columns` for a plain label-only grid.
 
 ```yaml
 - modality: four_pillars
@@ -671,7 +678,10 @@ Paste sections 3–6 of this guide into your prompt, then add something like:
 > "Using only the modalities, fields, and constraints described above, generate a
 > YAML deck file for a [X]-slide presentation about [topic].
 > Each slide must have a `modality` key and a `fields` dictionary.
-> Titles must be ≤14 words. Bullets must be ≤120 characters and at most 5 per slide.
+> Titles must be ≤14 words.
+> For `four_pillars` and `case_study`: bullets ≤60 characters, ≤5 or ≤8 per column.
+> For `options_considered`, `next_steps`, `hypothesis_success_criteria`: bullets ≤120 characters, ≤8 per side.
+> For all other content slides: bullets ≤120 characters, ≤7 per slide.
 > Output only the raw YAML, no markdown fences, no commentary."
 
 ### Adding speaker notes from a source document
