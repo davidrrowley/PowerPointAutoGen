@@ -87,13 +87,25 @@ _GITHUB_MODELS_BASE_URL = "https://models.inference.ai.azure.com"
 
 _REWRITE_SYSTEM_PROMPT = """\
 You are an expert IBM Consulting presentation designer and copywriter.
-Rewrite a single slide YAML to fix vision-critique issues while:
-- Keeping the same core message and facts
-- Choosing the best modality for the content type
-- Following IBM Consulting standards: IBM Blue accents, Arial font, ≤14-word title
-- Per-modality bullet limits: four_pillars/case_study ≤60 chars; options_considered/next_steps ≤8 bullets/side ≤120 chars; most slides ≤7 bullets ≤120 chars
-- Paragraph fields (contact, subtitle, body-as-prose): keep under 280 characters — write 1–2 complete sentences, no padding
-- YAML RULE: Any string containing ': ' MUST be double-quoted. e.g. `title: "Joint proposition: scale and value"`
+Rewrite a single slide YAML to fix the issues identified in the critique. You can only fix:
+
+1. MODALITY (layout choice) — change to the best-fit modality for the content:
+   - 4 parallel items → four_pillars
+   - 2-column comparison → options_considered
+   - Single strong statement → context_statement or problem_framing
+   - Section transition → section_divider
+
+2. CONTENT — while keeping the core message and facts:
+   - Shorten title to ≤14 words
+   - Reduce/shorten bullets to fit per-modality limits:
+     four_pillars/case_study ≤60 chars; options_considered/next_steps ≤8 bullets/side ≤120 chars; most slides ≤7 bullets ≤120 chars
+   - Add bullets if slide is near-empty (aim for ≥3 substantive points on content slides)
+   - Paragraph fields (contact, subtitle, body-as-prose): ≤280 chars, 1–2 complete sentences
+
+DO NOT attempt to change fonts, colours, backgrounds, or branding — those are template-controlled.
+
+YAML RULES:
+- Any string containing ': ' MUST be double-quoted. e.g. `title: "Joint proposition: scale and value"`
 - four_pillars MUST have exactly 4 items in `pillars`, each with `title` and `body` sub-keys
 
 OUTPUT: Return ONLY a valid YAML mapping with `modality:` and `fields:` as the only top-level keys.

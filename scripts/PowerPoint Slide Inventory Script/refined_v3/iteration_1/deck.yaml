@@ -12,14 +12,21 @@ slides:
 - modality: index_slide
   fields:
     title: Agenda
+    subtitle: How we deliver joint value—from capabilities to commercial terms.
     sections:
-    - 1. Our Joint Proposition
+    - 1. Joint Proposition
     - 2. Customer Capabilities
     - '3. Scenario 1: Customer Platform'
     - '4. Scenario 2: Website Innovation'
     - 5. Sustainability & Social Value
     - 6. Commercial Approach
     - 7. Close & Next Steps
+    layout:
+      columns: 2
+      accent: IBM Blue
+      font: Arial
+    notes: 'Outline the presentation flow: joint delivery strengths, scenario walkthroughs,
+      sustainability commitments, and commercial approach through close and next steps.'
   notes: 'Outline the structure of the presentation. Each section will address key
     aspects of our proposal, from joint delivery strengths to commercial terms and
     sustainability commitments.
@@ -27,18 +34,14 @@ slides:
     '
 - modality: section_divider
   fields:
-    title: 'Section 1: Our Joint Proposition'
-    subtitle: Aligning strategy, value, and execution
+    title: Our Joint Proposition
+    subtitle: Aligned outcomes, measurable value, and scalable delivery
 - modality: context_statement
   fields:
-    title: IBM and Stable deliver scale, local expertise, and sustainable capability
-    body:
-    - IBM brings global delivery scale and specialist expertise
-    - Stable adds Welsh-based architectural and engineering talent
-    - NRW benefits from continuity and leading practices
-    notes: Our partnership combines IBM's global delivery scale and specialist expertise
-      with Stable's Welsh-based architectural and engineering talent. This blend ensures
-      NRW benefits from both continuity and access to leading practices.
+    title: 'IBM and Stable: scale with local expertise'
+    notes: Our partnership combines IBM global delivery scale with Stable’s Welsh-based
+      architectural and engineering talent, ensuring NRW continuity and access to
+      leading practices.
   notes: 'Our partnership combines IBM''s global delivery scale and specialist expertise
     with Stable''s Welsh-based architectural and engineering talent. This blend ensures
     NRW benefits from both continuity and access to leading practices.
@@ -95,7 +98,8 @@ slides:
 - modality: section_divider
   fields:
     title: 'Section 2: Customer Capabilities'
-    subtitle: Capabilities that enable value delivery
+    subtitle: How we enable clients to deliver faster, smarter outcomes
+    body: Build the capabilities that turn strategy into measurable performance.
 - modality: four_pillars
   fields:
     title: IBM core strengths within the DDaT Framework
@@ -109,18 +113,19 @@ slides:
     capability uplift and governance.
 
     '
-- modality: four_pillars
+- modality: strategy
   fields:
-    title: Six specialisms across the DDaT lifecycle
-    pillars:
-    - title: Digital Service Design
-      body: User-centred, inclusive, outcome-driven
-    - title: Data, Analytics & AI
-      body: Governed platforms, predictive insights
-    - title: Platforms & Integration
-      body: Modular, API-led architectures
-    - title: Cloud & DevOps
-      body: Secure hybrid, FinOps, resilience
+    title: Six areas of specialism across the DDaT lifecycle
+    subtitle: Service design to cloud engineering—built for modernisation and resilience.
+    body:
+    - 'Digital Service Design: user-centred, inclusive, outcome-driven'
+    - 'Data, Analytics & AI: governed platforms, predictive insights'
+    - 'Platforms & Integration: modular, API-led architectures'
+    - 'Cloud & DevOps: secure hybrid, FinOps, resilient delivery'
+    - 'Technical Consultancy: advisory, coaching, embedded delivery'
+    - 'Agile Delivery: product-led, measurable value, scale-ready'
+    notes: Specialisms span service design through cloud engineering and agile delivery,
+      aligned to NRW modernisation and operational resilience.
   notes: 'Our specialisms span the full DDaT lifecycle, from service design to cloud
     engineering and agile delivery. Each area is aligned to NRW''s requirements for
     modernisation and operational resilience.
@@ -141,15 +146,15 @@ slides:
     '
 - modality: evidence_results
   fields:
-    title: Proven outcomes delivering DDaT at pace
-    lead: IBM and Stable delivered successful programmes for UK public sector clients.
+    title: Proven outcomes delivering DDaT in the public sector
+    lead: IBM and Stable delivered DDaT programmes for UK public sector clients.
     proof_points:
     - 'Environment Agency: unified data platform in 11 months'
     - 'DVLA: 30% faster data processing'
     - 'Welsh charities: bilingual digital services'
     - 'NHS Digital: 18-month integration programme'
-    notes: Track record across regulated environments and Welsh public sector clients.
-      Outcomes validate delivery approach and methods.
+    notes: Track record shows delivery at scale, including regulated environments
+      and Welsh public sector clients. These outcomes validate our approach and methods.
   notes: 'Our track record demonstrates capability to deliver at scale, including
     regulated environments and Welsh public sector clients. These outcomes validate
     our approach and methods.
@@ -158,7 +163,9 @@ slides:
 - modality: section_divider
   fields:
     title: 'Section 3: Scenario 1 — Customer Platform'
-    subtitle: Platform capabilities, integration, and outcomes
+    subtitle: IBM Consulting scenario overview
+    body: A focused view of the customer platform context and key outcomes.
+    contact: IBM Blue accent applied for section transition.
 - modality: chosen_approach
   fields:
     title: Discovery and shaping approach for Customer Platform
@@ -189,14 +196,22 @@ slides:
     to NRW''s outcomes and ensuring traceability from user needs to investment decisions.
 
     '
-- modality: architecture_view
+- modality: four_pillars
   fields:
-    title: Foundational architecture for NRW on the Microsoft ecosystem
-    body:
-    - 'Layer 1: Engagement'
-    - 'Layer 2: CRM (Dynamics 365 as authoritative domain)'
-    - 'Layer 3: Integration (Azure orchestration, API-first)'
-    - 'Layer 4: Data (analytics and insights)'
+    title: Foundational architecture for a Microsoft ecosystem
+    subtitle: Layered design for modularity, API-first integration, and incremental
+      modernization.
+    body: The architecture organizes NRW’s Microsoft estate into cohesive layers,
+      reducing coupling and enabling future change.
+    pillars:
+    - title: Engagement
+      body: Customer touchpoints and experience channels
+    - title: CRM
+      body: Dynamics 365 as the authoritative customer domain
+    - title: Integration
+      body: Azure integration services for orchestration
+    - title: Data
+      body: CMS/SharePoint for content, plus analytics insights
     image: assets/customer_platform_architecture.png
   notes: 'The architecture organises NRW''s Microsoft estate into cohesive layers,
     supporting modularity, API-first integration, and incremental modernisation. This
@@ -231,16 +246,20 @@ slides:
 - modality: chosen_approach
   fields:
     title: Data integration and platform thinking
+    subtitle: Governed identity and consolidation for trusted customer analytics.
     body_left:
     - Map customer data across CRM, legacy, GIS, documents
-    - Introduce shared customer identifier model
-    - Dynamics 365 as master customer record
-    - API-based integration for real-time data
+    - Create shared customer identifier model
+    - Use Dynamics 365 as master customer record
+    - Enable API-based integration for real-time data
     body_right:
-    - Controlled consolidation via MDM and survivorship rules
-    - Azure-native data platform for analytics
+    - Consolidate with MDM and survivorship rules
+    - Run analytics on an Azure-native data platform
     - Validate assumptions during discovery
-    - Sequenced delivery to manage risk
+    - Sequence delivery to manage risk
+    notes: We establish a governed integration framework, resolving identity and data
+      fragmentation through incremental steps. Discovery validates feasibility and
+      readiness before wider implementation.
   notes: 'We establish a governed integration framework, resolving identity and data
     fragmentation through incremental steps. Discovery validates feasibility and readiness
     before wider implementation.
@@ -248,19 +267,20 @@ slides:
     '
 - modality: learnings_constraints
   fields:
-    title: Key risks and mitigations for data integration
+    title: 'Data integration: key risks and mitigations'
+    subtitle: Proactive controls reduce matching, security, and adoption risks.
     body_left:
     - Poor data quality reduces matching accuracy
-    - Hidden dependencies in legacy systems
-    - Integration performance and security constraints
-    - Inconsistent ownership of customer data
+    - Legacy dependencies create hidden integration risk
+    - Performance and security constraints limit throughput
+    - Unclear ownership slows governance and decisions
     body_right:
-    - Structured data profiling and validation
-    - Integration layer wraps existing systems
-    - API-driven connectivity with strong governance
+    - Structured profiling, validation, and data quality rules
+    - Integration layer wraps legacy systems safely
+    - API connectivity with strong governance controls
     - Early identity resolution and risk-based sequencing
-    notes: Risks are managed proactively through profiling, governance, and incremental
-      delivery. Adoption and stakeholder engagement are critical.
+    notes: Risks are mitigated through profiling, governance, and incremental delivery.
+      Stakeholder engagement and training drive adoption.
   notes: 'Risks are managed proactively through structured profiling, governance,
     and incremental delivery. Organisational adoption and stakeholder engagement are
     critical to success.
@@ -283,10 +303,13 @@ slides:
   fields:
     title: Phased scaling and maturity pathway
     points:
-    - 'Alpha: pilot teams, validate assumptions'
-    - 'Beta: expand, frequent iterations'
-    - 'Live: sustainable mix, maintenance and operations'
-    - 'Retire: decommissioning with user engagement'
+    - 'Pilot: validate assumptions with alpha teams'
+    - 'Expand: iterate frequently with beta teams'
+    - 'Live: sustain operations with a stable mix'
+    - 'Retire: decommission with user engagement'
+    subtitle: Risk-based phases ensure smooth transition to live operations.
+    body: Early sustainment involvement reduces friction and supports long-term platform
+      sustainability.
   notes: 'Scaling follows a risk-based, phased approach. Early involvement of sustainment
     resources ensures smooth transition to live operation and long-term platform sustainability.
 
@@ -314,14 +337,12 @@ slides:
 - modality: section_divider
   fields:
     title: 'Section 4: Scenario 2 — Website Innovation Window'
-    subtitle: Timeboxed opportunity to test, learn, and scale
 - modality: context_statement
   fields:
     title: '12-week innovation window: test website improvements with evidence'
-    body:
-    - Structured experiment, not a mini-project
-    - Validate usability, accessibility, and service outcomes
-    - Within NRW constraints
+    notes: The innovation window is a structured experiment, not a mini-project. It
+      validates changes that improve usability, accessibility, and service outcomes
+      within NRW’s constraints.
   notes: 'The innovation window is a structured experiment, not a mini-project. It
     aims to validate changes that improve usability, accessibility, and service outcomes
     within NRW''s constraints.
@@ -372,17 +393,16 @@ slides:
     '
 - modality: evidence_results
   fields:
-    title: Innovation window outputs (what we delivered)
+    title: Innovation window outputs and deliverables
     body:
     - Validated hypotheses and reusable design patterns
-    - Navigation and information architecture prototypes
-    - Evidence-led search improvements
-    - End-to-end prototypes for priority journeys
-    - Accessibility and content improvement backlog
+    - Prototypes for priority journeys and navigation
+    - Evidence-led search improvements and content backlog
     - Proof of feasibility for live data integration
     - Measurement framework for success metrics
-    notes: Deliverables are practical and decision-oriented, giving NRW actionable
-      artefacts and evidence to guide future website improvements.
+    subtitle: Actionable artefacts and evidence to guide NRW website improvements.
+    notes: Deliverables are practical and decision-oriented, providing NRW with evidence
+      and artefacts to inform future website enhancements.
   notes: 'Deliverables are practical and decision-oriented, providing NRW with actionable
     artefacts and evidence to inform future website improvements.
 
@@ -409,8 +429,7 @@ slides:
     '
 - modality: section_divider
   fields:
-    title: 'Section 5: Sustainability & Social Value'
-    subtitle: How we deliver measurable impact
+    title: Sustainability & Social Value
 - modality: four_pillars
   fields:
     title: Embedding sustainability and social value in delivery
@@ -443,12 +462,13 @@ slides:
     '
 - modality: evidence_results
   fields:
-    title: Monitoring sustainability and social value performance
+    title: Monitor sustainability and social value performance
     body:
-    - 'KPIs: carbon impact, supplier participation, skills uplift'
-    - Structured reporting aligned to framework governance
-    - Commitments scaled to engagement size
-    - Continuous improvement with transparent outcomes
+    - Track KPIs for carbon impact, supplier participation, and skills uplift.
+    - Report through framework governance with transparent, continuous improvement.
+    - Scale commitments proportionately to engagement size for lasting impact.
+    notes: Performance is monitored using clear KPIs and structured reporting. Commitments
+      are scaled to engagement size to sustain impact across Wales.
   notes: 'Performance is monitored through clear metrics and reporting. Commitments
     are scaled to engagement size, ensuring lasting impact across Wales.
 
@@ -456,7 +476,8 @@ slides:
 - modality: section_divider
   fields:
     title: 'Section 6: Commercial Approach'
-    subtitle: Go-to-market, pricing, and partnership strategy
+    subtitle: How we price, package, and deliver value
+    body: A clear commercial model aligned to outcomes, risk, and delivery readiness.
 - modality: options_considered
   fields:
     title: Flexible commercial models for DDaT delivery
@@ -508,23 +529,28 @@ slides:
     '
 - modality: section_divider
   fields:
-    title: 'Section 7: Close & Next Steps'
-    subtitle: Align on outcomes, confirm actions, and move forward
+    title: Close & Next Steps
+    subtitle: Align on priorities, confirm owners, and move to execution.
+    body: We will finalize scope, validate timelines, and agree on success measures
+      to start delivery.
+    contact: 'Next: confirm stakeholders and kickoff date with your IBM Consulting
+      team.'
 - modality: next_steps
   fields:
-    title: 'Next steps: mobilise NRW and supplier discovery'
+    title: 'NRW & supplier mobilisation: next steps'
+    subtitle: Align on discovery, innovation hypotheses, and delivery readiness.
     body_left:
     - 'IBM: issue final commercial proposal'
     - 'IBM: schedule discovery kickoff workshop'
-    - 'Stable: confirm Welsh-based delivery team availability'
+    - 'Stable: confirm Welsh delivery team availability'
     - 'IBM/Stable: prepare onboarding materials'
     body_right:
     - 'NRW: confirm stakeholder availability'
-    - 'NRW: share system inventory and data dictionary'
+    - 'NRW: share system inventory & data dictionary'
     - 'NRW: agree innovation window hypotheses'
-    - 'NRW: review sustainability and social value KPIs'
-    notes: Mobilise quickly with clear ownership across discovery, onboarding, and
-      KPI alignment.
+    - 'NRW: review sustainability & social value KPIs'
+    notes: Next steps mobilise stakeholders and align discovery and innovation activities.
+      Early preparation supports smooth delivery initiation.
   notes: 'Next steps focus on mobilisation, stakeholder engagement, and alignment
     on discovery and innovation activities. Early preparation supports smooth delivery
     initiation.
@@ -533,13 +559,11 @@ slides:
 - modality: closing_slide
   fields:
     title: Thank you
-    subtitle: Questions welcome
-    contact:
-    - Dave Aspden | Stable CEO | dave@stable.co.uk
-    - Phil Davenport | IBM Client Delivery Partner | philip.davenport@ibm.com
-    - David Rowley | IBM Microsoft Practice CTO | david.rowley@ibm.com
-    - Ryan Lewis | Stable CTO/MD | ryan@stable.co.uk
-    notes: Contact details provided for follow-up. We welcome questions and discussion.
+    subtitle: Questions welcome—let’s discuss next steps.
+    body: We appreciate your time and welcome any questions or follow-up on the proposal.
+    contact: Dave Aspden (Stable CEO) dave@stable.co.uk | Phil Davenport (IBM Client
+      Delivery Partner) philip.davenport@ibm.com | David Rowley (IBM Microsoft Practice
+      CTO) david.rowley@ibm.com | Ryan Lewis (Stable CTO/MD) ryan@stable.co.uk
   notes: 'Contact details for the presentation attendees are provided for follow-up.
     We welcome questions and further discussion on the proposal.
 
