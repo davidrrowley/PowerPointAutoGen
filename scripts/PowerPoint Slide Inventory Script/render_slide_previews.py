@@ -43,17 +43,28 @@ def export_slides_via_com(pptx_path: Path, output_dir: Path, width: int = 1920) 
         # Start PowerPoint — some installations reject Visible=False, so we
         # open without a window and minimise on a best-effort basis.
         ppt_app = win32com.client.Dispatch("PowerPoint.Application")
+        time.sleep(1)  # give PowerPoint a moment to fully initialise
         try:
             ppt_app.WindowState = 2  # ppWindowMinimized
         except Exception:
             pass
 
-        presentation = ppt_app.Presentations.Open(
-            pptx_abs,
-            ReadOnly=True,
-            Untitled=False,
-            WithWindow=False,
-        )
+        # RPC_E_CALL_REJECTED on Open if PowerPoint is still busy — retry with backoff
+        for _open_attempt in range(6):
+            try:
+                presentation = ppt_app.Presentations.Open(
+                    pptx_abs,
+                    ReadOnly=True,
+                    Untitled=False,
+                    WithWindow=False,
+                )
+                break
+            except Exception as _open_err:
+                if _open_attempt == 5:
+                    raise
+                wait = 2 ** _open_attempt  # 1, 2, 4, 8, 16 seconds
+                print(f"  COM busy opening file, retrying in {wait}s... ({_open_err})")
+                time.sleep(wait)
 
         slide_count = presentation.Slides.Count
         print(f"Exporting {slide_count} slides from: {pptx_abs}")
