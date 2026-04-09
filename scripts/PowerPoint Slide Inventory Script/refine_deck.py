@@ -92,6 +92,7 @@ Rewrite a single slide YAML to fix vision-critique issues while:
 - Choosing the best modality for the content type
 - Following IBM Consulting standards: IBM Blue accents, Arial font, ≤14-word title
 - Per-modality bullet limits: four_pillars/case_study ≤60 chars; options_considered/next_steps ≤8 bullets/side ≤120 chars; most slides ≤7 bullets ≤120 chars
+- Paragraph fields (contact, subtitle, body-as-prose): keep under 280 characters — write 1–2 complete sentences, no padding
 - YAML RULE: Any string containing ': ' MUST be double-quoted. e.g. `title: "Joint proposition: scale and value"`
 - four_pillars MUST have exactly 4 items in `pillars`, each with `title` and `body` sub-keys
 
@@ -319,6 +320,7 @@ def _sanitize_slide_fields(slide: dict) -> dict:
     c = get_constraints(modality)
     mb  = c["max_bullets"]
     mbc = c["max_bullet_chars"]
+    mpc = c["max_paragraph_chars"]
 
     # Modalities that support body_left/body_right two-column layout
     _TWO_COL_MODALITIES = {
@@ -379,6 +381,31 @@ def _sanitize_slide_fields(slide: dict) -> dict:
                     items = items[:limit]
                 cleaned[key] = items
         else:
+            if isinstance(val, str) and len(val) > mpc:
+                # Truncate at the last sentence boundary within the limit so the
+                # text remains a complete thought; fall back to word boundary if needed.
+                truncated = val[:mpc]
+                sentence_end = max(
+                    truncated.rfind('. '),
+                    truncated.rfind('! '),
+                    truncated.rfind('? '),
+                    truncated.rfind('.\n'),
+                )
+                if sentence_end > mpc // 2:
+                    truncated = truncated[:sentence_end + 1].rstrip()
+                else:
+                    # No good sentence boundary — truncate at last word
+                    word_end = truncated.rfind(' ')
+                    if word_end > mpc // 2:
+                        truncated = truncated[:word_end].rstrip() + '…'
+                    else:
+                        truncated = truncated.rstrip() + '…'
+                print(
+                    f"    [sanitize] field '{key}' ({len(val)} chars) trimmed to "
+                    f"{len(truncated)} at sentence boundary.",
+                    file=sys.stderr,
+                )
+                val = truncated
             cleaned[key] = val
 
     # Promote to two-column if a single-column field overflowed and modality supports it
