@@ -270,8 +270,15 @@ def _repair_unquoted_colon_values(text: str) -> str:
             if li_m:
                 prefix, val = li_m.group(1), li_m.group(2)
                 if ': ' in val and val[:1] not in ('"', "'", '[', '{', '!'):
-                    val = '"' + val.replace('\\', '\\\\').replace('"', '\\"') + '"'
-                    line = indent + prefix + val
+                    # Don't quote items whose key part is a structural YAML key
+                    # (e.g. "title:", "body:", "label:") — those are valid dict entries,
+                    # not broken plain-text bullets like "CRM: Dynamics 365".
+                    item_key = val.split(':', 1)[0]
+                    if re.match(r'^[a-z][a-z_]*$', item_key):
+                        pass  # structural key — leave as-is
+                    else:
+                        val = '"' + val.replace('\\', '\\\\').replace('"', '\\"') + '"'
+                        line = indent + prefix + val
         fixed.append(line)
     return '\n'.join(fixed)
 
@@ -297,12 +304,21 @@ def _parse_slide_yaml(raw: str) -> dict | None:
                 inner.append(line)
         text = "\n".join(inner)
     def _has_dict_bullets(parsed: dict) -> bool:
-        """Return True if any list field contains dict items (bullet with unquoted colon)."""
+        """Return True if any plain-bullet list field contains single-key dict items.
+
+        A single-key dict like {"CRM": "Dynamics 365"} means the LLM wrote
+        ``- CRM: Dynamics 365`` without quoting — PyYAML silently coerces it.
+        Multi-key dicts (e.g. {"title": "...", "body": "..."}) are legitimate
+        structured objects (used by four_pillars pillars:, options_considered, etc.)
+        and must NOT be flagged.
+        """
         fields = parsed.get("fields") or {}
-        return any(
-            isinstance(v, list) and any(isinstance(item, dict) for item in v)
-            for v in fields.values()
-        )
+        for v in fields.values():
+            if isinstance(v, list):
+                for item in v:
+                    if isinstance(item, dict) and len(item) == 1:
+                        return True
+        return False
 
     try:
         parsed = yaml.safe_load(text)
