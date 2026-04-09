@@ -16,6 +16,9 @@ except ImportError as exc:
         "PyYAML is required. Install with: python -m pip install pyyaml"
     ) from exc
 
+import uuid
+
+from lxml import etree
 from pptx import Presentation
 
 from layout_catalouge import load_layout_catalogue
@@ -148,6 +151,8 @@ def _write_four_points_slide(slide, fields: dict) -> None:
             # Structured pillar: {title: '...', body: '...'} — combine for single-placeholder layout
             title = point.get("title", "")
             body = point.get("body", "")
+            if isinstance(body, list):
+                body = "\n".join(str(b) for b in body)
             text = f"{title}\n{body}" if body else title
         else:
             text = str(point)
@@ -381,6 +386,86 @@ def add_slide_from_spec(
             set_title(slide, fields["title"])
 
 
+def _inject_pptx_sections(prs: Presentation, deck_spec: dict) -> None:
+    """Create PowerPoint sections derived from section_divider slides.
+
+    Slides before the first section_divider are grouped under a preamble section
+    named from the first entry of the optional top-level ``sections:`` key, or
+    "Introduction" if that key is absent.
+
+    The section_divider slide itself is the first slide of its section.
+    """
+    P14_NS = "http://schemas.microsoft.com/office/powerpoint/2010/main"
+    PML_NS = "http://schemas.openxmlformats.org/presentationml/2006/main"
+    EXT_URI = "{521415D9-36F7-43E2-AB2F-B90AF26B5E84}"
+
+    slides_list = deck_spec.get("slides", [])
+
+    # Get the integer slide IDs from the presentation XML (same order as slides)
+    sldIdLst_el = prs.element.find(f"{{{PML_NS}}}sldIdLst")
+    if sldIdLst_el is None:
+        print("[sections] WARNING: Could not find sldIdLst in presentation XML — skipping sections.")
+        return
+    slide_ids = [int(el.get("id")) for el in sldIdLst_el.findall(f"{{{PML_NS}}}sldId")]
+
+    if len(slide_ids) != len(slides_list):
+        print(f"[sections] WARNING: slide count mismatch ({len(slide_ids)} vs {len(slides_list)}) — skipping sections.")
+        return
+
+    # Name for slides before the first section_divider
+    top_sections = deck_spec.get("sections", [])
+    preamble_name = top_sections[0].get("name", "Introduction") if top_sections else "Introduction"
+
+    # Group slides by section_divider boundaries
+    groups: list[tuple[str, list[int]]] = []  # (name, [slide_0based_indices])
+    current_name = preamble_name
+    current_indices: list[int] = []
+
+    for idx, slide_spec in enumerate(slides_list):
+        if slide_spec.get("modality") == "section_divider":
+            if current_indices:
+                groups.append((current_name, current_indices))
+            current_name = slide_spec.get("fields", {}).get("title", f"Section {len(groups) + 1}")
+            current_indices = [idx]
+        else:
+            current_indices.append(idx)
+
+    if current_indices:
+        groups.append((current_name, current_indices))
+
+    if not groups:
+        return
+
+    # Build <p14:sectionLst> XML
+    sectionLst = etree.Element(f"{{{P14_NS}}}sectionLst")
+    for section_name, indices in groups:
+        sec_el = etree.SubElement(
+            sectionLst,
+            f"{{{P14_NS}}}section",
+            name=section_name,
+            id="{" + str(uuid.uuid4()).upper() + "}",
+        )
+        sldId_lst = etree.SubElement(sec_el, f"{{{P14_NS}}}sldIdLst")
+        for i in indices:
+            if i < len(slide_ids):
+                etree.SubElement(sldId_lst, f"{{{P14_NS}}}sldId", id=str(slide_ids[i]))
+
+    # Inject into presentation extLst, replacing any pre-existing section ext
+    extLst = prs.element.find(f"{{{PML_NS}}}extLst")
+    if extLst is None:
+        extLst = etree.SubElement(prs.element, f"{{{PML_NS}}}extLst")
+
+    for ext in extLst.findall(f"{{{PML_NS}}}ext"):
+        if ext.get("uri") == EXT_URI:
+            extLst.remove(ext)
+            break
+
+    ext_el = etree.SubElement(extLst, f"{{{PML_NS}}}ext", uri=EXT_URI)
+    ext_el.append(sectionLst)
+
+    print(f"[sections] Injected {len(groups)} PowerPoint sections: {[g[0] for g in groups]}")
+
+
 def render_deck(
     template_path: str,
     yaml_path: str,
@@ -407,6 +492,7 @@ def render_deck(
     for slide_spec in deck_spec["slides"]:
         add_slide_from_spec(prs, slide_spec, yaml_base, registry)
 
+    _inject_pptx_sections(prs, deck_spec)
     save_presentation_safely(prs, output_path)
     print(f"\nGenerated deck: {output_path}")
 

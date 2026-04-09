@@ -29,12 +29,12 @@ MODALITY_CONSTRAINTS: dict[str, dict] = {
     # four_pillars → "title, text (four columns)" : 4 × 2.01" narrow
     "four_pillars": {
         "max_bullets": 5,          # per column; physical max ~12, exec readability = 5
-        "max_bullet_chars": 60,    # ~58 chars fit on one line in a 2.01" column
+        "max_bullet_chars": 90,    # body lines wrap across the 2.01" column; 90 chars is safe
     },
     # case_study → "case study 1: title, text (two columns), half-image" : 2 × 2.01" narrow
     "case_study": {
         "max_bullets": 8,          # case studies benefit from more detail
-        "max_bullet_chars": 60,
+        "max_bullet_chars": 90,
     },
 
     # --- Wide single-column layouts (4.51" × 4.70") --------------------------

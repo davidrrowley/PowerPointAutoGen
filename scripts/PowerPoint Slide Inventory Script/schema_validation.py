@@ -35,6 +35,15 @@ def validate_deck_structure(deck_spec: dict[str, Any], base_dir: Path | None = N
     if not isinstance(deck_spec, dict):
         raise ValueError("Deck spec must be a dictionary.")
 
+    # Optional top-level sections key
+    sections = deck_spec.get("sections")
+    if sections is not None:
+        if not isinstance(sections, list):
+            raise ValueError("Top-level 'sections' must be a list.")
+        for j, sec in enumerate(sections, start=1):
+            if not isinstance(sec, dict) or "name" not in sec:
+                raise ValueError(f"sections[{j}]: each section must be a dict with at least a 'name' key.")
+
     slides = deck_spec.get("slides")
     if not isinstance(slides, list) or not slides:
         raise ValueError("Deck spec must contain a non-empty 'slides' list.")

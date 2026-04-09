@@ -54,22 +54,25 @@ following the slide generation rules provided.
 
 CRITICAL OUTPUT RULES:
 1. Output ONLY raw YAML — no markdown fences, no commentary, no preamble.
-2. Start your response with exactly: slides:
-3. Every slide MUST have `modality:` and `fields:` as top-level keys.
-4. YAML RULE: Any string value containing ': ' (colon-space) MUST be \
+2. Start your response with exactly: sections:
+3. The YAML must have TWO top-level keys in order: `sections:` then `slides:`.
+4. `sections:` is a list of objects, each with `name:` (the section heading) \
+   and `theme:` (one sentence describing the section's purpose).
+5. Every slide MUST have `modality:` and `fields:` as top-level keys.
+6. YAML RULE: Any string value containing ': ' (colon-space) MUST be \
    wrapped in double quotes. Example: title: "Joint proposition: scale and value"
-5. Titles must be ≤14 words.
-6. Bullet limits by modality:
-   - four_pillars columns/pillars:  ≤60 chars each, ≤5 per column
+7. Titles must be ≤14 words.
+8. Bullet limits by modality:
+   - four_pillars columns/pillars:  ≤90 chars each, ≤5 per column
    - case_study body_left/body_right: ≤60 chars each, ≤8 per side
    - options_considered, next_steps, hypothesis_success_criteria: ≤120 chars, ≤8 per side
    - All other content slides: ≤120 chars, ≤7 bullets
    - index_slide sections: ≤80 chars, ≤14 items
-7. four_pillars MUST have exactly 4 items in `columns` or `pillars`.
-8. `points` and `columns` fields MUST have exactly 4 items.
-9. Use `body_left` + `body_right` for two-column layouts.
-10. Vary field shapes — do NOT use `body: [list]` for every slide.
-11. Add `notes:` (YAML block scalar with |) to every content slide, \
+9. four_pillars MUST have exactly 4 items in `columns` or `pillars`.
+10. `points` and `columns` fields MUST have exactly 4 items.
+11. Use `body_left` + `body_right` for two-column layouts.
+12. Vary field shapes — do NOT use `body: [list]` for every slide.
+13. Add `notes:` (YAML block scalar with |) to every content slide, \
     extracting presenter context from the source document.
 """
 
@@ -88,19 +91,41 @@ _USER_TEMPLATE = """\
 
 ## Deck Brief
 
-Generate a ~28 slide IBM Consulting presentation for the NRW DDaT Framework \
+Generate a 38–42 slide IBM Consulting presentation for the NRW DDaT Framework \
 initial proposal from IBM United Kingdom Ltd and Stable.
 
-The deck must cover these sections in order, separated by section_divider slides:
-1. Cover and agenda
-2. Our joint proposition (IBM + Stable differentiators)
-3. Customer capabilities (IBM core strengths)
-4. Scenario 1 – Customer Platform (discovery approach, architecture, data integration, \
-   delivery model, governance, security)
-5. Scenario 2 – Website Innovation Window (hypothesis-led approach, 4 phases, outputs)
-6. Sustainability and Social Value
-7. Commercial approach
-8. Close (next steps + closing slide)
+CONTENT DENSITY RULES (critical):
+- Every content slide must have 4–7 substantive bullet points (or equivalent content).
+- Do NOT leave slides with only 1–2 bullets — extract more detail from the source document.
+- four_pillars: every pillar MUST have a `title` (≤8 words) AND a `body` (2–3 sentence \
+  explanation, ≤60 chars per line, stored as a list of short lines).
+- operating_model and strategy slides should use `columns` with 4 items each having \
+  a short label and 2–3 supporting bullets.
+- chosen_approach, problem_framing, learnings_constraints: use body_left/body_right, \
+  aim for 5–7 bullets per side.
+- context_statement and section_divider slides are the ONLY ones that may be brief.
+
+The deck must cover these sections in order, separated by section_divider slides.
+Output the following `sections:` block VERBATIM at the top of your YAML, then add \
+`slides:` below it:
+
+sections:
+  - name: "Introduction"
+    theme: "Cover, agenda, and overview of the joint IBM + Stable proposal for NRW."
+  - name: "Section 1: Our Joint Proposition"
+    theme: "Why IBM + Stable is the right partnership — combined strengths and differentiators."
+  - name: "Section 2: Customer Capabilities"
+    theme: "IBM's breadth and depth of DDaT expertise relevant to NRW's challenges."
+  - name: "Section 3: Scenario 1 — Customer Platform"
+    theme: "Discovery approach, architecture, data integration, delivery model, governance, and security for the Customer Platform scenario."
+  - name: "Section 4: Scenario 2 — Website Innovation Window"
+    theme: "Hypothesis-led 4-phase approach, outputs, and success criteria for the Website scenario."
+  - name: "Section 5: Sustainability and Social Value"
+    theme: "IBM and Stable's commitments to net-zero, social value, and NRW's environmental mission."
+  - name: "Section 6: Commercial Approach"
+    theme: "Pricing model, risk-sharing, and commercial terms for the engagement."
+  - name: "Section 7: Close"
+    theme: "Next steps, key contacts, and closing slide."
 
 Presentation attendees (for closing slide contact field):
   Dave Aspden — Stable CEO — dave@stable.co.uk
@@ -113,7 +138,7 @@ columns, strategy with points, hypothesis_success_criteria, chosen_approach with
 body_left/body_right, and learnings_constraints with risk/mitigation columns where \
 they suit the content. Avoid using plain body list slides more than twice in a row.
 
-Output ONLY the raw YAML. Start with: slides:
+Output ONLY the raw YAML. Start with: sections:
 """
 
 
@@ -161,12 +186,16 @@ def _parse_yaml_response(raw: str) -> dict | None:
         text = '\n'.join(inner)
 
     def _has_dict_bullets(parsed: dict) -> bool:
+        """Return True only if a list field contains single-key dicts (broken YAML bullets).
+        Multi-key dicts ({title, body} pillar objects etc.) are valid and must not be flagged."""
         slides = parsed.get('slides', [])
         for s in slides:
             fields = s.get('fields') or {}
-            if any(isinstance(v, list) and any(isinstance(i, dict) for i in v)
-                   for v in fields.values()):
-                return True
+            for v in fields.values():
+                if isinstance(v, list):
+                    for item in v:
+                        if isinstance(item, dict) and len(item) == 1:
+                            return True
         return False
 
     try:

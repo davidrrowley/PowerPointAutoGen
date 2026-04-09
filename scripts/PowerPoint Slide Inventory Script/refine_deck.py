@@ -98,7 +98,7 @@ Rewrite a single slide YAML to fix the issues identified in the critique. You ca
 2. CONTENT — while keeping the core message and facts:
    - Shorten title to ≤14 words
    - Reduce/shorten bullets to fit per-modality limits:
-     four_pillars/case_study ≤60 chars; options_considered/next_steps ≤8 bullets/side ≤120 chars; most slides ≤7 bullets ≤120 chars
+     four_pillars/case_study ≤90 chars; options_considered/next_steps ≤8 bullets/side ≤120 chars; most slides ≤7 bullets ≤120 chars
    - Add bullets if slide is near-empty (aim for ≥3 substantive points on content slides)
    - Paragraph fields (contact, subtitle, body-as-prose): ≤280 chars, 1–2 complete sentences
 

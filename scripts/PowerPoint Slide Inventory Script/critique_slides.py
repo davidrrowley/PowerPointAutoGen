@@ -56,7 +56,7 @@ LAYOUT CHOICE (wrong modality for content type)
 
 CONTENT DENSITY
 - Title: 14 words or fewer
-- four_pillars / case_study (narrow columns): ≤60 characters per bullet
+- four_pillars or case_study (narrow columns): ≤90 characters per bullet
 - options_considered, next_steps, hypothesis (two-column): ≤8 bullets per side, ≤120 chars each
 - Most content slides (wide single-column): ≤7 bullets, ≤120 chars each
 - key_metric: ≤5 bullets, ≤120 chars each
