@@ -212,12 +212,14 @@ def _slide_to_yaml_str(slide: dict) -> str:
 
 
 def _parse_slide_yaml(raw: str) -> dict | None:
-    """Parse LLM response as a YAML slide mapping, stripping code fences if present."""
-    # Strip markdown code fences if present
+    """Parse LLM response as a YAML slide mapping, stripping code fences and <think> blocks."""
+    import re
     text = raw.strip()
+    # Strip <think>...</think> reasoning blocks (o-series / newer models)
+    text = re.sub(r"<think>[\s\S]*?</think>", "", text, flags=re.IGNORECASE).strip()
+    # Strip markdown code fences if present
     if text.startswith("```"):
         lines = text.splitlines()
-        # Remove first and last fence lines
         inner = []
         in_block = False
         for line in lines:
@@ -236,6 +238,25 @@ def _parse_slide_yaml(raw: str) -> dict | None:
     except yaml.YAMLError:
         pass
     return None
+
+
+def _sanitize_slide_fields(slide: dict) -> dict:
+    """Remove empty/null items from all list fields so validators don't trip on LLM slop."""
+    fields = slide.get("fields")
+    if not isinstance(fields, dict):
+        return slide
+    cleaned = {}
+    for key, val in fields.items():
+        if isinstance(val, list):
+            # Keep only non-empty strings; convert other scalar types to str
+            cleaned[key] = [
+                item if isinstance(item, str) else str(item)
+                for item in val
+                if item is not None and str(item).strip()
+            ]
+        else:
+            cleaned[key] = val
+    return {**slide, "fields": cleaned}
 
 
 # ---------------------------------------------------------------------------
@@ -281,6 +302,8 @@ def rewrite_slide_with_llm(
         )
         return slide
 
+    improved = _sanitize_slide_fields(improved)
+
     # Validate required fields; if missing, retry up to 2 more times with an error hint
     from schema_validation import REQUIRED_FIELDS_BY_MODALITY
     for attempt in range(3):
@@ -321,6 +344,7 @@ def rewrite_slide_with_llm(
                 file=sys.stderr,
             )
             return slide
+        improved = _sanitize_slide_fields(improved)
 
     # Preserve existing notes (append LLM rewrite marker)
     existing_notes = slide.get("notes", "")
