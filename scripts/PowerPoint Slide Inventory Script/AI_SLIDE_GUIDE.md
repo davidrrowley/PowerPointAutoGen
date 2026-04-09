@@ -7,9 +7,15 @@ valid YAML deck file that the PowerPoint render script can turn into a `.pptx` f
 
 ## 1. What you are producing
 
-A YAML file with a `slides:` list. Each entry is one slide. The script reads the YAML,
-selects the right IBM Consulting template layout, writes the text into the correct
-placeholders, and saves a `.pptx` file.
+A YAML file with two top-level keys:
+
+- **`sections:`** — an ordered list of the deck's major sections (name + one-sentence theme). The
+  renderer uses this to create named sections in the PowerPoint slide panel, making navigation
+  and delegation easy. Each `section_divider` slide in the `slides:` list starts a new section.
+- **`slides:`** — the ordered list of slides. Each entry is one slide.
+
+The script reads the YAML, selects the right IBM Consulting template layout, writes the text
+into the correct placeholders, injects the PowerPoint section groupings, and saves a `.pptx` file.
 
 ---
 
@@ -30,6 +36,13 @@ The `--template` argument is optional if you accept the default template on your
 ## 3. Top-level YAML structure
 
 ```yaml
+sections:
+  - name: "Introduction"
+    theme: "Cover and agenda — sets context for the whole presentation."
+  - name: "Section 1: Our Approach"
+    theme: "How we propose to tackle the problem and why this model works."
+  # one entry per major section of the deck
+
 slides:
   - modality: <modality_name>
     fields:
@@ -44,6 +57,18 @@ slides:
     fields:
       ...
 ```
+
+### `sections:` key (required)
+
+- Must appear **before** `slides:` in the file.
+- One entry per major section of the deck.
+- Each entry must have:
+  - `name` — the section heading shown in the PowerPoint slide panel (e.g. `"Section 1: Our Approach"`)
+  - `theme` — one sentence summarising what this section covers (used as a prompt guide; not rendered on slides)
+- The renderer maps sections to slides using `section_divider` modality slides as boundaries:
+  - Slides **before** the first `section_divider` belong to `sections[0]` (typically "Introduction").
+  - Each `section_divider` slide starts the next section in order.
+  - The number of `sections:` entries should equal the number of `section_divider` slides plus one.
 
 Every slide **must** have a `modality` key and a `fields` dictionary.
 The `notes` key is **optional** — when present, its value is written into the
@@ -677,12 +702,30 @@ Paste sections 3–6 of this guide into your prompt, then add something like:
 
 > "Using only the modalities, fields, and constraints described above, generate a
 > YAML deck file for a [X]-slide presentation about [topic].
+> Output TWO top-level keys in order: `sections:` then `slides:`.
 > Each slide must have a `modality` key and a `fields` dictionary.
 > Titles must be ≤14 words.
 > For `four_pillars` and `case_study`: bullets ≤60 characters, ≤5 or ≤8 per column.
 > For `options_considered`, `next_steps`, `hypothesis_success_criteria`: bullets ≤120 characters, ≤8 per side.
 > For all other content slides: bullets ≤120 characters, ≤7 per slide.
 > Output only the raw YAML, no markdown fences, no commentary."
+
+### Specifying sections upfront
+
+To give the AI structural guidance, list your intended sections explicitly in the prompt:
+
+> "The deck must cover these sections in order. Output a `sections:` block at the top of
+> the YAML with one entry per section (keys: `name`, `theme`), then output the `slides:`
+> list below it. Place a `section_divider` slide at the start of each section (except
+> the Introduction). Sections:
+> 1. Introduction — cover, agenda
+> 2. Section 1: [name] — [one-sentence theme]
+> 3. Section 2: [name] — [one-sentence theme]
+> ..."
+
+The AI will output the `sections:` block verbatim and insert matching `section_divider`
+slides at the right points in the `slides:` list. The renderer then uses this to create
+named section groups visible in the PowerPoint slide panel.
 
 ### Adding speaker notes from a source document
 
@@ -720,6 +763,12 @@ print('All checks passed.')
 ## 9. Complete minimal example deck
 
 ```yaml
+sections:
+  - name: "Introduction"
+    theme: "Cover and agenda — sets the scene for the proposal."
+  - name: "Section 1: Our Understanding"
+    theme: "The challenge NRW faces and the opportunity this creates."
+
 slides:
   - modality: title_slide
     fields:

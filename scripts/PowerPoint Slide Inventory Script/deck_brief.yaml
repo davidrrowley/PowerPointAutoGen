@@ -1,0 +1,142 @@
+# deck_brief.yaml
+# ────────────────────────────────────────────────────────────────────────────
+# Per-engagement configuration for generate_deck_yaml.py.
+# Edit this file to change the sections, contacts, slide targets and per-
+# section content guidance without touching the generator script.
+#
+# Usage:
+#   python generate_deck_yaml.py --brief deck_brief.yaml --output my_deck.yaml
+# ────────────────────────────────────────────────────────────────────────────
+
+meta:
+  # Short description used in the deck brief sent to the LLM.
+  client: "Natural Resources Wales (NRW)"
+  project: "DDaT Framework — Initial Proposal"
+  authors: "IBM United Kingdom Ltd and Stable"
+
+  # Target slide count range (sent verbatim to the LLM).
+  slide_target: "38–42"
+
+  # Default output filename when --output is not supplied.
+  output_file: "ibm_nrw_v3.yaml"
+
+
+# Win themes ─────────────────────────────────────────────────────────────────
+# Strategic messages that should be reinforced consistently across the deck.
+# Each entry has:
+#   theme   – The win theme headline (short, punchy).
+#   detail  – One sentence explaining how to express it in the content.
+#             (Optional, but helps the LLM use it effectively.)
+
+win_themes:
+  - theme: "Only team that combines global IBM scale with local Welsh delivery"
+    detail: >
+      IBM brings enterprise-grade Microsoft/Azure capability and AI; Stable brings
+      Cardiff-based teams, Welsh-language fluency, and deep NRW cultural alignment.
+
+  - theme: "Proven, not promised — reference delivery, not theory"
+    detail: >
+      Ground every claim in concrete IBM and Stable case studies, named technologies
+      already deployed, and measurable outcomes from comparable public sector clients.
+
+  - theme: "Low risk, high velocity — structured discovery before commitment"
+    detail: >
+      Emphasise the phased, hypothesis-led approach that de-risks investment:
+      discovery outputs gate downstream spend so NRW retains control.
+
+  - theme: "Digital transformation aligned to NRW's environmental mission"
+    detail: >
+      Connect every capability (AI, cloud, data) back to NRW's stewardship purpose:
+      better data = better environmental decisions, not just IT modernisation.
+
+  - theme: "Sustainable and socially responsible supply chain"
+    detail: >
+      IBM's net-zero commitments plus Stable's Welsh community investment, internship
+      pathways, and charity partnerships deliver measurable social value under the contract.
+
+
+# Contacts that appear on the closing / thank-you slide.
+contacts:
+  - name: "Dave Aspden"
+    role: "Stable CEO"
+    email: "dave@stable.co.uk"
+  - name: "Phil Davenport"
+    role: "IBM Client Delivery Partner"
+    email: "philip.davenport@ibm.com"
+  - name: "David Rowley"
+    role: "IBM Microsoft Practice CTO"
+    email: "david.rowley@ibm.com"
+  - name: "Ryan Lewis"
+    role: "Stable CTO/MD"
+    email: "ryan@stable.co.uk"
+
+
+# Sections ────────────────────────────────────────────────────────────────────
+# Each entry becomes both a section_divider slide and a `sections:` entry in
+# the generated YAML deck.
+#
+# Fields:
+#   name         – Exact heading shown on the divider slide. Required.
+#   theme        – One sentence describing the section's purpose.    Required.
+#   slide_target – Optional range hint sent to the LLM ("7–10", "4–6", etc.).
+#                  Leave out or set null for intro/close sections.
+#   guidance     – Optional freeform text block giving the LLM content
+#                  direction for this section: what topics to cover, which
+#                  modalities to favour, what data to draw from the source doc.
+#                  Supports multi-line YAML block scalars (use |).
+
+sections:
+
+  - name: "Introduction"
+    theme: >-
+      Cover and agenda — sets the context for the joint IBM and Stable response
+      to the NRW ISIP.
+    # No slide_target or guidance — keep intro short
+
+  - name: "Section 1: IBM & Stable Joint Proposition"
+    theme: >-
+      Why IBM and Stable together — our combined differentiators, delivery model,
+      and why we are the right partnership for NRW's digital transformation.
+    slide_target: "7–10"
+    guidance: |
+      Cover the joint delivery model, IBM capabilities (Microsoft/Azure, AI, data,
+      cloud), Stable's local Welsh expertise, combined differentiators, case studies
+      or reference clients, and the team who will deliver.
+
+  - name: "Section 2: Scenarios 1 & 2"
+    theme: >-
+      Our detailed technical and delivery approach to both scenarios: the Customer
+      Platform and the Website Innovation Window — discovery, architecture, data,
+      delivery model, governance, and security.
+    slide_target: "14–18"
+    guidance: |
+      Scenario 1 (Customer Platform): discovery approach, as-is architecture,
+      proposed target architecture, data integration strategy, delivery phases,
+      governance model, security and resilience, benefits and success criteria.
+      Scenario 2 (Website Innovation Window): hypothesis-led approach, 4-phase plan,
+      outputs per phase, user research methods, technology choices, success criteria.
+      Use architecture_view, hypothesis_success_criteria, chosen_approach, strategy,
+      and operating_model modalities heavily in this section.
+
+  - name: "Section 3: Commercial Overview"
+    theme: >-
+      Pricing structure, risk-sharing model, assumptions, and commercial terms for
+      the engagement.
+    slide_target: "4–6"
+    guidance: |
+      Pricing per scenario (day rates, team composition, estimated total), risk and
+      assumptions, what is and isn't included, payment milestones, call-off mechanism.
+
+  - name: "Section 4: Sustainability & Social Value"
+    theme: >-
+      IBM and Stable's commitments to net-zero, Welsh-language capability, social
+      value, community benefit, and NRW's environmental mission.
+    slide_target: "4–6"
+    guidance: |
+      Net-zero commitments, Welsh-language service delivery, social value metrics,
+      community benefit activities, alignment with NRW's environmental stewardship
+      mission.
+
+  - name: "Close"
+    theme: "Next steps, key contacts, and closing IBM brand slide."
+    # No slide_target or guidance — keep close short

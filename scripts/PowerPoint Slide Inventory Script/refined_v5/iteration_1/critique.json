@@ -1,0 +1,574 @@
+[
+  {
+    "slide_number": 1,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 2,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Agenda bullets are not well aligned and the modality could be improved with a two-column layout for clearer segmentation of topics."
+    ],
+    "suggestions": [
+      "Use a two-column agenda layout to separate topics if possible; ensure bullet alignment for greater clarity."
+    ],
+    "overall_score": 7
+  },
+  {
+    "slide_number": 3,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 4,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Title exceeds 14 words",
+      "Title is cut off and incomplete, key message unclear"
+    ],
+    "suggestions": [
+      "Shorten the title to 14 words or fewer and ensure it is complete",
+      "Make the main message clear; avoid being cut off"
+    ],
+    "overall_score": 5
+  },
+  {
+    "slide_number": 5,
+    "layout_assessment": "good",
+    "issues": [
+      "Bullets are nested within single quotes, not standard bullet style",
+      "Bullets exceed 90 characters in some columns",
+      "Column content is unbalanced—some are less than 3 points"
+    ],
+    "suggestions": [
+      "Rewrite points as standard bullet statements, remove single quotes",
+      "Shorten bullet text to ≤90 characters for narrow columns",
+      "Ensure each pillar has at least 3 concise bullets, or consolidate if content is sparse"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 6,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Bullet points per column exceed 8",
+      "Some bullets approach or exceed 120 characters",
+      "No clear separation or headings between columns"
+    ],
+    "suggestions": [
+      "Reduce bullets per column to a maximum of 8",
+      "Shorten lengthy bullets to ≤120 characters",
+      "Consider using column headings for clarity or grouping similar points"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 7,
+    "layout_assessment": "good",
+    "issues": [
+      "Eight bullets per column may create slight content density, but each is under 120 characters.",
+      "Bullets on both sides are not perfectly parallel in structure."
+    ],
+    "suggestions": [
+      "Edit bullet wording to improve parallelism and concise phrasing.",
+      "Consider grouping or prioritizing bullets if a stronger key message is needed."
+    ],
+    "overall_score": 8
+  },
+  {
+    "slide_number": 8,
+    "layout_assessment": "good",
+    "issues": [
+      "The slide is nearly empty aside from the big-text statement.",
+      "No further supporting content provided apart from the title and large text."
+    ],
+    "suggestions": [
+      "Add a short supporting statement or visual if needed to reinforce the main point.",
+      "Ensure the slide is purposeful as a transition or big message slide."
+    ],
+    "overall_score": 7
+  },
+  {
+    "slide_number": 9,
+    "layout_assessment": "good",
+    "issues": [
+      "Column content varies in length and level of detail, affecting parallelism.",
+      "The bullet character count and column wording for 'Cloud & DevOps' and 'Platforms & Integration' are a bit dense but within guideline."
+    ],
+    "suggestions": [
+      "Refine bullet points for uniform length and clarity across columns.",
+      "Consider splitting overly dense points into separate, clearer bullets if space allows."
+    ],
+    "overall_score": 8
+  },
+  {
+    "slide_number": 10,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 11,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 12,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 13,
+    "layout_assessment": "good",
+    "issues": [
+      "No issues identified. Section divider modality is appropriate for this content."
+    ],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 14,
+    "layout_assessment": "good",
+    "issues": [
+      "No issues identified. Big-text layout matches single strong statement intent."
+    ],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 15,
+    "layout_assessment": "good",
+    "issues": [
+      "No significant issues. Four-column layout matches four parallel points. Content is concise and within character limits. Title accurately reflects slide content."
+    ],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 16,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Bullet points are not strongly parallel in structure; mix of actions and outcomes.",
+      "Title could be more concise and actionable.",
+      "Some bullets approach 90 characters, risking density overrun."
+    ],
+    "suggestions": [
+      "Edit bullets for greater parallelism (e.g., starting with verbs for all actions).",
+      "Consider shortening the title to 'Discovery Phase Delivery Approach'.",
+      "Condense or combine bullets to increase clarity and brevity."
+    ],
+    "overall_score": 7
+  },
+  {
+    "slide_number": 17,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Title splits over two lines and could be clearer.",
+      "Bullets mix description of problems and causes—some lack parallelism.",
+      "Slide is visually empty on the left half."
+    ],
+    "suggestions": [
+      "Rephrase title for conciseness, e.g., 'Current State: Data & Journey Fragmentation'.",
+      "Edit bullets for more consistent structure (e.g., 'Lack of...').",
+      "If possible, add brief summarizing text or a diagram to the left."
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 18,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Bullets mix technical components and design principles; lack parallelism.",
+      "Title slightly exceeds 14 words.",
+      "Slide is visually empty on the left."
+    ],
+    "suggestions": [
+      "Edit bullets into consistent structure, e.g., group by 'Layer' or 'Principle' and use similar phrasing.",
+      "Shorten title, e.g., 'Target Architecture: Microsoft-Aligned Platform'.",
+      "Consider adding a brief summary or visual of the architecture layers on the left."
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 19,
+    "layout_assessment": "good",
+    "issues": [
+      "Bullet content in each pillar exceeds 90 characters",
+      "Some pillar titles are unclear (e.g., Security & Operability does not immediately signal architectural principle)",
+      "Single quotes around bullet text are unnecessary and reduce readability"
+    ],
+    "suggestions": [
+      "Edit pillar bullet points for brevity, aiming for less than 90 characters each",
+      "Use clearer, more principle-focused pillar titles",
+      "Remove single quotes and rephrase bullets for clarity and directness"
+    ],
+    "overall_score": 7
+  },
+  {
+    "slide_number": 20,
+    "layout_assessment": "good",
+    "issues": [
+      "Left column contains 7 bullets, which is at the upper limit for column density",
+      "Some bullets in left column are lengthy and exceed 120 characters",
+      "Column balance is good, but bullet phrasing could be more parallel and concise"
+    ],
+    "suggestions": [
+      "Shorten and clarify bullets, ensuring they stay under 120 characters",
+      "Consider merging similar points to reduce bullet count",
+      "Rephrase bullets for parallel structure and clarity"
+    ],
+    "overall_score": 8
+  },
+  {
+    "slide_number": 21,
+    "layout_assessment": "good",
+    "issues": [
+      "Some bullets in both columns exceed 120 characters",
+      "Several bullets could be restated for more concise, parallel structure",
+      "Title is long but within acceptable limits"
+    ],
+    "suggestions": [
+      "Edit bullets to fit within 120 characters",
+      "Rephrase for brevity and parallelism",
+      "Consider simplifying the title to improve readability"
+    ],
+    "overall_score": 8
+  },
+  {
+    "slide_number": 22,
+    "layout_assessment": "good",
+    "issues": [
+      "Slide is nearly empty; lacks content for each phase.",
+      "No supporting details or actions under each phase heading."
+    ],
+    "suggestions": [
+      "Add at least one concise bullet or key action beneath each phase to illustrate the roadmap.",
+      "Ensure the slide is meaningfully filled for each column to provide guidance or reference."
+    ],
+    "overall_score": 2
+  },
+  {
+    "slide_number": 23,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Four columns are used for three governance levels plus risk management, which may not be conceptually parallel.",
+      "No bullets or descriptions provided under each heading; slide appears empty."
+    ],
+    "suggestions": [
+      "Add concise content beneath each column heading, describing the responsibilities or role at each governance level.",
+      "Clarify if risk management is a fourth pillar or integrated across the other levels."
+    ],
+    "overall_score": 3
+  },
+  {
+    "slide_number": 24,
+    "layout_assessment": "good",
+    "issues": [
+      "Content density is acceptable, but the bullets could be grouped visually (risks vs mitigations) for clarity.",
+      "Title is somewhat broad; could be refined for focus."
+    ],
+    "suggestions": [
+      "Consider using visual dividers or labels (e.g., 'Risks', 'Mitigations') above each column for clearer differentiation.",
+      "Revise the title to specify context if possible, e.g., 'Key Data Migration Risks and Mitigations'."
+    ],
+    "overall_score": 8
+  },
+  {
+    "slide_number": 25,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Bullet points are clear but could be grouped or categorized for improved readability",
+      "Slide feels slightly unbalanced due to left-aligned title and dense right bullet list"
+    ],
+    "suggestions": [
+      "Consider grouping bullet points under subheadings or logical categories if space allows",
+      "Add a brief introductory summary to the left side to balance slide visually"
+    ],
+    "overall_score": 7
+  },
+  {
+    "slide_number": 26,
+    "layout_assessment": "good",
+    "issues": [
+      "Content is concise but columns could benefit from more detail or examples"
+    ],
+    "suggestions": [
+      "Expand with a brief example or outcome for each phase to enrich the narrative"
+    ],
+    "overall_score": 9
+  },
+  {
+    "slide_number": 27,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "High content density: 8 bullets per column, risking information overload",
+      "Bullets could be grouped by theme for clarity"
+    ],
+    "suggestions": [
+      "Reduce to the most important points per column or combine overlapping items",
+      "Group similar bullet points under short subheadings if possible"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 28,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Bullet points in both columns exceed ideal parallelism; each point is relatively clear but many could be made more concise.",
+      "Some bullets are close to or just over 90 characters, which is high for dense two-column layouts.",
+      "Title is slightly verbose and could be trimmed."
+    ],
+    "suggestions": [
+      "Rewrite bullets for greater parallel structure and brevity.",
+      "Trim the title (e.g., 'Innovation Window: Hypotheses & Success Criteria').",
+      "Review each bullet for clarity and reduce length where possible."
+    ],
+    "overall_score": 7
+  },
+  {
+    "slide_number": 29,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Slide uses a four-column layout but contains only one header per column with no supporting details.",
+      "Slide content is nearly empty, lacking description of roles or responsibilities."
+    ],
+    "suggestions": [
+      "Add brief descriptions or responsibilities under each team category to avoid near-empty columns.",
+      "Ensure each column contains substantive information (≤90 characters per column item)."
+    ],
+    "overall_score": 3
+  },
+  {
+    "slide_number": 30,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Bullet points are mostly parallel and short, but some are approaching the 90-character limit.",
+      "Title could be shortened slightly for clarity."
+    ],
+    "suggestions": [
+      "Consider merging or rewording similar bullets to enhance clarity and reduce length.",
+      "Shorten title to 'Innovation Window: Risks & Mitigations' for conciseness."
+    ],
+    "overall_score": 7
+  },
+  {
+    "slide_number": 31,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Text is oversized and breaks awkwardly across lines, making it hard to read",
+      "Bullet point content is incomplete ('Validated hypoth' appears cut off)",
+      "Title is acceptable in length but does not effectively summarize the content",
+      "Slide appears near-empty except for one incomplete bullet"
+    ],
+    "suggestions": [
+      "Resize or reformat text so it fits within the placeholder and is fully readable",
+      "Complete the bullet point ('Validated hypothesis')",
+      "Consider using a big-text layout for a single strong point, or add more bullets for context",
+      "Ensure content is concise and key messages are clear"
+    ],
+    "overall_score": 2
+  },
+  {
+    "slide_number": 32,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Slide is near-empty except for the section title",
+      "No content provided to transition effectively into the commercial overview section"
+    ],
+    "suggestions": [
+      "Add a visual element or brief introductory sentence if space allows to signal transition",
+      "If this is a section divider, ensure it uses the designated modality for section transitions"
+    ],
+    "overall_score": 4
+  },
+  {
+    "slide_number": 33,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Text is excessively large and splits awkwardly between lines",
+      "Content is a single statement but layout does not effectively highlight or center the message",
+      "No supporting points, context, or visual cues"
+    ],
+    "suggestions": [
+      "Use a big-text layout centered for strong statements",
+      "Reduce text size for better readability and visual balance",
+      "Add a subtitle or a brief supporting explanation if space permits"
+    ],
+    "overall_score": 3
+  },
+  {
+    "slide_number": 34,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Three commercial models are presented but use an awkward 2x2 grid layout rather than a simple three-column or three-bullet layout",
+      "The slide's left side has only a single supporting sentence, creating visual imbalance and underuse of space",
+      "Commercial model bullets exceed 90 characters in some cases for a narrow column"
+    ],
+    "suggestions": [
+      "Reformat as a three-column layout or concise three-bullet list to clearly highlight the three commercial models",
+      "Move the supporting text to an introductory bullet or use a big-text modality for clarity",
+      "Shorten commercial model descriptions to fit within 90 characters if using narrow columns"
+    ],
+    "overall_score": 5
+  },
+  {
+    "slide_number": 35,
+    "layout_assessment": "good",
+    "issues": [
+      "Bullet count is borderline high with 7 per column, but within guidance",
+      "Some bullets could be improved for conciseness and parallel structure"
+    ],
+    "suggestions": [
+      "Edit bullets for parallel structure (e.g., all starting with action or outcome terminology)",
+      "Shorten and clarify bullets where possible to enhance readability"
+    ],
+    "overall_score": 8
+  },
+  {
+    "slide_number": 36,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Slide has only one column of bullets, but the content leans toward a comparison of two scenarios, which could use a two-column layout",
+      "Some bullet points are wordy, approaching the 120-character limit"
+    ],
+    "suggestions": [
+      "Consider reformulating as a two-column comparison for Scenario 1 and Scenario 2 if the intent is to contrast them",
+      "Shorten and clarify bullets to stay well within character limits"
+    ],
+    "overall_score": 7
+  },
+  {
+    "slide_number": 37,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 38,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 39,
+    "layout_assessment": "good",
+    "issues": [
+      "Near-empty slide; section divider modality has minimal content"
+    ],
+    "suggestions": [
+      "Consider adding a brief summary or visual cue to reinforce section transition"
+    ],
+    "overall_score": 8
+  },
+  {
+    "slide_number": 40,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 41,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 42,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Content is truncated and unreadable ('Headq uartere d in').",
+      "Text overflows its placeholder.",
+      "Only one incomplete bullet; slide is nearly empty."
+    ],
+    "suggestions": [
+      "Reduce font size or revise bullet so full text fits within placeholder.",
+      "Add additional content to fill out the slide or combine with previous slide if minimal content remains.",
+      "Ensure message is clear, concise, and not split awkwardly."
+    ],
+    "overall_score": 2
+  },
+  {
+    "slide_number": 43,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 44,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 45,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 46,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Slide is nearly empty, only contains the word 'Close'",
+      "Not sufficient content for a full slide",
+      "Title lacks context or explanation"
+    ],
+    "suggestions": [
+      "Expand with a closing statement or summary",
+      "Consider using a section divider layout if meant as a transition",
+      "Clarify purpose of the slide"
+    ],
+    "overall_score": 2
+  },
+  {
+    "slide_number": 47,
+    "layout_assessment": "good",
+    "issues": [
+      "Title is slightly generic",
+      "Each column has 5 bullets, which is acceptable, but some bullets are >90 characters (should be ≤120 per bullet in two-column layouts)"
+    ],
+    "suggestions": [
+      "Shorten any overly long bullets to ensure clarity",
+      "Consider tightening the title for more specificity"
+    ],
+    "overall_score": 8
+  },
+  {
+    "slide_number": 48,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Slide is sparse, especially for a wide single-column layout",
+      "Contact details take up little visual space",
+      "No closing message or call to action"
+    ],
+    "suggestions": [
+      "Add a closing message or next steps to improve completeness",
+      "Balance content layout for visual appeal"
+    ],
+    "overall_score": 5
+  },
+  {
+    "slide_number": 49,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  }
+]

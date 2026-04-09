@@ -91,55 +91,128 @@ _USER_TEMPLATE = """\
 
 ## Deck Brief
 
-Generate a 38–42 slide IBM Consulting presentation for the NRW DDaT Framework \
-initial proposal from IBM United Kingdom Ltd and Stable.
-
-CONTENT DENSITY RULES (critical):
-- Every content slide must have 4–7 substantive bullet points (or equivalent content).
-- Do NOT leave slides with only 1–2 bullets — extract more detail from the source document.
-- four_pillars: every pillar MUST have a `title` (≤8 words) AND a `body` (2–3 sentence \
-  explanation, ≤60 chars per line, stored as a list of short lines).
-- operating_model and strategy slides should use `columns` with 4 items each having \
-  a short label and 2–3 supporting bullets.
-- chosen_approach, problem_framing, learnings_constraints: use body_left/body_right, \
-  aim for 5–7 bullets per side.
-- context_statement and section_divider slides are the ONLY ones that may be brief.
-
-The deck must cover these sections in order, separated by section_divider slides.
-Output the following `sections:` block VERBATIM at the top of your YAML, then add \
-`slides:` below it:
-
-sections:
-  - name: "Introduction"
-    theme: "Cover, agenda, and overview of the joint IBM + Stable proposal for NRW."
-  - name: "Section 1: Our Joint Proposition"
-    theme: "Why IBM + Stable is the right partnership — combined strengths and differentiators."
-  - name: "Section 2: Customer Capabilities"
-    theme: "IBM's breadth and depth of DDaT expertise relevant to NRW's challenges."
-  - name: "Section 3: Scenario 1 — Customer Platform"
-    theme: "Discovery approach, architecture, data integration, delivery model, governance, and security for the Customer Platform scenario."
-  - name: "Section 4: Scenario 2 — Website Innovation Window"
-    theme: "Hypothesis-led 4-phase approach, outputs, and success criteria for the Website scenario."
-  - name: "Section 5: Sustainability and Social Value"
-    theme: "IBM and Stable's commitments to net-zero, social value, and NRW's environmental mission."
-  - name: "Section 6: Commercial Approach"
-    theme: "Pricing model, risk-sharing, and commercial terms for the engagement."
-  - name: "Section 7: Close"
-    theme: "Next steps, key contacts, and closing slide."
-
-Presentation attendees (for closing slide contact field):
-  Dave Aspden — Stable CEO — dave@stable.co.uk
-  Phil Davenport — IBM Client Delivery Partner — philip.davenport@ibm.com
-  David Rowley — IBM Microsoft Practice CTO — david.rowley@ibm.com
-  Ryan Lewis — Stable CTO/MD — ryan@stable.co.uk
-
-Actively vary the layout. Use four_pillars, architecture_view, operating_model with \
-columns, strategy with points, hypothesis_success_criteria, chosen_approach with \
-body_left/body_right, and learnings_constraints with risk/mitigation columns where \
-they suit the content. Avoid using plain body list slides more than twice in a row.
+{deck_brief}
 
 Output ONLY the raw YAML. Start with: sections:
 """
+
+
+def _build_deck_brief(brief: dict) -> str:
+    """Render the deck brief block from a loaded deck_brief.yaml dict."""
+    meta        = brief.get("meta", {})
+    sections    = brief.get("sections", [])
+    contacts    = brief.get("contacts", [])
+    win_themes  = brief.get("win_themes", [])
+
+    client       = meta.get("client", "the client")
+    project      = meta.get("project", "")
+    authors      = meta.get("authors", "")
+    slide_target = meta.get("slide_target", "38–42")
+
+    lines = []
+
+    # Opening brief sentence
+    who = f" from {authors}" if authors else ""
+    proj = f" for {client} — {project}" if project else f" for {client}"
+    lines.append(
+        f"Generate a {slide_target} slide IBM Consulting presentation{proj}{who}."
+    )
+    lines.append("")
+
+    # Fixed content density rules (not per-engagement, so kept in code)
+    lines += [
+        "CONTENT DENSITY RULES (critical):",
+        "- Every content slide must have 4–7 substantive bullet points (or equivalent content).",
+        "- Do NOT leave slides with only 1–2 bullets — extract more detail from the source document.",
+        "- four_pillars: every pillar MUST have a `title` (≤8 words) AND a `body` (2–3 sentence"
+        "  explanation, ≤60 chars per line, stored as a list of short lines).",
+        "- operating_model and strategy slides should use `columns` with 4 items each having"
+        "  a short label and 2–3 supporting bullets.",
+        "- chosen_approach, problem_framing, learnings_constraints: use body_left/body_right,"
+        "  aim for 5–7 bullets per side.",
+        "- context_statement and section_divider slides are the ONLY ones that may be brief.",
+        "",
+    ]
+
+    # Sections block — output VERBATIM as YAML so the LLM copies it exactly
+    lines.append(
+        "The deck must cover these sections in order, separated by section_divider slides."
+    )
+    lines.append(
+        "Output the following `sections:` block VERBATIM at the top of your YAML,"
+        " then add `slides:` below it:"
+    )
+    lines.append("")
+    lines.append("sections:")
+    for sec in sections:
+        name  = sec.get("name", "")
+        theme = sec.get("theme", "")
+        lines.append(f'  - name: "{name}"')
+        lines.append(f'    theme: "{theme}"')
+    lines.append("")
+
+    # Per-section guidance
+    has_guidance = any(sec.get("guidance") or sec.get("slide_target") for sec in sections)
+    if has_guidance:
+        lines.append("SECTION CONTENT GUIDANCE (use this to determine which slides belong in each section):")
+        lines.append("")
+        for sec in sections:
+            name         = sec.get("name", "")
+            slide_target = sec.get("slide_target")
+            guidance     = sec.get("guidance", "").strip() if sec.get("guidance") else ""
+            if not slide_target and not guidance:
+                continue
+            header = f"{name} ({slide_target} slides):" if slide_target else f"{name}:"
+            lines.append(header)
+            if guidance:
+                for gl in guidance.splitlines():
+                    lines.append(f"  {gl}")
+            lines.append("")
+
+    # Contacts
+    if contacts:
+        lines.append("Presentation attendees (for closing slide contact field):")
+        for c in contacts:
+            name  = c.get("name", "")
+            role  = c.get("role", "")
+            email = c.get("email", "")
+            lines.append(f"  {name} — {role} — {email}")
+        lines.append("")
+
+    # Win themes
+    if win_themes:
+        lines.append("WIN THEMES (weave these messages consistently throughout the deck — do NOT")
+        lines.append("consolidate them onto a single slide; reinforce each in relevant slide notes")
+        lines.append("and body copy wherever natural):")
+        lines.append("")
+        for wt in win_themes:
+            theme  = wt.get("theme", "")
+            detail = wt.get("detail", "").strip() if wt.get("detail") else ""
+            lines.append(f"  • {theme}")
+            if detail:
+                # Wrap detail at ~90 chars
+                words, current = detail.split(), ""
+                wrapped = []
+                for word in words:
+                    if len(current) + len(word) + 1 > 90:
+                        wrapped.append(current)
+                        current = word
+                    else:
+                        current = (current + " " + word).strip()
+                if current:
+                    wrapped.append(current)
+                for wline in wrapped:
+                    lines.append(f"    {wline}")
+        lines.append("")
+
+    lines += [
+        "Actively vary the layout. Use four_pillars, architecture_view, operating_model with",
+        "columns, strategy with points, hypothesis_success_criteria, chosen_approach with",
+        "body_left/body_right, and learnings_constraints with risk/mitigation columns where",
+        "they suit the content. Avoid using plain body list slides more than twice in a row.",
+    ]
+
+    return "\n".join(lines)
 
 
 # ── YAML repair (same logic as refine_deck.py) ────────────────────────────────
@@ -220,12 +293,28 @@ def _parse_yaml_response(raw: str) -> dict | None:
 
 def main():
     parser = argparse.ArgumentParser(description="Generate a YAML deck from source document + guide")
-    parser.add_argument("--output", default="ibm_nrw_v2.yaml", help="Output YAML file path")
-    parser.add_argument("--model",  default="gpt-4.1",         help="LLM model to use")
+    parser.add_argument("--output", default=None,       help="Output YAML file path (overrides brief default)")
+    parser.add_argument("--model",  default="gpt-4.1",  help="LLM model to use")
+    parser.add_argument("--brief",  default=None,       help="Path to deck_brief.yaml (default: deck_brief.yaml next to this script)")
     args = parser.parse_args()
 
     here  = Path(__file__).parent
     guide = (here / "AI_SLIDE_GUIDE.md").read_text(encoding="utf-8")
+
+    # Load deck brief
+    brief_path = Path(args.brief) if args.brief else here / "deck_brief.yaml"
+    if brief_path.exists():
+        with brief_path.open(encoding="utf-8") as f:
+            brief = yaml.safe_load(f)
+        print(f"[generator] Brief:  {brief_path.name}")
+    else:
+        brief = {}
+        if args.brief:
+            print(f"WARNING: --brief file not found: {brief_path}", file=sys.stderr)
+
+    # --output overrides the brief's default_output_file
+    default_output = brief.get("meta", {}).get("output_file", "ibm_nrw_v2.yaml")
+    output = here / (args.output if args.output else default_output)
 
     # Prefer reading the .docx directly so we always use the latest source document.
     # Falls back to extracted_text.txt if python-docx is unavailable or no docx exists.
@@ -250,16 +339,19 @@ def main():
         source = txt_path.read_text(encoding="utf-8")
         source_file = "extracted_text.txt"
 
-    output = here / args.output
-
     print(f"[generator] Model:  {args.model}")
+    print(f"[generator] Brief:  {brief_path.name if brief_path.exists() else '(none)'}")
     print(f"[generator] Output: {output}")
     print(f"[generator] Source: {source_file} ({len(source):,} chars)")
     print(f"[generator] Guide:  {len(guide):,} chars")
+    win_theme_count = len(brief.get('win_themes', []))
+    section_count   = len(brief.get('sections', []))
+    print(f"[generator] Sections: {section_count}  |  Win themes: {win_theme_count}")
     print("[generator] Calling LLM (this may take 30–60 seconds)...")
 
     client = _get_client()
-    user_msg = _USER_TEMPLATE.format(guide=guide, source=source)
+    deck_brief_text = _build_deck_brief(brief)
+    user_msg = _USER_TEMPLATE.format(guide=guide, source=source, deck_brief=deck_brief_text)
 
     response = client.chat.completions.create(
         model=args.model,

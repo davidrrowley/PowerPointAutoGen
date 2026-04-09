@@ -1,0 +1,881 @@
+sections:
+- name: Introduction
+  theme: Cover and agenda — sets the context for the joint IBM and Stable response
+    to the NRW ISIP.
+- name: 'Section 1: IBM & Stable Joint Proposition'
+  theme: Why IBM and Stable together — our combined differentiators, delivery model,
+    and why we are the right partnership for NRW's digital transformation.
+- name: 'Section 2: Scenarios 1 & 2'
+  theme: 'Our detailed technical and delivery approach to both scenarios: the Customer
+    Platform and the Website Innovation Window — discovery, architecture, data, delivery
+    model, governance, and security.'
+- name: 'Section 3: Commercial Overview'
+  theme: Pricing structure, risk-sharing model, assumptions, and commercial terms
+    for the engagement.
+- name: 'Section 4: Sustainability & Social Value'
+  theme: IBM and Stable's commitments to net-zero, Welsh-language capability, social
+    value, community benefit, and NRW's environmental mission.
+- name: Close
+  theme: Next steps, key contacts, and closing IBM brand slide.
+slides:
+- modality: title_slide
+  fields:
+    title: NRW DDaT Framework — Initial Proposal
+    subtitle: IBM Consulting & Stable — Joint Response
+  notes: 'Welcome to the NRW DDaT Framework proposal. This presentation introduces
+    the IBM and Stable partnership, our approach, and how we will deliver value for
+    NRW. We will cover our joint proposition, technical scenarios, commercial model,
+    sustainability, and next steps.
+
+    '
+- modality: index_slide
+  fields:
+    title: Agenda
+    sections:
+    - 1. IBM & Stable Joint Proposition
+    - 2. Scenarios 1 & 2
+    - 3. Commercial Overview
+    - 4. Sustainability & Social Value
+    - 5. Close
+  notes: 'This agenda outlines the journey for today''s session. We will start with
+    our joint value proposition, move through scenario-based delivery approaches,
+    discuss commercial terms, highlight our sustainability and social value commitments,
+    and conclude with next steps.
+
+    '
+- modality: section_divider
+  fields:
+    title: 'Section 1: IBM & Stable Joint Proposition'
+- modality: context_statement
+  fields:
+    title: 'IBM & Stable: Transformation at scale with local impact'
+    notes: Our partnership combines IBM’s global scale and digital expertise with
+      Stable’s local Welsh delivery. Together we deliver complex transformation for
+      NRW, grounded in local context and supported by proven methods.
+  notes: 'Our partnership combines IBM''s global scale and digital expertise with
+    Stable''s local Welsh delivery capability. This enables us to deliver complex
+    transformation for NRW, grounded in local context and supported by world-class
+    methods.
+
+    '
+- modality: four_pillars
+  fields:
+    title: Four pillars of our joint proposition
+    pillars:
+    - title: End-to-End Capability
+      body:
+      - 'Full lifecycle: discovery to live service'
+      - Structured engineering and product delivery
+      - Proven in complex, regulated environments
+    - title: Local Welsh Delivery
+      body:
+      - Stable’s Cardiff-based team
+      - Bilingual and culturally aligned
+      - Deep ties to Welsh public sector
+    - title: Sustainable Transformation
+      body:
+      - Knowledge transfer, not dependency
+      - Embedded capability uplift
+      - Long-term client ownership focus
+    - title: Integrated Approach
+      body:
+      - Strategy, design, engineering, operations
+      - Blended teams with shared accountability
+      - Agile, product-led delivery model
+  notes: 'These pillars underpin our approach for NRW: comprehensive capability, local
+    presence, sustainable outcomes, and integrated delivery. Each pillar is essential
+    for delivering transformation that is robust, relevant, and enduring.
+
+    '
+- modality: chosen_approach
+  fields:
+    title: Our blended IBM and Stable delivery model
+    body_left:
+    - Joint teams embedded with NRW stakeholders
+    - Stable provides local, bilingual expertise
+    - IBM brings global methods and accelerators
+    - Continuous knowledge transfer to NRW
+    - Cultural alignment with Welsh public sector
+    - Structured onboarding and mobilisation
+    - Direct access to Microsoft and AI specialists
+    body_right:
+    - Single-team accountability for outcomes
+    - Shared governance and transparent reporting
+    - Flexible scaling to match demand
+    - Seamless integration of local and global skills
+    - Proven in multi-supplier environments
+    - Focus on operational resilience and compliance
+    - Accelerated delivery through reusable assets
+  notes: 'Our delivery model blends IBM''s scale and Stable''s local knowledge, ensuring
+    NRW benefits from both world-class expertise and Welsh context. Teams are co-located,
+    accountable, and focused on building NRW''s internal capability.
+
+    '
+- modality: problem_framing
+  fields:
+    title: Why IBM & Stable are the right fit for NRW
+    body_left:
+    - Experience in large-scale, regulated transformation
+    - Microsoft ecosystem and Azure specialism
+    - Deep public sector delivery track record
+    - Agile, product-led delivery aligned to GDS
+    - Structured methods for governance and assurance
+    - Proven knowledge transfer and capability uplift
+    - Strong partnership with Welsh-based Stable
+    body_right:
+    - Local presence and bilingual delivery
+    - Understanding of NRW's operational context
+    - Integrated approach, not just resource supply
+    - Sustainable, client-owned outcomes
+    - Track record in complex, multi-stakeholder settings
+    - Ability to scale and flex team composition
+    - Commitment to social value and sustainability
+  notes: 'Our strengths align directly with NRW''s needs: technical depth, public
+    sector experience, local delivery, and a focus on sustainable transformation.
+    We are not just a supplier but a strategic partner for NRW’s digital journey.
+
+    '
+- modality: evidence_results
+  fields:
+    title: Proven delivery in complex public sector environments
+    lead: IBM and Stable have delivered transformation for UK and Welsh public sector
+      organisations.
+    proof_points:
+    - 'Environment Agency: unified data platform in 9 months'
+    - 'DVLA: 30% faster data processing, improved compliance'
+    - 'Welsh charities: digital services for Tŷ Hafan, Llamau'
+    - 'NHS Digital: 18-month integration programme'
+    - 'HMRC: 40% reduction in reporting effort'
+    - 'Stable: local delivery for Welsh public sector'
+    - 'Joint teams: successful knowledge transfer'
+  notes: 'Our track record spans major UK and Welsh public sector clients, demonstrating
+    our ability to deliver at pace and scale. We have successfully modernised data,
+    improved compliance, and built sustainable capability for clients like NRW.
+
+    '
+- modality: four_pillars
+  fields:
+    title: Our principal areas of specialism
+    pillars:
+    - title: Digital Service Design
+      body:
+      - User-centred, inclusive and outcome-driven
+      - GDS-aligned, accessible, bilingual
+      - Research, journey mapping, prototyping
+    - title: Data, Analytics & AI
+      body:
+      - Azure and Microsoft Fabric platforms
+      - Governed, trusted data for analytics
+      - Progression to predictive, AI-enabled decisions
+    - title: Platforms & Integration
+      body:
+      - API-led, modular architectures
+      - Microservices for maintainability
+      - Incremental modernisation across estates
+    - title: Cloud & DevOps
+      body:
+      - Hybrid cloud, DevSecOps, containerisation
+      - Observability and resilience
+      - FinOps for cost and compliance
+  notes: 'Our specialisms cover the full DDaT spectrum: user-centred design, advanced
+    data and AI, robust integration, and secure cloud delivery. These are directly
+    relevant to NRW’s transformation priorities.
+
+    '
+- modality: operating_model
+  fields:
+    title: How our teams work with NRW
+    columns:
+    - 'Blended teams: IBM, Stable and NRW staff'
+    - 'Agile delivery: two-week sprints, show-and-tells'
+    - Continuous knowledge transfer and coaching
+    - 'Local presence: on-site and remote collaboration'
+  notes: 'Our operating model ensures NRW is involved at every stage. Teams are multidisciplinary,
+    agile, and focused on building NRW’s internal capability through hands-on delivery
+    and coaching.
+
+    '
+- modality: case_study
+  fields:
+    title: Stable — Welsh public sector impact
+    body_left:
+    - Local delivery for charities and public sector
+    - Bilingual digital services for Tŷ Hafan, Llamau
+    - Internship pathways with Welsh universities
+    - Community engagement and youth skills
+    - Support for Welsh SMEs and social enterprises
+    body_right:
+    - Cardiff-based team, Welsh-speaking leadership
+    - Deep ties to local communities
+    - Active in DigiGirlz and school partnerships
+    - Proven digital skills development
+    - Track record in sustainable delivery
+    image: assets/stable_logo.png
+  notes: 'Stable brings deep Welsh sector experience, supporting charities, SMEs,
+    and public sector bodies. Their bilingual team delivers real social value and
+    strengthens local skills and employment.
+
+    '
+- modality: key_metric
+  fields:
+    title: Our delivery performance — headline metrics
+    body:
+    - 93% of sprint goals delivered on time
+    - Zero critical defects at Beta launch
+    - 30% faster data processing for DVLA
+    - 18-month delivery for NHS Digital integration
+    - 40% reporting effort reduction at HMRC
+  notes: 'Our delivery is measured, transparent, and consistently high-performing.
+    These metrics reflect our commitment to quality, timeliness, and sustainable outcomes
+    for clients like NRW.
+
+    '
+- modality: section_divider
+  fields:
+    title: 'Section 2: Scenarios 1 & 2'
+- modality: context_statement
+  fields:
+    title: A structured, evidence-led approach for both scenarios
+  notes: 'Our approach to both the Customer Platform and Website Innovation Window
+    is grounded in discovery, evidence, and iterative delivery. We ensure all investment
+    decisions are validated by user need and technical evidence.
+
+    '
+- modality: strategy
+  fields:
+    title: 'Scenario 1: Discovery and shaping approach'
+    points:
+    - User & stakeholder discovery — identify pain points
+    - Technical & architectural assessment — baseline and constraints
+    - Commercial & delivery assessment — phase and sequence
+    - Evidence-based roadmap — inform investment decisions
+  notes: 'Discovery is structured around three parallel activities: understanding
+    users, assessing the technical landscape, and shaping delivery. This ensures the
+    roadmap is grounded in real needs and technical feasibility.
+
+    '
+- modality: chosen_approach
+  fields:
+    title: 'Discovery phase: how we deliver'
+    body_left:
+    - Blended IBM and Stable team with NRW engagement
+    - Co-design workshops and user research
+    - Iterative analysis and rapid prototyping
+    - Continuous validation of assumptions
+    - Agile sprints and show-and-tells
+    - Early mobilisation of delivery readiness
+    - Structured knowledge management
+    body_right:
+    - Prioritised 18–24 month roadmap
+    - Baseline architecture and technical constraints
+    - Sequenced delivery plan for business case
+    - Traceability from user need to investment
+    - Clear governance and team mobilisation
+    - Outcome-based prioritisation frameworks
+    - Evidence for future platform evolution
+  notes: 'The discovery phase is not just shaping but mobilisation. We embed delivery
+    readiness, governance, and ways of working from the start, ensuring NRW can move
+    confidently from discovery to delivery.
+
+    '
+- modality: architecture_view
+  fields:
+    title: 'Current state: fragmented customer data and journeys'
+    body:
+    - Inconsistent customer records across systems
+    - Disconnected data flows between platforms
+    - Fragmented user journeys, no real-time view
+    - Limited integration with live data sources
+    - Manual reconciliation and duplication
+    - Siloed legacy and modern systems
+    - Barriers to analytics and insight
+  notes: 'NRW’s current environment is fragmented, with customer data and journeys
+    split across multiple systems. This creates operational inefficiency, poor user
+    experience, and challenges for integration and analytics.
+
+    '
+- modality: architecture_view
+  fields:
+    title: 'Target architecture: Microsoft-aligned, layered platform'
+    body:
+    - 'Customer Engagement Layer: portals, web, content'
+    - 'Service Management Layer: Dynamics 365 as system of record'
+    - 'Integration Layer: Azure services, API-first, event-driven'
+    - 'Data & Insights Layer: governed, trusted data on Azure'
+    - Separation of concerns for maintainability
+    - Modular, loosely coupled components
+    - Security, privacy, and resilience by design
+  notes: 'The target architecture leverages NRW’s Microsoft estate, with clear separation
+    of engagement, service, integration, and data layers. This enables incremental
+    modernisation and robust, scalable service delivery.
+
+    '
+- modality: four_pillars
+  fields:
+    title: Key architectural principles
+    pillars:
+    - title: Cloud-First, SaaS-Preferred
+      body:
+      - Maximise managed Microsoft services
+      - Limit bespoke infrastructure
+      - Default to scalable, secure cloud
+    - title: Modularity & Loose Coupling
+      body:
+      - Separate experience, logic, integration
+      - API-first, event-driven design
+      - Avoid point-to-point integration
+    - title: Data as a Governed Asset
+      body:
+      - Clear ownership and lineage
+      - Trusted, reusable data products
+      - Interoperability with data platform
+    - title: Security & Operability
+      body:
+      - Zero trust, identity-led design
+      - Observability and resilience built in
+      - Continuous compliance monitoring
+  notes: 'These principles ensure the platform is robust, scalable, and future-proof.
+    Security, modularity, and data governance are embedded from the outset, supporting
+    NRW’s operational and compliance needs.
+
+    '
+- modality: problem_framing
+  fields:
+    title: 'Data integration: addressing fragmentation'
+    body_left:
+    - Inconsistent customer records across platforms
+    - Disconnected data flows and ownership gaps
+    - Fragmented user journeys and service views
+    - Legacy system dependencies
+    - Duplication and poor data quality
+    - No single customer identity
+    - Barriers to real-time analytics
+    body_right:
+    - Map data across CRM, CMS, GIS, legacy
+    - Introduce shared customer identifier
+    - Dynamics 365 as authoritative domain
+    - API-based integration for consistency
+    - Event-driven updates across systems
+    - Progressive data consolidation
+    - Governed data platform for analytics
+  notes: 'Data fragmentation is a core challenge. Our approach maps the landscape,
+    introduces a shared identifier, and progressively integrates and governs data,
+    enabling NRW to move toward a unified customer view.
+
+    '
+- modality: hypothesis_success_criteria
+  fields:
+    title: 'Discovery: hypotheses and success criteria'
+    body_left:
+    - A unified platform will reduce operational friction
+    - API-first integration will improve data consistency
+    - Governed data will support analytics and AI
+    - Modular architecture enables phased delivery
+    - Knowledge transfer will reduce client dependency
+    - Security by design will ensure compliance
+    - Blended teams accelerate capability uplift
+    body_right:
+    - Reduction in duplicated customer records
+    - All key systems integrated via APIs
+    - Trusted data products available for reporting
+    - Incremental delivery of new features
+    - NRW staff leading product teams by end of Alpha
+    - Zero critical security findings at go-live
+    - Sustained team performance post-handover
+  notes: 'Each hypothesis is paired with a measurable outcome, ensuring discovery
+    delivers tangible value and sets NRW up for successful delivery and operation.
+
+    '
+- modality: four_pillars
+  fields:
+    title: Four-phase delivery roadmap for NRW
+    pillars:
+    - title: Discovery
+      body: '6 weeks: map systems, research, prioritise; define hypotheses'
+    - title: Alpha
+      body: Mobilise blended teams; validate technical baseline; sequenced plan
+    - title: Beta
+      body: Pilot teams for value streams; prototype, test, integrate data
+    - title: Live
+      body: Embed KT/coaching; transition to sustainable ops; planned handover
+    notes: Phased delivery moves NRW from discovery to live service in a controlled,
+      evidence-based way, building maturity each phase.
+  notes: 'Our phased roadmap enables NRW to move from discovery through to live service
+    in a controlled, evidence-based manner. Each phase builds on validated outcomes
+    and increases NRW’s delivery maturity.
+
+    '
+- modality: four_pillars
+  fields:
+    title: 'Governance model: aligned strategy, delivery, technical control'
+    pillars:
+    - title: Strategic governance
+      body: 'Monthly executive steering: set direction, outcomes, and alignment.'
+    - title: Programme governance
+      body: 'Fortnightly programme board: milestones, finances, risks, dependencies.'
+    - title: Technical governance
+      body: 'Weekly architecture review: technical consistency, security, compliance.'
+    - title: Risk management
+      body: Live risk registers, threat testing, and contingency/rollback plans.
+  notes: 'Governance is multi-layered, ensuring alignment from strategy to technical
+    detail. Risks are proactively managed, and all decisions are transparent and evidence-based.
+
+    '
+- modality: learnings_constraints
+  fields:
+    title: Key risks and mitigations
+    body_left:
+    - Poor data quality affecting matching accuracy
+    - Hidden dependencies in legacy systems
+    - Integration performance constraints
+    - Security and privacy compliance gaps
+    - Inconsistent ownership of customer data
+    - Limited organisational readiness for change
+    - Service disruption during migration
+    body_right:
+    - Structured data profiling and validation
+    - Dependency mapping and phased migration
+    - Performance testing and monitoring
+    - Zero trust, identity-led security design
+    - Clear data stewardship roles
+    - Change management and coaching
+    - Contingency and rollback planning
+  notes: 'Risks are identified early and addressed through structured mitigation plans.
+    Our approach ensures that technical, organisational, and operational risks are
+    actively managed throughout delivery.
+
+    '
+- modality: architecture_view
+  fields:
+    title: 'Scenario 2: Website innovation — technical context'
+    body:
+    - Umbraco CMS, Microsoft 365 workflows
+    - Azure-hosted services and APIs
+    - Identity via Entra ID and Azure AD B2C
+    - Bilingual content and accessibility requirements
+    - Integration with live and location-based data
+    - Constraints of current estate
+    - Focus on rapid, low-risk experimentation
+  notes: 'The innovation window leverages NRW’s existing web stack, focusing on rapid
+    prototyping and evidence generation within current technical constraints. Bilingual
+    and accessibility needs are core.
+
+    '
+- modality: strategy
+  fields:
+    title: 'Scenario 2: Four-phase innovation plan'
+    points:
+    - 'Explore & Discover: define hypotheses, analyse journeys'
+    - 'Ideate/Co-create: low-cost experiments, prototypes'
+    - 'Design & Build: deepen strongest candidates'
+    - 'Scale/Co-operate: consolidate evidence, inform decisions'
+  notes: 'The 12-week innovation window is structured for rapid learning. Each phase
+    builds evidence, validates ideas, and supports informed decision-making for NRW.
+
+    '
+- modality: chosen_approach
+  fields:
+    title: Hypothesis-led innovation — our approach
+    body_left:
+    - Jointly define testable hypotheses with NRW
+    - Focus on measurable user and organisational problems
+    - Design lightweight experiments, not just ideas
+    - Embed user-centred, bilingual design
+    - Continuous stakeholder engagement
+    - Evidence-based decision making
+    - Rapid disposal of weak ideas
+    body_right:
+    - Prototypes for navigation, search, content
+    - Accessibility and bilingual testing
+    - Live or near-live data integration
+    - Prioritised improvement backlog
+    - Measurement framework for outcomes
+    - Technical feasibility proven early
+    - Clear recommendations for next steps
+  notes: 'Our approach ensures the innovation window delivers actionable evidence,
+    not just artefacts. NRW remains involved throughout, and all work is grounded
+    in operational reality.
+
+    '
+- modality: hypothesis_success_criteria
+  fields:
+    title: 'Innovation window: hypotheses and success criteria'
+    body_left:
+    - Improved navigation reduces user friction
+    - Search relevance increases task completion
+    - Bilingual content parity enhances accessibility
+    - Live data integration supports real-time info
+    - Content structure improves findability
+    - Prototypes align to WCAG 2.2 AA
+    - Stakeholder engagement accelerates decisions
+    body_right:
+    - Measured reduction in failed user journeys
+    - Increased search effectiveness scores
+    - Accessibility compliance verified
+    - Live data displayed in MVP prototypes
+    - Content patterns reused across site
+    - Positive user feedback on bilingual features
+    - Clear evidence for scale or stop decisions
+  notes: 'Each hypothesis is paired with a clear, measurable success criterion. This
+    ensures the 12-week window delivers practical, decision-ready evidence for NRW.
+
+    '
+- modality: four_pillars
+  fields:
+    title: Innovation team roles for rapid, practical delivery
+    pillars:
+    - title: Product & Delivery Leadership
+      body: IBM/Stable leads; align to objectives; coordinate delivery & reporting
+    - title: UX & Content Design
+      body: Research/prototype; bilingual & accessibility; define content patterns
+    - title: Engineering & Data
+      body: Assess feasibility; integrate systems; enable data/AI for experiments
+    - title: NRW Stakeholder Roles
+      body: Sponsors/SMEs; content owners & user access; participate in reviews
+    notes: Multidisciplinary team blends IBM, Stable, and NRW roles to drive rapid
+      progress, practical outputs, and strong engagement across the 12-week sprint.
+  notes: 'The innovation team is multidisciplinary, blending IBM, Stable, and NRW
+    roles. This ensures rapid progress, practical outputs, and strong engagement throughout
+    the 12 weeks.
+
+    '
+- modality: learnings_constraints
+  fields:
+    title: 'Innovation window: risks and mitigations'
+    body_left:
+    - Poorly defined objectives
+    - Limited user access for testing
+    - Technical constraints of current estate
+    - Content model inconsistencies
+    - Accessibility and bilingual gaps
+    - Time pressure for evidence generation
+    - Stakeholder decision delays
+    body_right:
+    - Early hypothesis definition
+    - Secure user and stakeholder engagement upfront
+    - Feasibility testing in initial phase
+    - Structured content and authoring approach
+    - Accessibility and bilingual testing embedded
+    - Disciplined prioritisation of experiments
+    - Regular decision points with NRW
+  notes: 'Risks are actively managed through the design of the innovation window.
+    Early definition, continuous engagement, and structured testing ensure value is
+    delivered within 12 weeks.
+
+    '
+- modality: context_statement
+  fields:
+    title: 'Innovation window outputs: evidence, prototypes, and a scaling path'
+    body:
+    - Validated hypotheses with evidence to guide next steps
+    - Reusable design/content patterns for faster delivery
+    - MVP prototypes for priority user journeys
+    - Accessibility and bilingual compliance artefacts
+    - Measurement framework for usability and outcomes
+    - Technical feasibility proofs for integration
+    - Sequenced backlog to scale or refine improvements
+    notes: 'The innovation window delivers decision-ready outputs: evidence, prototypes,
+      and a clear path to scale or refine improvements for NRW.'
+  notes: 'The innovation window delivers practical, decision-oriented outputs. NRW
+    receives evidence, prototypes, and a clear path for scaling or refining improvements.
+
+    '
+- modality: section_divider
+  fields:
+    title: 'Section 3: Commercial Overview'
+    subtitle: How we price, package, and deliver value
+    body: We’ll outline commercial assumptions, packaging options, and the path to
+      measurable outcomes—setting up the next slides on scope and economics.
+- modality: context_statement
+  fields:
+    title: Flexible, transparent commercial model for NRW
+    subtitle: Multiple pricing options tailored to delivery stage and needs.
+    body: We provide flexibility, transparency, and value for money. Our commercial
+      approach adapts as requirements evolve.
+    notes: Our commercial approach provides NRW with flexibility, transparency, and
+      value for money. We offer multiple pricing models to suit different delivery
+      stages and requirements.
+  notes: 'Our commercial approach provides NRW with flexibility, transparency, and
+    value for money. We offer multiple pricing models to suit different delivery stages
+    and requirements.
+
+    '
+- modality: options_considered
+  fields:
+    title: Flexible commercial models by delivery stage
+    intro: Choose the model that matches scope clarity and risk.
+    left:
+    - 'Time & Materials: discovery, evolving requirements'
+    - 'Fixed Price: defined scope and outcomes'
+    - 'Fixed Capacity: stable teams, controlled budget'
+    right:
+    - 'Supplier-led: managed services and support'
+    - Stage-fit pricing reduces risk and improves predictability
+    - We align commercials to delivery approach and governance
+    body_left:
+    - 'Time & Materials: discovery, evolving requirements'
+    - 'Fixed Price: defined scope and outcomes'
+    - 'Fixed Capacity: stable teams, controlled budget'
+    body_right:
+    - 'Supplier-led: managed services and support'
+    - Stage-fit pricing reduces risk and improves predictability
+    - We align commercials to delivery approach and governance
+  notes: 'Different stages require different models. Discovery benefits from T&M flexibility;
+    fixed price is used for well-defined outcomes; fixed capacity balances agility
+    and cost; supplier-led suits ongoing operations.
+
+    '
+- modality: hypothesis_success_criteria
+  fields:
+    title: Key commercial assumptions and terms
+    body_left:
+    - Standard role definitions per framework
+    - Inclusive of all delivery costs
+    - 8-hour working day
+    - Normal delivery environments
+    - Innovation fund contribution included
+    - Transparent reporting and invoicing
+    - Volume discounts for sustained delivery
+    body_right:
+    - Specialist assurance may adjust rates
+    - Mobilisation requirements may affect cost
+    - Rates refined at call-off if needed
+    - Discounts for longer-term engagements
+    - KPIs and milestones for payment
+    - Call-off process for bespoke needs
+    - Aligned to ISIP Pricing Template
+  notes: 'Our rate card and terms are transparent and flexible. We adjust for specialist
+    needs and offer discounts for volume and stability, ensuring NRW gets value and
+    clarity.
+
+    '
+- modality: prioritisation
+  fields:
+    title: Indicative pricing structure
+    body:
+    - 'Discovery (Scenario 1): T&M, blended day rates by role'
+    - 'Innovation Window (Scenario 2): fixed capacity team for 12 weeks'
+    - Team composition flexes by phase and complexity
+    - Estimated total provided in ISIP Pricing Template
+    - Payment milestones linked to agreed deliverables
+    - All rates and assumptions detailed in submission
+    - Volume discounts applied for sustained delivery
+  notes: 'Pricing is scenario-specific, with discovery using T&M and the innovation
+    window using a fixed capacity model. Detailed rates and milestones are included
+    in the pricing template.
+
+    '
+- modality: learnings_constraints
+  fields:
+    title: What is and isn't included
+    body_left:
+    - All standard delivery costs
+    - Knowledge transfer and documentation
+    - On-site and remote delivery as required
+    - Access to IBM and Stable accelerators
+    - Continuous reporting and governance
+    - Innovation fund contribution
+    - Sustainability and social value commitments
+    body_right:
+    - Specialist assurance outside standard scope
+    - Unusual mobilisation requirements
+    - Sustained volume demand may adjust rates
+    - Bespoke integrations not in initial scope
+    - Third-party licensing costs
+    - Major changes to requirements post-mobilisation
+    - Additional support beyond agreed phases
+  notes: 'We provide a comprehensive offer, but certain specialist or out-of-scope
+    items may require adjustment. All inclusions and exclusions are clearly defined
+    for NRW.
+
+    '
+- modality: next_steps
+  fields:
+    title: Call-off mechanism and next steps
+    body_left:
+    - Framework call-off for scenario-specific engagements
+    - Refine scope and pricing at call-off
+    - Agree KPIs, milestones, and reporting
+    - Mobilise blended teams with NRW
+    - Continuous dialogue on delivery model
+    body_right:
+    - 'NRW: review and confirm preferred commercial model'
+    - 'NRW: provide feedback on proposal'
+    - 'IBM/Stable: finalise team mobilisation plan'
+    - Jointly agree governance and reporting cadence
+    - Set up initial discovery or innovation window
+  notes: 'The call-off mechanism ensures flexibility and clarity for each engagement.
+    Next steps focus on refining scope, agreeing terms, and mobilising the right team
+    for NRW.
+
+    '
+- modality: section_divider
+  fields:
+    title: 'Section 4: Sustainability & Social Value'
+- modality: context_statement
+  fields:
+    title: Sustainability and social value are core to our approach
+  notes: 'IBM and Stable embed environmental sustainability and social value throughout
+    delivery, not as add-ons. Our commitments are practical, measurable, and aligned
+    to NRW and Welsh public sector priorities.
+
+    '
+- modality: four_pillars
+  fields:
+    title: Our sustainability and social value commitments
+    pillars:
+    - title: Net-Zero by Design
+      body:
+      - Cloud platforms reduce carbon footprint
+      - FinOps and GreenOps for cost and impact
+      - Formal carbon reduction plans in place
+    - title: Welsh-Language Service
+      body:
+      - Bilingual delivery by Stable
+      - Cultural alignment with Welsh communities
+      - Accessible, inclusive digital services
+    - title: Social Value in Wales
+      body:
+      - Local employment and skills development
+      - Support for Welsh SMEs and social enterprises
+      - Internship pathways and youth engagement
+    - title: Community Benefit
+      body:
+      - Charity support and volunteering
+      - Active participation in digital skills initiatives
+      - Transparent reporting on outcomes
+  notes: 'Our commitments span environmental, linguistic, social, and community dimensions.
+    We deliver measurable benefit for NRW, the Welsh public sector, and local communities.
+
+    '
+- modality: four_pillars
+  fields:
+    title: Stable’s social value delivery in Wales
+    pillars:
+    - title: Local leadership & workforce
+      body: Cardiff HQ; Welsh-speaking leadership; retain Welsh-based talent
+    - title: Partnering with Welsh organisations
+      body: Welsh SMEs & social enterprises; supports local charities
+    - title: Skills & youth pathways
+      body: Internships with Welsh universities; school and youth skills partnerships
+    - title: Digital careers for young people
+      body: DigiGirlz and Scouts; promotes digital roles and progression
+    notes: Stable’s Wales presence delivers ongoing skills development and community
+      engagement aligned to NRW social value objectives.
+  notes: 'Stable’s impact in Wales is tangible and ongoing. Their local presence,
+    skills development, and community engagement directly support NRW’s social value
+    objectives.
+
+    '
+- modality: hypothesis_success_criteria
+  fields:
+    title: How we measure sustainability and social value
+    body_left:
+    - Carbon impact of digital services
+    - Local supplier participation rates
+    - Skills uplift and training outcomes
+    - Internship and employment metrics
+    - Charity and community engagement hours
+    - Welsh-language service adoption
+    - Sustainability KPIs tracked at call-off
+    body_right:
+    - Service-level reporting on carbon and cost
+    - Transparent tracking of social value actions
+    - Continuous improvement and feedback loops
+    - Proportionate commitments by engagement size
+    - Formal governance for sustainability
+    - Alignment to framework reporting
+    - Evidence-based impact reviews
+  notes: 'We use structured metrics and transparent reporting to ensure our commitments
+    are delivered and improved over time. NRW can track progress and impact at every
+    stage.
+
+    '
+- modality: implications
+  fields:
+    title: Digital delivery supporting NRW’s environmental mission
+    body_left:
+    - Cloud platforms consolidate infrastructure, reducing emissions
+    - Data platforms enable better resource management
+    - Operational efficiency supports sustainability goals
+    - GreenOps practices optimise energy use
+    body_right:
+    - Social value embedded in all delivery phases
+    - Local skills development strengthens Welsh economy
+    - Community benefit extends beyond project scope
+    - Digital transformation aligned to public value
+  notes: 'Our approach ensures digital transformation directly supports NRW’s environmental
+    and social goals. Technology, skills, and community benefit are delivered together.
+
+    '
+- modality: learnings_constraints
+  fields:
+    title: 'Sustainability and social value: risks and controls'
+    body_left:
+    - Insufficient tracking of commitments
+    - Overly generic social value actions
+    - Lack of local supplier engagement
+    - Carbon reduction not embedded in delivery
+    - Limited community benefit realisation
+    - Inconsistent reporting across call-offs
+    - Difficulty scaling commitments
+    body_right:
+    - Structured reporting and KPIs
+    - Tailored actions for each engagement
+    - Prioritise Welsh-based delivery and SMEs
+    - GreenOps and FinOps embedded from start
+    - Community engagement tracked and reported
+    - Framework-aligned governance
+    - Scalable, proportionate commitments
+  notes: 'Risks are managed through discipline, transparency, and tailored actions.
+    We ensure all commitments are meaningful, measurable, and scalable for NRW.
+
+    '
+- modality: context_statement
+  fields:
+    title: Key takeaways and next steps
+    subtitle: Align on outcomes, confirm priorities, and move into execution.
+    body: 'We validated the problem and approach, and defined measurable value. Next:
+      finalize scope, confirm owners, agree success metrics, and start the implementation
+      plan.'
+    bullets:
+    - Finalize scope and deliverables
+    - Confirm owners, timeline, and dependencies
+    - Agree success metrics and measurement cadence
+    - Kick off implementation planning and execution
+- modality: next_steps
+  fields:
+    title: Next steps and actions
+    body_left:
+    - Review and feedback on proposal
+    - Confirm preferred delivery and commercial model
+    - Agree call-off scope and mobilisation plan
+    - Set up initial governance and reporting
+    - Schedule discovery or innovation window start
+    body_right:
+    - 'IBM/Stable: finalise team composition'
+    - Jointly define KPIs and milestones
+    - 'NRW: provide access to stakeholders and data'
+    - Agree sustainability and social value metrics
+    - Plan for continuous engagement and improvement
+  notes: 'These actions ensure a smooth transition from proposal to delivery. We are
+    ready to mobilise and begin work with NRW as soon as the call-off is confirmed.
+
+    '
+- modality: context_statement
+  fields:
+    title: 'Next steps: let’s partner with NRW'
+    contact: Dave Aspden — Stable CEO — dave@stable.co.uk | Phil Davenport — IBM Delivery
+      Partner — philip.davenport@ibm.com | David Rowley — IBM Microsoft Practice CTO
+      — david.rowley@ibm.com | Ryan Lewis — Stable CTO/MD — ryan@stable.co.uk
+    notes: Thank you for your time and consideration. Please reach out to any team
+      member to discuss fit, timelines, and next steps for partnering with NRW.
+  notes: 'Thank you for your time and consideration. Please contact any of our team
+    for further discussion, clarification, or to arrange next steps. We look forward
+    to partnering with NRW.
+
+    '
+- modality: ibm_sign_off
+  fields: {}
+  notes: IBM brand closing slide. No content required; this slide signals the end
+    of the presentation and reinforces IBM and Stable’s commitment to NRW’s success.

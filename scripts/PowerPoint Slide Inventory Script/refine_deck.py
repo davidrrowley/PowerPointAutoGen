@@ -349,6 +349,17 @@ def _sanitize_slide_fields(slide: dict) -> dict:
     if not isinstance(fields, dict):
         return slide
 
+    # Normalise LLM field-name variations before anything else
+    if modality in _TWO_COL_MODALITIES:
+        if "left" in fields and "body_left" not in fields:
+            fields = {**fields, "body_left": fields.pop("left")}
+        if "right" in fields and "body_right" not in fields:
+            fields = {**fields, "body_right": fields.pop("right")}
+        if "column_left" in fields and "body_left" not in fields:
+            fields = {**fields, "body_left": fields.pop("column_left")}
+        if "column_right" in fields and "body_right" not in fields:
+            fields = {**fields, "body_right": fields.pop("column_right")}
+
     cleaned = {}
     overflowed_field = None   # (field_name, items) if we need to split
 

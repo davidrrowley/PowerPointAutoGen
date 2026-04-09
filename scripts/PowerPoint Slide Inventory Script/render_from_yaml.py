@@ -381,6 +381,16 @@ def add_slide_from_spec(
     elif layout_id in {"ibm_sign_off_blue80", "ibm_sign_off_blue60", "ibm_sign_off_black"}:
         pass  # purely graphical brand slide — no text placeholders
 
+    elif layout_id in {"table", "chart_manual_family"}:
+        # Table/chart layouts have no TITLE placeholder — write what we can into idx 12
+        bullets = fields.get("body", fields.get("points", fields.get("body_left", [])))
+        if not isinstance(bullets, list):
+            bullets = [str(bullets)]
+        header = fields.get("title", "")
+        if header:
+            bullets = [header] + bullets
+        set_body_bullets(slide, bullets, idx=12)
+
     else:
         if "title" in fields:
             set_title(slide, fields["title"])
