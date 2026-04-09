@@ -4,7 +4,7 @@ Pillow>=10.0
 
 # Phase 3 — vision critique pipeline (optional)
 # Install before running render_from_yaml.py --critique
-openai>=1.0           # vision model API (needs OPENAI_API_KEY env var)
+openai>=1.0           # vision model API (needs GITHUB_TOKEN env var, uses GitHub Models)
 pywin32>=306          # for render_slide_previews.py on Windows (PowerPoint COM)
                       # after install: python -m pywin32_postinstall -install
 

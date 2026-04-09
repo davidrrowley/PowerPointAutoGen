@@ -1,0 +1,229 @@
+slides:
+- modality: title_slide
+  fields:
+    title: 'IBM + Stable: Proposal for NRW DDaT Framework'
+    subtitle: Delivering digital transformation for Natural Resources Wales
+  notes: 'Welcome and introductions. This presentation sets out the IBM and Stable
+    joint response to the NRW DDaT framework opportunity. We will cover our proposition,
+    delivery approach, and commercial model.
+
+    '
+- modality: index_slide
+  fields:
+    title: What we will cover today
+    body_left:
+    - Introductions and joint proposition
+    - Strengths and differentiators
+    - Scenario 1 — Customer Platform
+    - Scenario 2 — Website Innovation Window
+    body_right:
+    - Sustainability and social value
+    - Commercial approach
+    - Close and Q&A
+- modality: chosen_approach
+  fields:
+    title: 'Joint proposition: scale with local, sustainable capability'
+    body:
+    - Blended delivery model: proven transformation at scale
+    - NRW alignment: customer experience and data maturity
+    - Sustainable capability uplift as a core delivery outcome
+    - Team Wales: bilingual Welsh-based execution with local accountability
+  notes: IBM provides enterprise-grade DDaT and Microsoft expertise. Stable delivers
+    bilingual local execution and stakeholder relationships.
+- modality: problem_framing
+  fields:
+    title: IBM delivers end-to-end DDaT for NRW
+    body_left:
+    - 'Discovery to operations: design, engineering, data, and delivery'
+    - 'Deep Microsoft ecosystem: Dynamics 365, Power Platform, Azure, Fabric'
+    - Proven in regulated, multi-supplier environments
+    body_right:
+    - Structured delivery via IBM Digital Product Design & Engineering
+    - Integrated architecture, data, and product approach
+    - IBM Blue-aligned, end-to-end capability for NRW outcomes
+- modality: learnings_constraints
+  fields:
+    title: Differentiators in our delivery approach
+    body:
+    - Team Wales model: stable, embedded, bilingual Welsh delivery capability
+    - Capability uplift built into delivery from day one
+    - Product-led delivery with governance and audit traceability
+    - Evidence-based decisions to avoid early over-commitment
+- modality: context_statement
+  fields:
+    title: A unified customer experience across all NRW services and channels
+- modality: options_considered
+  fields:
+    title: Three parallel tracks for discovery, architecture, and business framing
+    intro:
+    - Evidence-based roadmap and investment business case (18–24 months)
+    boxes:
+    - Track 1: User & stakeholder discovery
+    - Track 2: Technical & architectural assessment
+    - Track 3: Commercial & delivery framing
+- modality: implications
+  fields:
+    title: Evidence-to-decision traceability de-risks investment
+    body:
+    - IBM Blue evidence trail: user needs → architecture → commercial choices
+    - Validated assumptions on scale, complexity, and technical readiness
+    - Prioritised roadmap enables staged, proportionate investment
+    - Sequenced delivery confirms feasibility before commitment
+- modality: architecture_view
+  fields:
+    title: Four-layer architecture model for the NRW customer platform
+    body:
+    - 'Customer Engagement: portals, web, content, bilingual interfaces'
+    - 'CRM and Service Management: Dynamics 365 as the system of action'
+    - 'Integration and Platform Services: Azure API, orchestration, events'
+    - 'Data and Insights: governed Azure and Fabric data services'
+- modality: learnings_constraints
+  fields:
+    title: Architectural principles for platform design
+    body:
+    - Cloud-first, SaaS-preferred — avoid unnecessary custom build
+    - API-first and event-driven — decoupled, interoperable by design
+    - Governed data — lineage, ownership, and access controls
+    - Secure-by-design and compliant across all layers and environments
+    - Modular and loosely coupled — prevent legacy lock-in
+- modality: chosen_approach
+  fields:
+    title: Dynamics 365, Power Platform, and Azure as platform building blocks
+    body_left:
+    - 'Dynamics 365: authoritative customer domain and system of action'
+    - 'CMS and SharePoint: structured content, publishing, and knowledge'
+    body_right:
+    - 'Azure Integration: decoupled data movement and orchestration layer'
+    - 'Data platform: trusted, discoverable, reusable customer and operational data'
+- modality: problem_framing
+  fields:
+    title: Data fragmentation is NRW’s core integration challenge
+    body_left:
+    - Canonical customer identifier model to unify records progressively
+    - Progressive unification—avoid big-bang consolidation across systems
+    - Mapping and matching across legacy systems and datasets
+    body_right:
+    - Event-driven updates for near real-time consistency across platforms
+    - Reduce duplicates and improve data quality across channels
+    - Enable trusted, end-to-end customer views
+- modality: learnings_constraints
+  fields:
+    title: Data sequencing and programme risks
+    body:
+    - Early: identity model, APIs, and event layer foundations
+    - Mid-term: deduplication, survivorship rules, governance processes
+    - Long-term: controlled consolidation across legacy systems
+    - Risks: data quality, legacy dependencies, ownership clarity
+- modality: strategy
+  fields:
+    title: Multidisciplinary delivery model with product teams
+    body:
+    - Discovery team: multidisciplinary, hypothesis-led, time-boxed
+    - Product teams: long-lived, sustain Alpha, Beta, and Live phases
+    - Capabilities: blended IBM, Stable, and NRW embedded end-to-end
+    - Ownership: progressive transition of skills to NRW
+- modality: chosen_approach
+  fields:
+    title: Three-tier governance for aligned delivery
+    body:
+    - Strategic: align priorities, manage stakeholders, set direction
+    - Programme: control milestones, budget, dependencies, and risks
+    - Technical: enforce standards, security, and architecture consistency
+    - Risk management embedded across all delivery cycles
+- modality: learnings_constraints
+  fields:
+    title: Security, testing, and operations by design
+    body:
+    - Security-by-design: zero-trust principles and early threat modelling
+    - Proportionate testing: automated, performance, and penetration coverage
+    - Observability, resilience, and runbooks from day one
+    - NRW capability transfer: skills, knowledge, and tooling ownership
+- modality: problem_framing
+  fields:
+    title: Blended IBM and Stable Team Wales resourcing model
+    body:
+    - 'IBM capability: architecture, engineering, data, security, and product'
+    - Stable as Welsh-based partner bringing local delivery strength
+    - Hybrid on-site and remote collaboration model across Wales
+    - NRW staff embedded in teams throughout for knowledge transfer
+- modality: context_statement
+  fields:
+    title: A 12-week hypothesis-led window to generate evidence not production builds
+- modality: options_considered
+  fields:
+    title: Innovation modes matched to problem clarity and readiness
+    intro:
+    - All modes use measurable, agreed hypotheses
+    boxes:
+    - title: Discovery-led
+      body: Explore unclear or poorly defined problems
+    - title: Proof-led
+      body: Test feasibility within known constraints
+    - title: Optimisation-led
+      body: Improve well-understood pain points
+- modality: strategy
+  fields:
+    title: Four phases of the 12-week innovation programme
+    body:
+    - 'Phase 1: Explore & Discover—journeys, data, content, accessibility'
+    - 'Phase 2: Ideate & Co-create—prototypes, experiments, bilingual review'
+    - 'Phase 3: Build & Co-execute—technical feasibility, integration'
+    - 'Phase 4: Scale & Decide—evidence packs, investment recommendations'
+- modality: chosen_approach
+  fields:
+    title: Expected outputs from the 12-week innovation window
+    body_left:
+    - Bilingual IA and navigation prototypes with tested journeys
+    - Search improvements and reusable bilingual content patterns
+    - Accessibility enhancements with documented WCAG audit trail
+    body_right:
+    - Journey prototypes and feasibility evidence for live data integration
+    - Prioritised backlog and investment decision evidence pack
+- modality: learnings_constraints
+  fields:
+    title: Key risks and mitigations for the innovation window
+    body_left:
+    - Innovation window focus
+    - Evidence and prototypes
+    body_right:
+    - Hypothesis clarity: baseline at programme start
+    - Sustain access to users and content owners across all phases
+    - CMS/platform constraints limit technical feasibility scope
+    - Manage expectations: outputs are evidence and prototypes, not production
+- modality: implications
+  fields:
+    title: Embed sustainability in our digital delivery model
+    body:
+    - Apply GreenOps and FinOps for carbon-aware cloud usage
+    - Optimize resource allocation and environment lifecycle
+    - Enable digital solutions for NRW environmental insight objectives
+    - Align delivery to NRW sustainability goals and net-zero commitments
+- modality: implications
+  fields:
+    title: Social value commitments through Stable and IBM in Wales
+    body_left:
+    - Stable: Welsh SME with local employment impact
+    - Internships, skills programmes, and university partnerships
+    - Support for Welsh charities and local digital communities
+    body_right:
+    - Scale commitments proportionately at call-off stage
+    - Maintain measurable outcomes across Wales
+    - Align delivery with local community priorities
+- modality: strategy
+  fields:
+    title: Flexible commercial model for discovery-first delivery
+    body:
+    - Time & Materials for discovery and shaping phases
+    - Fixed price or fixed capacity for defined delivery scope
+    - Transparent rate card assumptions with volume discount principles
+    - Volume efficiencies for sustained and expanded engagement
+- modality: context_statement
+  fields:
+    title: 'IBM and Stable: outcomes-led, evidence-based for NRW'
+- modality: closing_slide
+  fields:
+    title: Questions and discussion
+    body:
+    - We welcome challenge—open to questions on any area of today’s proposal
+    footer:
+    - IBM Consulting

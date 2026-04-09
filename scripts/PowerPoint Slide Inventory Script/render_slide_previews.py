@@ -67,9 +67,19 @@ def export_slides_via_com(pptx_path: Path, output_dir: Path, width: int = 1920) 
 
         for i in range(1, slide_count + 1):
             out_path = output_dir / f"slide_{i:03d}.png"
-            presentation.Slides(i).Export(str(out_path), "PNG", width, height)
+            # RPC_E_CALL_REJECTED (-2147418111): PowerPoint busy — retry with backoff
+            for attempt in range(5):
+                try:
+                    presentation.Slides(i).Export(str(out_path), "PNG", width, height)
+                    break
+                except Exception as com_err:
+                    if attempt == 4:
+                        raise
+                    wait = 2 ** attempt  # 1, 2, 4, 8 seconds
+                    print(f"  COM busy on slide {i}, retrying in {wait}s... ({com_err})")
+                    time.sleep(wait)
             exported.append(out_path)
-            print(f"  Exported slide {i}/{slide_count} â†’ {out_path.name}")
+            print(f"  Exported slide {i}/{slide_count} -> {out_path.name}")
 
     finally:
         if presentation is not None:

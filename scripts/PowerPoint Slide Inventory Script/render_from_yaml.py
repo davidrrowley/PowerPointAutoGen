@@ -439,7 +439,7 @@ def _run_critique_pipeline(
     result = subprocess.run(critique_cmd, capture_output=True, text=True)
     if result.returncode != 0:
         print(f"Critique failed:\n{result.stderr}", file=sys.stderr)
-        print("Check that OPENAI_API_KEY is set.", file=sys.stderr)
+        print("Check that GITHUB_TOKEN is set.", file=sys.stderr)
         return
 
     print(result.stdout)
