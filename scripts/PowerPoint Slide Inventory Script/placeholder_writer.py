@@ -138,6 +138,12 @@ def set_first_text(slide, text_or_bullets) -> None:
 
     if isinstance(text_or_bullets, list):
         for i, bullet in enumerate(text_or_bullets):
+            # Guard: single-key dicts (broken YAML bullets) → "key: value" string
+            if isinstance(bullet, dict) and len(bullet) == 1:
+                k, v = next(iter(bullet.items()))
+                bullet = f"{k}: {v}"
+            elif not isinstance(bullet, str):
+                bullet = str(bullet)
             p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
             p.text = bullet
             p.level = 0

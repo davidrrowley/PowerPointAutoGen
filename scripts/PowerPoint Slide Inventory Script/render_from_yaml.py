@@ -139,11 +139,19 @@ def _write_two_column_slide(slide, fields: dict, left_idx: int = 13, right_idx: 
 
 def _write_four_points_slide(slide, fields: dict) -> None:
     set_title(slide, fields["title"])
-    points = fields.get("columns", fields.get("points", []))
+    # Accept 'columns', 'pillars', or 'points' as the four-item field name
+    points = fields.get("columns", fields.get("pillars", fields.get("points", [])))
     point_indices = [12, 13, 14, 15]
 
     for idx, point in zip(point_indices, points):
-        set_body_paragraph(slide, str(point), idx=idx)
+        if isinstance(point, dict):
+            # Structured pillar: {title: '...', body: '...'} — combine for single-placeholder layout
+            title = point.get("title", "")
+            body = point.get("body", "")
+            text = f"{title}\n{body}" if body else title
+        else:
+            text = str(point)
+        set_body_paragraph(slide, text, idx=idx)
 
 
 def _write_half_image_slide(
@@ -308,9 +316,15 @@ def add_slide_from_spec(
     elif layout_id in {"boxes_3_med_2_small", "boxes_1_large_4_small", "boxes_4_tall"}:
         # Content placeholders are OBJECT type: top-left=17, top-right=18, bottom-left=20, bottom-right=19
         set_title(slide, fields["title"])
-        columns = fields.get("columns", fields.get("points", []))
-        for idx, text in zip([17, 18, 20, 19], columns):
-            set_object_text(slide, str(text), idx=idx)
+        columns = fields.get("columns", fields.get("pillars", fields.get("points", [])))
+        for idx, point in zip([17, 18, 20, 19], columns):
+            if isinstance(point, dict):
+                title = point.get("title", "")
+                body = point.get("body", "")
+                text = f"{title}\n{body}" if body else title
+            else:
+                text = str(point)
+            set_object_text(slide, text, idx=idx)
 
     elif layout_id in {
         "title_text_half_image",

@@ -373,12 +373,31 @@ def _sanitize_slide_fields(slide: dict) -> dict:
 
     for key, val in fields.items():
         if isinstance(val, list):
-            # Filter empty/null items and truncate over-length bullets
-            items = [
-                (item if isinstance(item, str) else str(item))[:mbc]
-                for item in val
-                if item is not None and str(item).strip()
-            ]
+            # Filter empty/null items, preserving structural multi-key dicts (e.g. pillar
+            # objects {title, body}) as-is so the renderer can handle them properly.
+            # Single-key dicts ({"CRM": "Dynamics 365"}) are broken YAML bullets — flatten
+            # to "key: value" strings. Never call str() on multi-key dicts (produces repr).
+            items = []
+            for item in val:
+                if item is None:
+                    continue
+                if isinstance(item, dict):
+                    if len(item) == 1:
+                        # Broken bullet coerced by PyYAML — flatten to plain string
+                        k, v = next(iter(item.items()))
+                        s = f"{k}: {v}"
+                        if s.strip():
+                            items.append(s[:mbc])
+                    else:
+                        # Structural object (pillar, option row, etc.) — keep as dict
+                        items.append(item)
+                elif isinstance(item, str):
+                    if item.strip():
+                        items.append(item[:mbc])
+                else:
+                    s = str(item)
+                    if s.strip():
+                        items.append(s[:mbc])
             limit = _COLUMN_MAX.get(key, mb)
             if len(items) > limit and key in ("body", "boxes", "points", "proof_points"):
                 # Candidate for two-column promotion instead of truncation
@@ -606,6 +625,12 @@ def run_refinement_loop(
     # Used to trigger modality escalation when a slide is stuck
     slides_stuck: dict[int, int] = {}
 
+    # Score-gated rollback: snapshot each slide before it is rewritten so that
+    # if the next iteration shows a lower score we can restore the prior version.
+    slides_before_rewrite: dict[int, dict] = {}
+    scores_before_rewrite: dict[int, int] = {}
+    rewritten_last_iter: set[int] = set()
+
     current_yaml = deck_yaml
 
     for iteration in range(1, iterations + 1):
@@ -671,22 +696,51 @@ def run_refinement_loop(
         with open(critique_path, "r", encoding="utf-8") as f:
             critique_records: list[dict] = json.load(f)
 
-        scores = [r["overall_score"] for r in critique_records if "overall_score" in r]
-        avg_score = sum(scores) / len(scores) if scores else 0
-        low_scoring = [r for r in critique_records if r.get("overall_score", 10) < score_threshold]
-
-        # Track scores for summary table
-        scores_by_iteration[iteration] = {
+        # Build per-slide score lookup for this iteration
+        scores_this_iter: dict[int, int] = {
             r["slide_number"]: r["overall_score"]
             for r in critique_records if "overall_score" in r
         }
 
-        print(f"\n[{iteration}] Average score: {avg_score:.1f}/10 — {len(low_scoring)} slides below {score_threshold}")
+        # Track scores for summary table
+        scores_by_iteration[iteration] = dict(scores_this_iter)
 
         deck_spec = _load_yaml(current_yaml)
         slides = deck_spec.get("slides", [])
 
+        # --- Score-gated rollback: restore slides whose rewrites regressed their score ---
+        rolled_back_this_iter: set[int] = set()
+        if rewritten_last_iter:
+            rollback_count = 0
+            for slide_number in sorted(rewritten_last_iter):
+                old_score = scores_before_rewrite.get(slide_number, 0)
+                new_score = scores_this_iter.get(slide_number, old_score)
+                if new_score < old_score and (slide_number - 1) < len(slides):
+                    slides[slide_number - 1] = slides_before_rewrite[slide_number]
+                    print(
+                        f"  [rollback] Slide {slide_number}: score {new_score} < {old_score} "
+                        f"(rewrite regressed) — restoring prior version.",
+                        file=sys.stderr,
+                    )
+                    # Use the pre-rewrite score for threshold decisions this iteration
+                    scores_this_iter[slide_number] = old_score
+                    rolled_back_this_iter.add(slide_number)
+                    rollback_count += 1
+            if rollback_count:
+                print(f"[{iteration}] Rolled back {rollback_count} regressed slide(s).")
+
+        scores = list(scores_this_iter.values())
+        avg_score = sum(scores) / len(scores) if scores else 0
+        low_scoring_nums = [sn for sn, sc in scores_this_iter.items() if sc < score_threshold]
+
+        print(f"\n[{iteration}] Average score: {avg_score:.1f}/10 — {len(low_scoring_nums)} slides below {score_threshold}")
+
         by_slide_number = {r["slide_number"]: r for r in critique_records}
+
+        # Reset per-iteration rewrite tracking for next iteration's rollback
+        rewritten_last_iter = set()
+        slides_before_rewrite = {}
+        scores_before_rewrite = {}
         rewritten_count = 0
 
         for i, slide in enumerate(slides):
@@ -694,9 +748,16 @@ def run_refinement_loop(
             record = by_slide_number.get(slide_number)
             if record is None:
                 continue
-            if record.get("overall_score", 10) >= score_threshold:
+            current_score = scores_this_iter.get(slide_number, 10)
+            if current_score >= score_threshold:
                 # Slide passed — reset its stuck counter
                 slides_stuck.pop(slide_number, None)
+                continue
+
+            # Slide was rolled back this iteration — skip rewriting it again immediately;
+            # let it render fresh next iteration before deciding whether to rewrite.
+            if slide_number in rolled_back_this_iter:
+                slides_stuck.pop(slide_number, None)  # reset stuck: the failed rewrite is gone
                 continue
 
             # Increment stuck counter for this slide
@@ -705,15 +766,20 @@ def run_refinement_loop(
 
             if escalate:
                 print(
-                    f"  Rewriting slide {slide_number} (score {record['overall_score']}/10, "
+                    f"  Rewriting slide {slide_number} (score {current_score}/10, "
                     f"stuck {slides_stuck[slide_number]} iterations — escalating modality)..."
                 )
             else:
-                print(f"  Rewriting slide {slide_number} (score {record['overall_score']}/10)...")
+                print(f"  Rewriting slide {slide_number} (score {current_score}/10)...")
+
+            # Snapshot before rewriting so we can roll back if it regresses next iteration
+            slides_before_rewrite[slide_number] = slide
+            scores_before_rewrite[slide_number] = current_score
 
             slides[i] = rewrite_slide_with_llm(
                 client, rewrite_model, slide, record, escalate_modality=escalate
             )
+            rewritten_last_iter.add(slide_number)
             rewritten_count += 1
 
         print(f"[{iteration}] Rewrote {rewritten_count} slides.")
@@ -725,7 +791,7 @@ def run_refinement_loop(
         current_yaml = revised_yaml_path
 
         # Early exit if all slides are already good enough
-        if not low_scoring:
+        if not low_scoring_nums:
             print(f"\nAll slides scored >= {score_threshold}. Stopping early after iteration {iteration}.")
             break
 
@@ -848,8 +914,8 @@ def main() -> None:
     parser.add_argument(
         "--score-threshold",
         type=int,
-        default=7,
-        help="Slides scoring below this are rewritten (default: 7)",
+        default=5,
+        help="Slides scoring below this are rewritten (default: 5)",
     )
     parser.add_argument(
         "--catalogue",
