@@ -17,10 +17,16 @@ import time
 from pathlib import Path
 
 
-def export_slides_via_com(pptx_path: Path, output_dir: Path, width: int = 1920) -> list[Path]:
+def export_slides_via_com(
+    pptx_path: Path,
+    output_dir: Path,
+    width: int = 960,
+    slides: list[int] | None = None,
+) -> list[Path]:
     """
     Use PowerPoint COM automation to export each slide as a PNG.
     Returns list of exported PNG paths in slide order.
+    If `slides` is provided, only those slide numbers are exported.
     """
     try:
         import win32com.client
@@ -76,7 +82,12 @@ def export_slides_via_com(pptx_path: Path, output_dir: Path, width: int = 1920) 
         aspect = slide_height_pts / slide_width_pts
         height = int(width * aspect)
 
-        for i in range(1, slide_count + 1):
+        slide_indices = list(range(1, slide_count + 1))
+        if slides:
+            slide_indices = [i for i in slide_indices if i in slides]
+            print(f"  (selective export: {len(slide_indices)} of {slide_count} slides)")
+
+        for i in slide_indices:
             out_path = output_dir / f"slide_{i:03d}.png"
             # RPC_E_CALL_REJECTED (-2147418111): PowerPoint busy — retry with backoff
             for attempt in range(5):
@@ -122,8 +133,15 @@ def main() -> None:
     parser.add_argument(
         "--width",
         type=int,
-        default=1920,
-        help="Export width in pixels (default: 1920)",
+        default=960,
+        help="Export width in pixels (default: 960)",
+    )
+    parser.add_argument(
+        "--slides",
+        nargs="+",
+        type=int,
+        metavar="N",
+        help="Only export specific slide numbers (e.g. --slides 3 7 12)",
     )
     args = parser.parse_args()
 
@@ -133,7 +151,7 @@ def main() -> None:
         sys.exit(1)
 
     output_dir = Path(args.output_dir)
-    exported = export_slides_via_com(pptx_path, output_dir, width=args.width)
+    exported = export_slides_via_com(pptx_path, output_dir, width=args.width, slides=args.slides or None)
 
     print(f"\nDone. Exported {len(exported)} PNG files to: {output_dir.resolve()}")
 

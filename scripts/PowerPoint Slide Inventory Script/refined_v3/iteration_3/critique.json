@@ -1,0 +1,653 @@
+[
+  {
+    "slide_number": 1,
+    "layout_assessment": "good",
+    "issues": [],
+    "suggestions": [],
+    "overall_score": 10
+  },
+  {
+    "slide_number": 2,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Font is not IBM Plex Sans or Arial, reducing brand consistency",
+      "Agenda items are crowded into a single block, not formatted for readability",
+      "Large blank white area on the left side",
+      "Title uses minimal IBM blue branding"
+    ],
+    "suggestions": [
+      "Switch font to IBM Plex Sans or Arial",
+      "Use two-column layout for agenda items to balance whitespace",
+      "Add IBM blue accent or background element for the title",
+      "Increase spacing between items for easier reading"
+    ],
+    "overall_score": 5
+  },
+  {
+    "slide_number": 3,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Section divider uses only large text and lacks IBM blue branded full divider layout",
+      "Large blank white area without visual interest",
+      "Text is not centrally placed or visually balanced"
+    ],
+    "suggestions": [
+      "Use full IBM blue section divider template for section transitions",
+      "Center or visually balance section title",
+      "Add visual elements or IBM branding for section transitions"
+    ],
+    "overall_score": 3
+  },
+  {
+    "slide_number": 4,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Large blank white area",
+      "No IBM blue branding used for section divider or strong statement",
+      "Title not centered and lacks impact",
+      "Font may not be IBM Plex Sans/Arial"
+    ],
+    "suggestions": [
+      "Use IBM blue full-bleed divider layout or big text layout for strong statement",
+      "Center the title for better emphasis",
+      "Apply correct branded font and template"
+    ],
+    "overall_score": 3
+  },
+  {
+    "slide_number": 5,
+    "layout_assessment": "good",
+    "issues": [
+      "Text lacks visual accent (no IBM blue usage)",
+      "Font may not be IBM Plex Sans/Arial",
+      "Minimal visual separation between columns"
+    ],
+    "suggestions": [
+      "Add IBM blue accent elements to differentiate content",
+      "Ensure IBM Plex Sans or Arial font throughout",
+      "Consider using icons or subtle lines to visually separate the four columns"
+    ],
+    "overall_score": 8
+  },
+  {
+    "slide_number": 6,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "No IBM blue accents or branding",
+      "Font may not be IBM Plex Sans/Arial",
+      "Bullets are visually dense and unseparated",
+      "Title is close to bullet character limit but compliant"
+    ],
+    "suggestions": [
+      "Add IBM blue accent or divider for stronger section distinction",
+      "Use IBM branded font",
+      "Consider reducing bullet count or splitting content for visual clarity"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 7,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Two-column layout used appropriately, but slide has large blank areas.",
+      "No visual accents or IBM blue for section highlights.",
+      "Bullet points are dense but text blocks lack clear separation or visual emphasis.",
+      "Font, background, and spacing do not use IBM visual branding elements."
+    ],
+    "suggestions": [
+      "Add IBM blue accent or divider to visually anchor the slide.",
+      "Balance content distribution to minimize empty white space.",
+      "Use graphical elements, icons, or lines to separate columns and increase engagement.",
+      "Verify all fonts are IBM Plex Sans or Arial."
+    ],
+    "overall_score": 5
+  },
+  {
+    "slide_number": 8,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Section divider is not in full IBM blue, only uses blue text.",
+      "Slide is mostly blank space, lacks visual impact.",
+      "Should use IBM's branded divider template."
+    ],
+    "suggestions": [
+      "Use full IBM blue background for section dividers with white text.",
+      "Add IBM logo or section graphic in alignment with brand guidelines.",
+      "Reduce unnecessary white space with more visual structure."
+    ],
+    "overall_score": 4
+  },
+  {
+    "slide_number": 9,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Four-column layout is correct but slide feels sparse.",
+      "No IBM blue accents or supporting visuals.",
+      "Text placement and font are acceptable but lack branding."
+    ],
+    "suggestions": [
+      "Add IBM blue accent bar, icons, or divider to increase branding.",
+      "Reduce empty space below content by balancing columns vertically.",
+      "Consider adding subtle light grey background or separator lines for improved visual appeal."
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 10,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Large blank white areas detract from visual balance",
+      "Columns are unevenly distributed and do not use the full slide width",
+      "No IBM Blue accent or divider used",
+      "Lacks visual hierarchy and clear separation between points"
+    ],
+    "suggestions": [
+      "Expand content to fill more of the slide, reducing blank space",
+      "Use a four-column layout to distribute the six specialisms more evenly",
+      "Incorporate IBM Blue accents or divider for better branding",
+      "Add section headers or visual separators for clarity"
+    ],
+    "overall_score": 4
+  },
+  {
+    "slide_number": 11,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Minor blank space at the bottom of slide",
+      "No IBM Blue accent or divider used",
+      "Text lacks strong visual hierarchy"
+    ],
+    "suggestions": [
+      "Use IBM Blue section divider or accents to reinforce branding",
+      "Increase font size or use headers for key points to create hierarchy",
+      "Consider more visually structured four-column layout"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 12,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Large blank whitespace",
+      "Text overflows placeholder ('Environment Agency' wraps awkwardly)",
+      "Visual imbalance with oversized font and bullet",
+      "IBM Blue used but not in a branded section divider layout"
+    ],
+    "suggestions": [
+      "Resize and reposition the text to fit properly within the slide bounds",
+      "Use IBM branded section divider layout for showcasing outcomes",
+      "Add additional proven outcomes or structure content in a case study format",
+      "Reduce blank areas and align text for visual balance"
+    ],
+    "overall_score": 3
+  },
+  {
+    "slide_number": 13,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Section divider does not use IBM Blue branded layout",
+      "Large blank white space",
+      "Lacks visual branding and impact"
+    ],
+    "suggestions": [
+      "Use full IBM Blue background for section divider",
+      "Centralize and increase title text size for impact",
+      "Add visual elements or accents consistent with IBM standards"
+    ],
+    "overall_score": 3
+  },
+  {
+    "slide_number": 14,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Text appears dense, especially in left column",
+      "Bullets vary in length and structure",
+      "White background is consistent but lacks accent elements"
+    ],
+    "suggestions": [
+      "Reduce bullet count or shorten text per bullet",
+      "Balance bullet length and structure across both columns",
+      "Add subtle IBM Blue accent or divider for visual improvement"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 15,
+    "layout_assessment": "good",
+    "issues": [
+      "Wide spacing between columns creates some unused whitespace"
+    ],
+    "suggestions": [
+      "Reduce horizontal gap between columns",
+      "Consider subtle IBM Blue accents to improve visual quality"
+    ],
+    "overall_score": 8
+  },
+  {
+    "slide_number": 16,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Single-column bullet layout used for four parallel points instead of four-column",
+      "Large blank white space on the right side",
+      "Title is slightly long but under 14 words",
+      "No visual IBM branding present (blue accent, IBM branded layout)"
+    ],
+    "suggestions": [
+      "Switch to a four-column layout for the four architecture layers",
+      "Add IBM blue accent elements or section divider for visual quality",
+      "Reduce blank space by reflowing content"
+    ],
+    "overall_score": 4
+  },
+  {
+    "slide_number": 17,
+    "layout_assessment": "good",
+    "issues": [
+      "Lacks IBM blue accent elements for visual quality"
+    ],
+    "suggestions": [
+      "Add IBM blue accents or branded section divider at top or bottom",
+      "Ensure font is IBM Plex Sans or Arial"
+    ],
+    "overall_score": 7
+  },
+  {
+    "slide_number": 18,
+    "layout_assessment": "good",
+    "issues": [
+      "Lacks IBM blue accent elements for visual quality"
+    ],
+    "suggestions": [
+      "Add IBM blue accents or branded section divider",
+      "Ensure visual consistency with other content slides"
+    ],
+    "overall_score": 7
+  },
+  {
+    "slide_number": 19,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Lacks IBM blue branded accent or divider elements.",
+      "Background is plain white; does not follow IBM branded template.",
+      "Text is in two columns but still leaves large blank areas.",
+      "No visual hierarchy or accent elements.",
+      "Font is not obviously IBM Plex Sans or Arial."
+    ],
+    "suggestions": [
+      "Add IBM blue section divider or accent bar.",
+      "Use the IBM background template for content slides.",
+      "Consider adding icons or visuals for each column to reduce white space.",
+      "Ensure font is IBM Plex Sans or Arial throughout."
+    ],
+    "overall_score": 4
+  },
+  {
+    "slide_number": 20,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "No IBM blue divider or accent elements.",
+      "Background is plain white; lacks IBM visual branding.",
+      "Large areas of white space; text does not fill layout effectively.",
+      "Font choice not clearly IBM Plex Sans or Arial.",
+      "Bullets are close to overflowing; better layout could improve readability."
+    ],
+    "suggestions": [
+      "Add IBM branded section divider or accent along the top/bottom.",
+      "Use IBM template background for consistency.",
+      "Add icons or visuals to break up text blocks.",
+      "Verify use of IBM Plex Sans or Arial font."
+    ],
+    "overall_score": 4
+  },
+  {
+    "slide_number": 21,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Plain white background, missing IBM blue accents or section divider.",
+      "Font is not clearly IBM Plex Sans or Arial.",
+      "Text is well organized in a four-column layout but lacks visual reinforcement."
+    ],
+    "suggestions": [
+      "Add IBM blue divider or accent bar to reinforce branding.",
+      "Consider visual icons for team roles to enhance engagement.",
+      "Ensure IBM Plex Sans or Arial font is used."
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 22,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Large blank white areas at the bottom of the slide",
+      "Four parallel points are only text blocks, not visually separated in four-column layout",
+      "Title is close to exceeding 14 words",
+      "No clear visual separation or graphical elements to enhance readability"
+    ],
+    "suggestions": [
+      "Use a four-column layout with visually separated boxes or icons",
+      "Resize and position content to reduce blank space",
+      "Consider using IBM blue accent elements for phase headers",
+      "Ensure consistent IBM Plex Sans or Arial font"
+    ],
+    "overall_score": 5
+  },
+  {
+    "slide_number": 23,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Slide uses a two-column bullet layout, but columns are slightly imbalanced",
+      "No visual accent elements present (IBM blue, icons, or lines)",
+      "Background is plain white, lacking IBM branding accent"
+    ],
+    "suggestions": [
+      "Balance bullet density between columns for more visual symmetry",
+      "Add subtle IBM blue divider, lines, or icons for improved visual branding",
+      "Consider a light grey background or accent box to enhance visual hierarchy"
+    ],
+    "overall_score": 7
+  },
+  {
+    "slide_number": 24,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Section divider uses IBM blue for title, but lacks full IBM blue branded layout",
+      "Large blank white area below the title",
+      "Not visually strong as section divider (missing branding, no IBM template elements)"
+    ],
+    "suggestions": [
+      "Apply full IBM blue section divider template (blue background, larger title text)",
+      "Add IBM logo or accent to reinforce branding",
+      "Reduce empty space to improve balance"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 25,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Cover slide uses a plain white background instead of the IBM branded template",
+      "No IBM Blue section divider or branded elements",
+      "Font is not consistent with IBM Plex Sans or Arial",
+      "Visual design is too basic, lacks professionalism"
+    ],
+    "suggestions": [
+      "Use the official IBM branded cover slide template",
+      "Incorporate IBM Blue (#0043CE) elements for branding",
+      "Switch to IBM Plex Sans or Arial font",
+      "Add IBM logo and branded accent elements"
+    ],
+    "overall_score": 2
+  },
+  {
+    "slide_number": 26,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Large blank white areas reducing visual balance",
+      "IBM Blue accent elements missing",
+      "Font may not be IBM Plex Sans or Arial",
+      "Section divider styling is absent"
+    ],
+    "suggestions": [
+      "Reduce blank space by increasing bullet content or adding visuals",
+      "Use IBM Blue for accent or divider",
+      "Ensure font is IBM Plex Sans or Arial",
+      "Add subtle graphical elements to strengthen structure"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 27,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Excessive blank white space, making slide look sparse",
+      "Lacks IBM Blue accent elements",
+      "Font may not follow IBM standards",
+      "Section divide/visual structure is not branded"
+    ],
+    "suggestions": [
+      "Optimize layout to reduce unused space (e.g. add icons, graphics, or background accents)",
+      "Add IBM Blue accent or divider for branding",
+      "Ensure IBM Plex Sans or Arial font is consistently used",
+      "Consider visual cues to reinforce the four phases"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 28,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "No IBM blue used for section dividers or title",
+      "Absence of clear visual divider between two columns",
+      "Title is close to the 14-word limit but clear",
+      "Some bullets approach the character limit, but do not overflow"
+    ],
+    "suggestions": [
+      "Add IBM blue section divider or accent",
+      "Use a visible column divider for clarity",
+      "Ensure background is consistent (white or light grey)",
+      "Consider using IBM Plex Sans or Arial font uniformly"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 29,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Text is overflowing and unreadable",
+      "Use of IBM blue is correct, but content is broken",
+      "Font size is excessively large leading to overflow",
+      "Fails visual quality and content density standards"
+    ],
+    "suggestions": [
+      "Reduce font size so text does not overflow placeholder",
+      "Ensure bullet points are not broken across lines",
+      "Maintain content density and legibility",
+      "Use IBM branded layout consistently"
+    ],
+    "overall_score": 2
+  },
+  {
+    "slide_number": 30,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "No IBM blue accent or section divider",
+      "Absence of column divider between two lists",
+      "Background is plain but consistent"
+    ],
+    "suggestions": [
+      "Add IBM blue accent or section divider for brand consistency",
+      "Include a visual divider between columns",
+      "Check font consistency (use IBM Plex Sans or Arial)"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 31,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Section divider does not use full IBM Blue branded layout",
+      "Title color matches IBM blue but background is plain white",
+      "Large blank white area reduces visual impact",
+      "Lacks IBM branded visual elements"
+    ],
+    "suggestions": [
+      "Use IBM Blue (#0043CE) full slide section divider template",
+      "Add branded visual elements or icons for section transitions"
+    ],
+    "overall_score": 3
+  },
+  {
+    "slide_number": 32,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Four column layout is used correctly but visual density is low",
+      "No accent elements (IBM Blue) for column titles or section header",
+      "Font appears consistent, but slide feels visually sparse"
+    ],
+    "suggestions": [
+      "Add IBM Blue accent lines or headers to columns",
+      "Increase visual elements to reduce blank space",
+      "Consider icons to differentiate each pillar"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 33,
+    "layout_assessment": "good",
+    "issues": [
+      "Two-column comparison layout is correct but visual density could be improved",
+      "No IBM Blue accent elements"
+    ],
+    "suggestions": [
+      "Add IBM Blue accent or divider between columns",
+      "Consider using icons or subtle backgrounds to enhance visual quality"
+    ],
+    "overall_score": 7
+  },
+  {
+    "slide_number": 34,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Excessive font size causing text overflow and imbalance",
+      "Large blank areas detract from visual quality",
+      "No clear layout structure for content type",
+      "Bullet formatting inconsistent with IBM standards"
+    ],
+    "suggestions": [
+      "Reduce font size to fit text within placeholders",
+      "Use a structured layout such as a two-column or four-pillars approach",
+      "Distribute KPIs into concise, clear points",
+      "Remove excessive blank space"
+    ],
+    "overall_score": 2
+  },
+  {
+    "slide_number": 35,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Section divider lacks IBM Blue branding",
+      "Excessive blank space with minimal content",
+      "Title font and placement inconsistent with IBM template"
+    ],
+    "suggestions": [
+      "Apply full IBM Blue section divider template",
+      "Increase visual prominence of section divider",
+      "Maintain consistent IBM font and style"
+    ],
+    "overall_score": 3
+  },
+  {
+    "slide_number": 36,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Large white spaces, particularly in left column",
+      "Bullet points/columns alignment slightly imbalanced",
+      "Not all commercial models visually separated enough"
+    ],
+    "suggestions": [
+      "Use IBM Blue accent elements to improve visual balance",
+      "Fill in blank space by condensing or expanding content",
+      "Add visual lines or boxes to clearly delineate models"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 37,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Large blank white area on left side",
+      "Bullet points are not visually balanced",
+      "Two-column layout is used but feels uneven",
+      "Font could be slightly larger for better readability"
+    ],
+    "suggestions": [
+      "Balance content across both columns to reduce empty space",
+      "Increase font size for both title and bullet points",
+      "Consider using IBM Blue for accents or section divider elements"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 38,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Excessive white space on slide",
+      "Bullets not fully balanced between columns",
+      "No clear visual separation; both columns blend together",
+      "Title could be more visually prominent"
+    ],
+    "suggestions": [
+      "Distribute bullet points more evenly across both columns",
+      "Consider using a dividing line or IBM Blue accent for column separation",
+      "Increase prominence of the slide title (larger/bolder)"
+    ],
+    "overall_score": 6
+  },
+  {
+    "slide_number": 39,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Slide is essentially empty except for title",
+      "No content or next steps are presented",
+      "Section divider lacks full IBM Blue branding",
+      "Excessive empty space"
+    ],
+    "suggestions": [
+      "Use IBM Blue branded divider layout for section transition",
+      "Add next steps or closing statements to utilize space",
+      "Increase title size and consider center alignment"
+    ],
+    "overall_score": 3
+  },
+  {
+    "slide_number": 40,
+    "layout_assessment": "acceptable",
+    "issues": [
+      "Background is plain white, missing IBM branding elements.",
+      "No IBM blue accent or section divider.",
+      "Font is standard but lacks branded style.",
+      "Title may be slightly long (7+ words).",
+      "Text is left-aligned two-column but has large blank areas on the right and bottom.",
+      "Bullet points in both columns are close to the character guideline but not visually separated (column headers would improve clarity)."
+    ],
+    "suggestions": [
+      "Apply IBM blue accent or use branded background for title or divider.",
+      "Add column headers to distinguish IBM/Stable and NRW actions.",
+      "Reduce blank space; increase visual balance.",
+      "Use IBM Plex Sans font for full branding.",
+      "Consider shortening title if possible."
+    ],
+    "overall_score": 5
+  },
+  {
+    "slide_number": 41,
+    "layout_assessment": "needs_improvement",
+    "issues": [
+      "Background is plain white with no IBM branding.",
+      "Font is standard but not clearly IBM Plex Sans or IBM styled.",
+      "Large blank space with only one line of text.",
+      "Contact information is in a single text block, making it hard to read.",
+      "No visual hierarchy or accent elements."
+    ],
+    "suggestions": [
+      "Use IBM blue accent or branded template for the thank you slide.",
+      "Format contact details in a visually structured manner (e.g., table or columns).",
+      "Add IBM logo or footer for branding.",
+      "Reduce blank space and increase visual interest."
+    ],
+    "overall_score": 3
+  },
+  {
+    "slide_number": 42,
+    "layout_assessment": "good",
+    "issues": [
+      "IBM logo is centered, but slide background is light blue, not #0043CE IBM blue.",
+      "No additional information or branding elements as a strong closing page."
+    ],
+    "suggestions": [
+      "Change background to IBM blue (#0043CE) for section divider consistency.",
+      "Consider adding proposal title or final branding touch if this is a closing slide."
+    ],
+    "overall_score": 8
+  }
+]

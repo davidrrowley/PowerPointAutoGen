@@ -19,7 +19,7 @@ Usage:
         --output-dir refined/ \\
         [--iterations 3] \\
         [--model gpt-4o] \\
-        [--score-threshold 7]
+        [--score-threshold 6]
 
 Environment (provider auto-detected from env vars):
     OPENAI_API_KEY  -> OpenAI API (recommended, no daily rate limit)
@@ -87,49 +87,16 @@ _GITHUB_MODELS_BASE_URL = "https://models.inference.ai.azure.com"
 
 _REWRITE_SYSTEM_PROMPT = """\
 You are an expert IBM Consulting presentation designer and copywriter.
-You will be given:
-  1. The current YAML specification for a single presentation slide.
-  2. A critique of that slide from a vision model, including issues, suggestions, and a score.
+Rewrite a single slide YAML to fix vision-critique issues while:
+- Keeping the same core message and facts
+- Choosing the best modality for the content type
+- Following IBM Consulting standards: IBM Blue accents, Arial font, ≤14-word title
+- Per-modality bullet limits: four_pillars/case_study ≤60 chars; options_considered/next_steps ≤8 bullets/side ≤120 chars; most slides ≤7 bullets ≤120 chars
+- YAML RULE: Any string containing ': ' MUST be double-quoted. e.g. `title: "Joint proposition: scale and value"`
+- four_pillars MUST have exactly 4 items in `pillars`, each with `title` and `body` sub-keys
 
-Your job is to rewrite the YAML slide spec to fix the identified issues while:
-- Keeping the same core message and factual content
-- Choosing the most appropriate modality for the content type
-- Following IBM Consulting presentation standards (IBM Blue accents, Arial font, ≤14-word title)
-- Respecting per-modality bullet limits: four_pillars/case_study ≤60 chars/bullet (narrow 2" columns); options_considered/next_steps/hypothesis_success_criteria ≤8 bullets per side; most content slides ≤7 bullets ≤120 chars; key_metric ≤5 bullets
-- Returning ONLY a valid YAML block for that single slide — no prose, no code fences, no extra keys
-- YAML RULE: Any string value that contains ': ' (colon followed by space) MUST be wrapped in double quotes. Example: `title: "Joint proposition: scale and value"` NOT `title: Joint proposition: scale and value`
-
-OUTPUT STRUCTURE (mandatory):
-  modality: <modality_name>
-  fields:
-    <field_name>: <value>
-    ...
-
-Modalities and their REQUIRED fields inside `fields:`:
-  title_slide       → title (+ optional subtitle)
-  index_slide       → title, sections (list of strings)
-  closing_slide     → (no required fields)
-  context_statement → title (+ optional body list)
-  problem_framing   → title (+ optional body list)
-  hypothesis_success_criteria → title (+ optional body list)
-  options_considered → title + either: body_left/body_right, or intro/boxes, or points
-  chosen_approach   → title (+ optional body list)
-  architecture_view → title (+ optional body list)
-  evidence_results  → title + either: body list, or lead/proof_points
-  learnings_constraints → title (+ optional body list)
-  implications      → title (+ optional body list)
-  next_steps        → title (+ optional body list)
-  case_study        → title, body_left, body_right, image
-  strategy          → title (+ optional body list)
-  prioritisation    → title (+ optional body list)
-  operating_model   → title (+ optional body list)
-  section_divider   → title (+ optional subtitle)
-  key_metric        → title (+ optional metric, supporting_text)
-  four_pillars      → title, pillars (list of 4 items each with title + body)
-  quote_slide       → quote (+ optional attribution)
-  ibm_sign_off      → (no required fields)
-
-Return the slide as a YAML mapping with `modality:` and `fields:` as the only top-level keys.
+OUTPUT: Return ONLY a valid YAML mapping with `modality:` and `fields:` as the only top-level keys.
+No prose, no code fences, no explanation.
 """
 
 _REWRITE_USER_PROMPT = """\
@@ -663,38 +630,99 @@ def run_refinement_loop(
             sys.exit(1)
 
         # ---- Step 2: Export slide PNGs ----------------------------------
+        # On iteration 1 we must export everything. On subsequent iterations only
+        # export slides that were rewritten (they are the only ones that changed).
+        # Unchanged slides reuse the PNG from the previous iteration's previews dir.
+        if iteration == 1 or not rewritten_last_iter:
+            slides_to_export_arg: list[str] = []  # empty = export all
+            export_label = "all slides"
+        else:
+            slides_to_export_arg = ["--slides"] + [str(n) for n in sorted(rewritten_last_iter)]
+            export_label = f"slides {sorted(rewritten_last_iter)} only"
+
+        export_cmd = [
+            sys.executable,
+            str(script_dir / "render_slide_previews.py"),
+            "--input", str(pptx_path),
+            "--output-dir", str(previews_dir),
+            "--width", "960",
+        ] + slides_to_export_arg
+
         ok = _run(
-            [
-                sys.executable,
-                str(script_dir / "render_slide_previews.py"),
-                "--input", str(pptx_path),
-                "--output-dir", str(previews_dir),
-            ],
-            f"[{iteration}] Exporting slide previews → {previews_dir}",
+            export_cmd,
+            f"[{iteration}] Exporting slide previews ({export_label}) → {previews_dir}",
         )
         if not ok:
             print("Aborting: preview export failed (is pywin32 installed?).", file=sys.stderr)
             sys.exit(1)
 
+        # Symlink/copy unchanged PNGs from the previous iteration so critique_slides.py
+        # can still find every slide_NNN.png in previews_dir without re-exporting them.
+        if iteration > 1 and rewritten_last_iter:
+            prev_previews = output_dir / f"iteration_{iteration - 1}" / "previews"
+            if prev_previews.exists():
+                import shutil as _shutil
+                for prev_png in sorted(prev_previews.glob("slide_*.png")):
+                    dest = previews_dir / prev_png.name
+                    if not dest.exists():
+                        _shutil.copy2(prev_png, dest)
+
         # ---- Step 3: Vision critique ------------------------------------
+        # Only send slides that were rewritten to the vision model; carry forward
+        # cached critique records for unchanged slides to avoid paying for them again.
+        cached_critique: list[dict] = []
+        slides_to_critique: list[int] = []
+
+        if iteration == 1 or not rewritten_last_iter:
+            slides_to_critique_arg: list[str] = []  # critique all
+        else:
+            # Load cached critiques from previous iteration
+            prev_critique_path = output_dir / f"iteration_{iteration - 1}" / "critique.json"
+            if prev_critique_path.exists():
+                with open(prev_critique_path, "r", encoding="utf-8") as _f:
+                    cached_critique = json.load(_f)
+            slides_to_critique = sorted(rewritten_last_iter)
+            slides_to_critique_arg = ["--slides"] + [str(n) for n in slides_to_critique]
+            cached_count = len([r for r in cached_critique if r.get("slide_number") not in slides_to_critique])
+            print(
+                f"[{iteration}] Skipping vision critique for {cached_count} unchanged slides "
+                f"(reusing cached scores). Critiquing {len(slides_to_critique)} rewritten slide(s)."
+            )
+
+        critique_cmd = [
+            sys.executable,
+            str(script_dir / "critique_slides.py"),
+            "--slides-dir", str(previews_dir),
+            "--output", str(critique_path),
+            "--model", model,
+            "--provider", provider,
+        ] + slides_to_critique_arg
+
         ok = _run(
-            [
-                sys.executable,
-                str(script_dir / "critique_slides.py"),
-                "--slides-dir", str(previews_dir),
-                "--output", str(critique_path),
-                "--model", model,
-                "--provider", provider,
-            ],
+            critique_cmd,
             f"[{iteration}] Vision critique → {critique_path.name}",
         )
         if not ok:
             print("Aborting: critique failed.", file=sys.stderr)
             sys.exit(1)
 
-        # ---- Step 4: LLM rewrite ---------------------------------------
+        # Merge fresh critiques with cached ones
         with open(critique_path, "r", encoding="utf-8") as f:
-            critique_records: list[dict] = json.load(f)
+            fresh_records: list[dict] = json.load(f)
+
+        if cached_critique:
+            fresh_slide_nums = {r["slide_number"] for r in fresh_records}
+            merged = [r for r in cached_critique if r.get("slide_number") not in fresh_slide_nums]
+            merged.extend(fresh_records)
+            merged.sort(key=lambda r: r.get("slide_number", 0))
+            # Overwrite critique.json with the full merged set for auditability
+            with open(critique_path, "w", encoding="utf-8") as f:
+                json.dump(merged, f, indent=2, ensure_ascii=False)
+            critique_records: list[dict] = merged
+        else:
+            critique_records: list[dict] = fresh_records
+
+        # ---- Step 4: LLM rewrite (critique_records already loaded above) --------
 
         # Build per-slide score lookup for this iteration
         scores_this_iter: dict[int, int] = {
@@ -914,8 +942,8 @@ def main() -> None:
     parser.add_argument(
         "--score-threshold",
         type=int,
-        default=5,
-        help="Slides scoring below this are rewritten (default: 5)",
+        default=6,
+        help="Slides scoring below this are rewritten; ≥6 considered good enough for human review (default: 6)",
     )
     parser.add_argument(
         "--catalogue",
